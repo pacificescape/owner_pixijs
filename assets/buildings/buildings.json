@@ -1,0 +1,685 @@
+{
+  "frames": {
+    "door.png": {
+      "frame": { "x": 8, "y": 0, "w": 8, "h": 21 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 21 },
+      "sourceSize": { "w": 8, "h": 21 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "gate.png": {
+      "frame": { "x": 32, "y": 0, "w": 21, "h": 26 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 21, "h": 26 },
+      "sourceSize": { "w": 21, "h": 26 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "redRoofPointy.png": {
+      "frame": { "x": 262, "y": 856, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "redRoofRounded.png": {
+      "frame": { "x": 183, "y": 0, "w": 65, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 68 },
+      "sourceSize": { "w": 65, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "redRoofShort.png": {
+      "frame": { "x": 53, "y": 0, "w": 65, "h": 67 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 67 },
+      "sourceSize": { "w": 65, "h": 67 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "redRoofStraight.png": {
+      "frame": { "x": 0, "y": 144, "w": 65, "h": 88 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 88 },
+      "sourceSize": { "w": 65, "h": 88 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "redRoofTall.png": {
+      "frame": { "x": 327, "y": 856, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorLeft.png": {
+      "frame": { "x": 130, "y": 144, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorRight.png": {
+      "frame": { "x": 195, "y": 144, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorWindow.png": {
+      "frame": { "x": 260, "y": 144, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorWindowBlinds.png": {
+      "frame": { "x": 325, "y": 144, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorWindowBlindsMirror.png": {
+      "frame": { "x": 390, "y": 144, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockDoorWindowMirror.png": {
+      "frame": { "x": 0, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockGateLeft.png": {
+      "frame": { "x": 65, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockGateRight.png": {
+      "frame": { "x": 130, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockRing.png": {
+      "frame": { "x": 132, "y": 68, "w": 65, "h": 76 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 76 },
+      "sourceSize": { "w": 65, "h": 76 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindowBlinds.png": {
+      "frame": { "x": 195, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindowBlindsLeft.png": {
+      "frame": { "x": 260, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindowBlindsRight.png": {
+      "frame": { "x": 325, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindowLeft.png": {
+      "frame": { "x": 390, "y": 233, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindowRight.png": {
+      "frame": { "x": 0, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "rockWindows.png": {
+      "frame": { "x": 65, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorLeft.png": {
+      "frame": { "x": 130, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorRight.png": {
+      "frame": { "x": 195, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorWindow.png": {
+      "frame": { "x": 260, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorWindowBlinds.png": {
+      "frame": { "x": 325, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorWindowBlindsMirror.png": {
+      "frame": { "x": 390, "y": 322, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandDoorWindowMirror.png": {
+      "frame": { "x": 0, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandGateLeft.png": {
+      "frame": { "x": 65, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandGateRight.png": {
+      "frame": { "x": 130, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRing.png": {
+      "frame": { "x": 197, "y": 68, "w": 65, "h": 76 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 76 },
+      "sourceSize": { "w": 65, "h": 76 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRoofPointy.png": {
+      "frame": { "x": 0, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRoofRounded.png": {
+      "frame": { "x": 0, "y": 68, "w": 66, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 66, "h": 68 },
+      "sourceSize": { "w": 66, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRoofShort.png": {
+      "frame": { "x": 248, "y": 0, "w": 65, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 68 },
+      "sourceSize": { "w": 65, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRoofStraight.png": {
+      "frame": { "x": 130, "y": 856, "w": 66, "h": 88 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 66, "h": 88 },
+      "sourceSize": { "w": 66, "h": 88 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandRoofTall.png": {
+      "frame": { "x": 65, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindowBlinds.png": {
+      "frame": { "x": 195, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindowBlindsLeft.png": {
+      "frame": { "x": 260, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindowBlindsRight.png": {
+      "frame": { "x": 325, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindowLeft.png": {
+      "frame": { "x": 390, "y": 411, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindowRight.png": {
+      "frame": { "x": 0, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "sandWindows.png": {
+      "frame": { "x": 65, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorLeft.png": {
+      "frame": { "x": 130, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorRight.png": {
+      "frame": { "x": 195, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorWindow.png": {
+      "frame": { "x": 260, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorWindowBlinds.png": {
+      "frame": { "x": 325, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorWindowBlindsMirror.png": {
+      "frame": { "x": 390, "y": 500, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneDoorWindowMirror.png": {
+      "frame": { "x": 0, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneGateLeft.png": {
+      "frame": { "x": 65, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneGateRight.png": {
+      "frame": { "x": 130, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRing.png": {
+      "frame": { "x": 262, "y": 68, "w": 65, "h": 76 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 76 },
+      "sourceSize": { "w": 65, "h": 76 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRoofPointy.png": {
+      "frame": { "x": 130, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRoofRounded.png": {
+      "frame": { "x": 66, "y": 68, "w": 66, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 66, "h": 68 },
+      "sourceSize": { "w": 66, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRoofShort.png": {
+      "frame": { "x": 313, "y": 0, "w": 65, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 68 },
+      "sourceSize": { "w": 65, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRoofStraight.png": {
+      "frame": { "x": 196, "y": 856, "w": 66, "h": 88 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 66, "h": 88 },
+      "sourceSize": { "w": 66, "h": 88 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneRoofTall.png": {
+      "frame": { "x": 195, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindowBlinds.png": {
+      "frame": { "x": 195, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindowBlindsLeft.png": {
+      "frame": { "x": 260, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindowBlindsRight.png": {
+      "frame": { "x": 325, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindowLeft.png": {
+      "frame": { "x": 390, "y": 589, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindowRight.png": {
+      "frame": { "x": 0, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "stoneWindows.png": {
+      "frame": { "x": 65, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "window.png": {
+      "frame": { "x": 0, "y": 0, "w": 8, "h": 19 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 19 },
+      "sourceSize": { "w": 8, "h": 19 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "windowBlinds.png": {
+      "frame": { "x": 16, "y": 0, "w": 16, "h": 25 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 25 },
+      "sourceSize": { "w": 16, "h": 25 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorLeft.png": {
+      "frame": { "x": 130, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorRight.png": {
+      "frame": { "x": 195, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorWindow.png": {
+      "frame": { "x": 260, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorWindowBlinds.png": {
+      "frame": { "x": 325, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorWindowBlindsMirror.png": {
+      "frame": { "x": 390, "y": 678, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodDoorWindowMirror.png": {
+      "frame": { "x": 0, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodGateLeft.png": {
+      "frame": { "x": 65, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodGateRight.png": {
+      "frame": { "x": 130, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRing.png": {
+      "frame": { "x": 327, "y": 68, "w": 65, "h": 76 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 76 },
+      "sourceSize": { "w": 65, "h": 76 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRoofPointy.png": {
+      "frame": { "x": 260, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRoofRounded.png": {
+      "frame": { "x": 378, "y": 0, "w": 65, "h": 68 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 68 },
+      "sourceSize": { "w": 65, "h": 68 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRoofShort.png": {
+      "frame": { "x": 118, "y": 0, "w": 65, "h": 67 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 67 },
+      "sourceSize": { "w": 65, "h": 67 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRoofStraight.png": {
+      "frame": { "x": 65, "y": 144, "w": 65, "h": 88 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 88 },
+      "sourceSize": { "w": 65, "h": 88 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodRoofTall.png": {
+      "frame": { "x": 325, "y": 948, "w": 65, "h": 92 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 92 },
+      "sourceSize": { "w": 65, "h": 92 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindowBlinds.png": {
+      "frame": { "x": 195, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindowBlindsLeft.png": {
+      "frame": { "x": 260, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindowBlindsRight.png": {
+      "frame": { "x": 325, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindowLeft.png": {
+      "frame": { "x": 390, "y": 767, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindowRight.png": {
+      "frame": { "x": 0, "y": 856, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    },
+    "woodWindows.png": {
+      "frame": { "x": 65, "y": 856, "w": 65, "h": 89 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 89 },
+      "sourceSize": { "w": 65, "h": 89 },
+      "anchor": { "x": 0.5, "y": 0.5 }
+    }
+  },
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "buildings.png",
+    "format": "RGBA8888",
+    "size": { "w": 455, "h": 1040 },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:e10b6bda58054bde9a66b647c06160c5:123e06f43e887726e7e326d2bc81e33f:8f670863a0ac9ac15291caba2801fd50$"
+  }
+}

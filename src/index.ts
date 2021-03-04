@@ -1,72 +1,80 @@
-import * as PIXI from "pixi.js";
+import "./styles.css";
+import "./app.js";
+import "./viewport";
+import "./map.js";
+import "./resources.js";
+import "./visual.js";
+import "./world";
 
-import "./style.css";
+// import * as PIXI from "pixi.js-legacy";
 
-const gameWidth = 800;
-const gameHeight = 600;
+// import "./style.css";
 
-const app = new PIXI.Application({
-    backgroundColor: 0xd3d3d3,
-    width: gameWidth,
-    height: gameHeight,
-});
+// const gameWidth = window.innerWidth;
+// const gameHeight = window.innerHeight;
 
-const stage = app.stage;
+// const app = new PIXI.Application({
+//     backgroundColor: 0xd3d3d2,
+//     width: gameWidth,
+//     height: gameHeight,
+// });
 
-window.onload = async (): Promise<void> => {
-    await loadGameAssets();
+// const stage = app.stage;
 
-    document.body.appendChild(app.view);
+// window.onload = async (): Promise<void> => {
+//     await loadGameAssets();
 
-    resizeCanvas();
+//     document.body.appendChild(app.view);
 
-    const birdFromSprite = getBird();
-    birdFromSprite.anchor.set(0.5, 0.5);
-    birdFromSprite.position.set(gameWidth / 2, gameHeight / 2);
+//     resizeCanvas();
 
-    stage.addChild(birdFromSprite);
-};
+//     const birdFromSprite = getBird();
+//     birdFromSprite.anchor.set(0.5, 0.5);
+//     birdFromSprite.position.set(gameWidth / 2, gameHeight / 2);
 
-async function loadGameAssets(): Promise<void> {
-    return new Promise((res, rej) => {
-        const loader = PIXI.Loader.shared;
-        loader.add("rabbit", "./assets/simpleSpriteSheet.json");
+//     stage.addChild(birdFromSprite);
+// };
 
-        loader.onComplete.once(() => {
-            res();
-        });
+// async function loadGameAssets(): Promise<void> {
+//     return new Promise((res, rej) => {
+//         const loader = PIXI.Loader.shared;
+//         loader.add("rabbit", "./assets/simpleSpriteSheet.json");
 
-        loader.onError.once(() => {
-            rej();
-        });
+//         loader.onComplete.once(() => {
+//             res();
+//         });
 
-        loader.load();
-    });
-}
+//         loader.onError.once(() => {
+//             rej();
+//         });
 
-function resizeCanvas(): void {
-    const resize = () => {
-        app.renderer.resize(window.innerWidth, window.innerHeight);
-        app.stage.scale.x = window.innerWidth / gameWidth;
-        app.stage.scale.y = window.innerHeight / gameHeight;
-    };
+//         loader.load();
+//     });
+// }
 
-    resize();
+// function resizeCanvas(): void {
+//     const resize = () => {
+//         app.renderer.resize(window.innerWidth, window.innerHeight);
+//         app.stage.scale.x = window.innerWidth / gameWidth;
+//         app.stage.scale.y = window.innerHeight / gameHeight;
+//     };
 
-    window.addEventListener("resize", resize);
-}
+//     resize();
 
-function getBird(): PIXI.AnimatedSprite {
-    const bird = new PIXI.AnimatedSprite([
-        PIXI.Texture.from("birdUp.png"),
-        PIXI.Texture.from("birdMiddle.png"),
-        PIXI.Texture.from("birdDown.png"),
-    ]);
+//     window.addEventListener("resize", resize);
+// }
 
-    bird.loop = true;
-    bird.animationSpeed = 0.1;
-    bird.play();
-    bird.scale.set(3);
+// function getBird(): PIXI.AnimatedSprite {
+//     const bird = new PIXI.AnimatedSprite([
+//         PIXI.Texture.from("birdUp.png"),
+//         PIXI.Texture.from("birdMiddle.png"),
+//         PIXI.Texture.from("birdDown.png"),
+//     ]);
 
-    return bird;
-}
+//     bird.loop = true;
+//     bird.animationSpeed = 0.1;
+//     bird.play();
+//     bird.scale.set(3);
+
+//     return bird;
+// }

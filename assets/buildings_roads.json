@@ -1,0 +1,86 @@
+{
+  "frames": {
+    "building_012": {
+      "frame": { "x": 0, "y": 0, "w": 132, "h": 127 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 127 },
+      "sourceSize": { "w": 132, "h": 127 },
+      "anchor": { "x": 0.5, "y": 0.47244 }
+    },
+    "building_023": {
+      "frame": { "x": 132, "y": 0, "w": 99, "h": 85 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 99, "h": 85 },
+      "sourceSize": { "w": 99, "h": 85 },
+      "anchor": { "x": 0.5, "y": 0.30588 }
+    },
+    "building_123": {
+      "frame": { "x": 231, "y": 0, "w": 132, "h": 127 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 127 },
+      "sourceSize": { "w": 132, "h": 127 },
+      "anchor": { "x": 0.5, "y": 0.47244 }
+    },
+    "building_124": {
+      "frame": { "x": 363, "y": 0, "w": 132, "h": 127 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 127 },
+      "sourceSize": { "w": 132, "h": 127 },
+      "anchor": { "x": 0.5, "y": 0.47244 }
+    },
+    "right": {
+      "frame": { "x": 495, "y": 0, "w": 132, "h": 104 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 104 },
+      "sourceSize": { "w": 132, "h": 104 },
+      "anchor": { "x": 0.5, "y": 0.34615 }
+    },
+    "left": {
+      "frame": { "x": 627, "y": 0, "w": 132, "h": 123 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 123 },
+      "sourceSize": { "w": 132, "h": 123 },
+      "anchor": { "x": 0.5, "y": 0.45528 }
+    },
+    "empty": {
+      "frame": { "x": 759, "y": 0, "w": 132, "h": 113 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 113 },
+      "sourceSize": { "w": 132, "h": 113 },
+      "anchor": { "x": 0.5, "y": 0.40708 }
+    },
+    "cross": {
+      "frame": { "x": 891, "y": 0, "w": 132, "h": 101 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 132, "h": 101 },
+      "sourceSize": { "w": 132, "h": 101 },
+      "anchor": { "x": 0.5, "y": 0.33663 }
+    }
+  },
+  "animations": {
+    "buildingTiles": [
+      "buildingTiles_012.png",
+      "buildingTiles_023.png",
+      "buildingTiles_123.png",
+      "buildingTiles_124.png"
+    ],
+    "cityTiles": ["cityTiles_000.png", "cityTiles_036.png", "cityTiles_067.png", "cityTiles_089.png"]
+  },
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "buildings_roads.png",
+    "format": "RGBA8888",
+    "size": { "w": 1023, "h": 127 },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:cf5c5ea805f519737d4627c516f0a8cb:1c4c7632b2f8609edecf4389c223e2cf:fdc0beb3bd768e69ec73d5f7a474cd6c$"
+  }
+}
