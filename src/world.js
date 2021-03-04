@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import Map from "./Map.js";
+import Map from "./entities/world/map.js";
 import Ground from "./entities/world/grounds/ground";
 import Building from "./entities/world/buildings/building.js";
 import Road from "./entities/road.js";
