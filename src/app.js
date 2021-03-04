@@ -11,7 +11,9 @@ class Application {
       height: window.innerHeight,
       backgroundColor: 0x1099bb,
       resolution: window.devicePixelRatio || 1,
-      resize: true,
+      // resizeTo: window,
+      // autoResize: true, https://www.html5gamedevs.com/topic/42553-resize-window/
+      // autoDensity: true,
     });
 
     document.body.appendChild(this.renderer.view);
@@ -32,6 +34,11 @@ class Application {
     this.renderer.render(this.stage);
     stats.end();
   }
+
+  onresize() {
+    app.renderer.resize(window.innerWidth, window.innerHeight);
+  }
 }
 
 window.app = new Application();
+window.onresize = window.app.onresize;
