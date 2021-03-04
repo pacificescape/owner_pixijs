@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import Map from "./Map.js";
-import Ground from "./entities/ground";
-import Building from "./entities/building.js";
+import Ground from "./entities/world/grounds/ground";
+import Building from "./entities/world/buildings/building.js";
 import Road from "./entities/road.js";
 const app = global.app;
 const viewport = global.viewport;
@@ -34,9 +34,10 @@ export default class World extends PIXI.Container {
   }
 
   populate() {
-    // Create a 5x5 grid of bunnies
-    for (let row = 0; row < 50; row++) {
-      for (let col = 0; col < 50; col++) {
+    const SIZE = 50;
+    // Create a SIZExSIZE grid of bunnies
+    for (let row = 0; row < SIZE; row++) {
+      for (let col = 0; col < SIZE; col++) {
         let ind = 0;
         if ((row + col) % 4) {
           ind = 1;
@@ -51,7 +52,7 @@ export default class World extends PIXI.Container {
         }
 
         let element = null;
-        const y = ((row - 25) ** 2 + (col - 25) ** 2) * -0.15 + 30;
+        const y = ((row - SIZE / 2) ** 2 + (col - SIZE / 2) ** 2) * -0.15 + 30;
         if (ind === 0 && row % 4 === 0) {
           element = new Building(app.visual.grounds[6], y);
           element.x = (col + 1) * 65 + offsetX;

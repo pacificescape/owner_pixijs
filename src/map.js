@@ -1,8 +1,10 @@
+const PIXI = global.PIXI;
 const app = global.app;
-import Ground from "./entities/ground.js";
+import Ground from "./entities/world/grounds/ground.js";
 
-export default class Map {
+export default class Map extends PIXI.Container {
   constructor() {
+    super();
     app.stage.on("loaded", () => {
       this.createMap();
     });
