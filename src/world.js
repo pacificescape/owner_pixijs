@@ -1,6 +1,5 @@
 import * as PIXI from "pixi.js";
-import Map from "./entities/world/map.js";
-import Ground from "./entities/world/grounds/ground";
+import WorldMap from "./entities/world/worldMap.js";
 import Building from "./entities/world/buildings/building.js";
 import Road from "./entities/road.js";
 const app = global.app;
@@ -9,7 +8,7 @@ const viewport = global.viewport;
 export default class World extends PIXI.Container {
   constructor() {
     super();
-    this.map = new Map();
+    this.map = new WorldMap();
 
     const textLayer = new PIXI.display.Layer(window.textGroup);
     app.textLayer = textLayer;

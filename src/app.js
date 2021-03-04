@@ -13,7 +13,7 @@ class Application {
       resolution: window.devicePixelRatio || 1,
       // resizeTo: window,
       // autoResize: true, https://www.html5gamedevs.com/topic/42553-resize-window/
-      // autoDensity: true,
+      // autoDensity: true, // TODO: resize do not working after change orientation ios/?android
     });
 
     document.body.appendChild(this.renderer.view);
@@ -31,12 +31,14 @@ class Application {
 
   render() {
     stats.begin();
+    // console.log(window.viewport.hitArea.width, window.viewport.hitArea.height);
     this.renderer.render(this.stage);
     stats.end();
   }
 
   onresize() {
     app.renderer.resize(window.innerWidth, window.innerHeight);
+    viewport.resize(window.innerWidth, window.innerHeight);
   }
 }
 

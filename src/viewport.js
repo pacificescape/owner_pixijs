@@ -10,4 +10,14 @@ const viewport = new Viewport({
   interaction: app.renderer.plugins.interaction, // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
 });
 
-global.viewport = viewport.drag().pinch().wheel().decelerate();
+global.viewport = viewport
+  .drag()
+  .pinch()
+  .wheel()
+  .clampZoom({
+    minWidth: 350,
+    minHeight: 350,
+    maxWidth: 50000,
+    maxHeigth: 50000,
+  })
+  .decelerate();
