@@ -1,11 +1,25 @@
 import * as PIXI from "pixi.js";
 
 export default class Ground extends PIXI.Container {
-  constructor(visualModel) {
+  constructor(value) {
     super();
 
-    this.sprite = new PIXI.Sprite(visualModel.texture);
+    this.firstTexture = app.visual.grounds[value === 0 ? 29 : 16];
+    this.secondTexture = app.visual.grounds[22];
+
+    this.sprite = new PIXI.Sprite(this.firstTexture.texture);
+    this.sprite.pivot.y = value * 150;
+    this.sprite.interactive = true;
+    this.sprite.mouseover = this.mouseover.bind(this);
+    this.sprite.mouseout = this.mouseout.bind(this);
     this.addChild(this.sprite);
-    // this.sprite.pivot.copyFrom(visualModel.pivot || { x: 65, y: 33 });
+  }
+
+  mouseover() {
+    this.sprite.texture = this.secondTexture.texture;
+  }
+
+  mouseout() {
+    this.sprite.texture = this.firstTexture.texture;
   }
 }

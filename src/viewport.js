@@ -6,9 +6,18 @@ const viewport = new Viewport({
   screenHeight: window.innerHeight,
   worldWidth: 1000,
   worldHeight: 1000,
+  ticker: app.ticker,
 
   interaction: app.renderer.plugins.interaction, // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
 });
+
+// viewport.interactive = true;
+// viewport.on("pointerdown", (evt) => {
+//   console.log(evt);
+
+//   viewport.toWorld(150, 150);
+// });
+// this.isMouseDown = false;
 
 global.viewport = viewport
   .drag()
