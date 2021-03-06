@@ -32,14 +32,25 @@ export default class World extends PIXI.Container {
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
 
-      viewport.on("pointerdown", this.updateMap.bind(this));
+      // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));
       // viewport.on("pointerup", this.updateMap.bind(this));
-      viewport.on("pointerupoutside", this.updateMap.bind(this));
-      viewport.on("pointercancel", this.updateMap.bind(this));
-      viewport.on("pointerout", this.updateMap.bind(this));
+      // viewport.on("pointerupoutside", this.updateMap.bind(this));
+      // viewport.on("pointercancel", this.updateMap.bind(this));
+      // viewport.on("pointerout", this.updateMap.bind(this));
 
       // app.stage.addChild(darkSprite);
+
+      // TODO Refactor
+      app.ticker.add((delta) => {
+        if (delta % 2 === 0) return;
+        if (viewport.plugins.list[0].moved) {
+          this.updateMap();
+        }
+        if (viewport.plugins.list[4].timeSinceRelease < 1000) {
+          // this.updateMap();
+        }
+      });
     });
   }
 
