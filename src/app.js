@@ -2,8 +2,9 @@ import * as PIXI from "pixi.js";
 window.PIXI = PIXI;
 require("pixi-layers");
 window.textGroup = new PIXI.display.Group();
-const stats = window.stats;
 
+const stats = window.stats;
+const rpc = window.rpc;
 class Application {
   constructor() {
     this.renderer = new PIXI.Renderer({

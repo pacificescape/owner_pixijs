@@ -12,11 +12,11 @@ const viewport = new Viewport({
 });
 
 // viewport.interactive = true;
-viewport.on("pointerdown", (evt) => {
-  console.log(evt);
+// viewport.on("pointerdown", (evt) => {
+//   console.log(evt);
 
-  viewport.toWorld(150, 150);
-});
+//   viewport.toWorld(150, 150);
+// });
 
 global.viewport = viewport
   .drag()

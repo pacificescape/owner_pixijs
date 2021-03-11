@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "core-js": "^3.6.5",
+    "effector": "^21.8.5",
     "pixi-layers": "^0.3.1",
     "pixi-viewport": "^4.21.1",
     "pixi.js": "^5.3.7",

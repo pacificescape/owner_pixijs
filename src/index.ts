@@ -1,3 +1,5 @@
+// import "./control/store.js";
+// import "./control/net.js";
 import "./utils/stats.js";
 import "./styles.css";
 import "./app.js";

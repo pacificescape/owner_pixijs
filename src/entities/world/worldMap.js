@@ -2,10 +2,12 @@ const PIXI = global.PIXI;
 const app = global.app;
 const viewport = global.viewport;
 const SECTION_SIZE = 40;
+// import { mapStore } from "../../control/store";
 export default class WorldMap extends PIXI.Container {
   constructor() {
     super();
-    this.map = [];
+    // this.map = mapStore.getState();
+    this.map = { elevation: [[]], start: { x: 0, y: 0 } };
     app.stage.on("loaded", () => {
       this.createMapFromLoader();
     });
@@ -15,14 +17,22 @@ export default class WorldMap extends PIXI.Container {
   // if is logged in take map island and position
   // coordinates is in app
 
+  _createMapFromStore() {
+    // this.map = mapStore.getState();
+  }
+
   createMapFromLoader() {
     const resources = app.loader.resources;
     const map = resources.map.data;
 
     this.map = Object.assign({}, map);
-    this.map.elevation = this.map.elevation
-      .concat(this.map.elevation)
-      .concat(this.map.elevation);
+    this.map.elevation = this.map.elevation;
+    // .concat(this.map.elevation)
+    // .concat(this.map.elevation);
+  }
+
+  updateMap() {
+    // console.log("updateMap");
   }
 
   getSection() {
@@ -33,6 +43,7 @@ export default class WorldMap extends PIXI.Container {
     let rows = Math.floor(height / 54);
     rows = rows > elevation.length ? elevation.length : rows;
     let cols = Math.floor(width / 65);
+    if (!elevation[0]) return [];
     cols = cols > elevation[0].length ? elevation[0].length : cols;
 
     // нахожу верхнюю левую клетку во вьюпорте

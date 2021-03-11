@@ -1,7 +1,8 @@
 import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
-import Building from "./entities/world/buildings/building.js";
-import Ground from "./entities/world/grounds/ground";
+import Building from "./entities/world/fields/buildings/building.js";
+import Ground from "./entities/world/fields/grounds/ground";
+// import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
 const app = global.app;
 const viewport = global.viewport;
 
@@ -31,6 +32,7 @@ export default class World extends PIXI.Container {
       viewport.addChild(textLayer);
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
+      viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
 
       // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));
@@ -43,12 +45,11 @@ export default class World extends PIXI.Container {
 
       // TODO Refactor
       app.ticker.add((delta) => {
-        if (delta % 2 === 0) return;
-        if (viewport.plugins.list[0].moved) {
+        // if (delta % 2 === 0) return;
+        if (viewport.moving) {
+          // if (viewport.plugins.list[4].timeSinceRelease < 500) {
           this.updateMap();
-        }
-        if (viewport.plugins.list[4].timeSinceRelease < 1000) {
-          // this.updateMap();
+          // }
         }
       });
     });
@@ -92,6 +93,15 @@ export default class World extends PIXI.Container {
         }
       }
     }
+    const zeroLabel = new PIXI.Text("zero");
+
+    // const WIDTH = 64 * 2.5;
+    // const HEIGHT = 65;
+    // this.worldMap.addChild(new Hexagone({ x: 0.8 * WIDTH, y: -2 * HEIGHT }));
+    // this.worldMap.addChild(new Hexagone({ x: 0, y: 0 }));
+    // this.worldMap.addChild(new Hexagone({ x: 1.8 * WIDTH, y: -1 * HEIGHT }));
+    // this.worldMap.addChild(new Hexagone({ x: 1 * WIDTH, y: 1 * HEIGHT }));
+    this.worldMap.addChild(zeroLabel);
   }
 
   initMap() {
