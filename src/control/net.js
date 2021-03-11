@@ -13,8 +13,14 @@ class WebSocketRPCClient {
     const noop = () => null;
     this.subscribeMap = {};
     this.wsEvents = Object.entries({
-      message: (data) => {
-        console.log(data);
+      message: (evt) => {
+        console.log(evt);
+        const parsedData = JSON.parse(evt.data);
+        const { rpcID } = parsedData;
+        if (!rpcID) return;
+        if (this.map[rpcID]) {
+          this.map[rpcID].resolve(parsedData);
+        }
       },
     });
   }

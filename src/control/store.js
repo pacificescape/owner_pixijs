@@ -16,6 +16,11 @@ export const getMapFX = createEffect(async (hitArea) => {
   return res;
 });
 
+getMapFX.done.watch(({ params, result }) => {
+  const map = new Uint8Array(result.data.split(/\D+/).map(Number));
+  addMap(map);
+});
+
 export const connectEvt = createEvent();
 export const connetionStore = createStore({ status: 0 }).on(
   connectEvt,
