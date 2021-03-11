@@ -8,6 +8,7 @@
     "webpack-dev-server": "webpack-dev-server --hot --open",
     "build": "npx del-cli dist --force  && npm run webpack -- --env.mode production",
     "dev": "npm run webpack-dev-server -- --env.mode development --watch",
+    "backend": "npm install --prefix ./server && node ./server/index.js",
     "test": "npx jest",
     "code-coverage": "jest --coverage",
     "prettier": "npx prettier",
