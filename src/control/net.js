@@ -66,14 +66,13 @@ globalThis.rpc = rpc;
 const wsUrl =
   location.hostname === "127.0.0.1" || "localhost"
     ? "ws://127.0.0.1:8081"
-    : "ws://192.168.1.82:8081";
+    : `ws://owner.${location.hostname}/`;
 
 function wsReconnect() {
   const webSocket = new WebSocket(wsUrl);
   webSocket.onopen = () => {
     rpc.attach(webSocket);
     connectEvt(1);
-    // isConnected.set(true);
     const data = onConnect.map((msg) => {
       return msg;
     });
@@ -82,7 +81,6 @@ function wsReconnect() {
     });
   };
   webSocket.onclose = () => {
-    // isConnected.set(false);
     connectEvt(0);
     setTimeout(wsReconnect, 2e3);
   };

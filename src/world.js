@@ -85,22 +85,12 @@ export default class World extends PIXI.Container {
 
         let element = null;
         const y = ((row - SIZE / 2) ** 2 + (col - SIZE / 2) ** 2) * -0.15 + 30;
-        if (true) {
-          element = new Field2d(Math.ceil(value * 2 + 1) || 1);
-          element.x = (col + 1) * element.width + offsetX;
-          element.y = (row + 1) * 54;
-          this.worldMap.addChild(element);
-        } else {
-        }
+        element = new Field2d(Math.ceil(value * 2 + 1) || 1);
+        element.x = (col + 1) * element.width + offsetX;
+        element.y = (row + 1) * 54;
+        this.worldMap.addChild(element);
       }
     }
-
-    // const WIDTH = 64 * 2.5;
-    // const HEIGHT = 65;
-    // this.worldMap.addChild(new Hexagone({ x: 0.8 * WIDTH, y: -2 * HEIGHT }));
-    // this.worldMap.addChild(new Hexagone({ x: 0, y: 0 }));
-    // this.worldMap.addChild(new Hexagone({ x: 1.8 * WIDTH, y: -1 * HEIGHT }));
-    // this.worldMap.addChild(new Hexagone({ x: 1 * WIDTH, y: 1 * HEIGHT }));
   }
 
   initMap() {
