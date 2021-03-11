@@ -1,21 +1,22 @@
 import * as PIXI from "pixi.js";
+const RESOLUTION = 2;
 
-// const hex = new PIXI.Graphics.drawRegularPolygon(0, 0, 50, 6, 45);
-// hex.beginFill(0xffff00);\
 // let hexGraph = new PIXI.Graphics();
 // hexGraph.drawRegularPolygon = drawRegularPolygon;
 
 // hexGraph.beginTextureFill(0xee0000);
-// hexGraph.drawPolygon([0, 0, 50, 0, 50, 50, 50, 0]);
-// // hexGraph.moveTo(0, 0);
-// hexGraph.lineStyle(0x000000);
 // hexGraph.drawRegularPolygon(0, 0, 35, 6, 0);
+// hexGraph.endFill();
+// // hexGraph.beginTextureFill(0xee0000);
+// // hexGraph.lineStyle(0x111000);
+// hexGraph.moveTo(0, 0);
+// hexGraph.drawRegularPolygon(0, 0, 25, 6, 0);
 // hexGraph.endFill();
 
 // const hexTexture = app.renderer.generateTexture(
 //   hexGraph,
 //   PIXI.SCALE_MODES.LINEAR,
-//   2
+//   RESOLUTION
 // );
 
 // let hexGraphHover = new PIXI.Graphics();
@@ -31,22 +32,24 @@ import * as PIXI from "pixi.js";
 // const hexTextureHover = app.renderer.generateTexture(
 //   hexGraphHover,
 //   PIXI.SCALE_MODES.LINEAR,
-//   2
+//   RESOLUTION
 // );
+
+const hexs = 7;
 
 export default class Field extends PIXI.Sprite {
   constructor(texture, x, y) {
-    super(texture);
+    super(app.visual.hexagons2d[texture].texture);
 
     this.textures = {
-      hover: texture,
-      main: texture,
+      hover: app.visual.hexagons2d[texture].texture,
+      main: app.visual.hexagons2d[texture].texture,
     };
 
-    const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
-    label.y += 20;
-    label.x += 10;
-    this.addChild(label);
+    // const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
+    // label.y += 20;
+    // label.x += 10;
+    // this.addChild(label);
 
     // let pol = new PIXI.Graphics();
     // pol.beginFill(0xee0000);
@@ -72,7 +75,8 @@ export default class Field extends PIXI.Sprite {
   }
 
   toggleTexture() {
-    this.generalTexture = app.visual.grounds[12];
+    // this.generalTexture = app.visual.grounds[12];
+    this.generalTexture = this.textures.main;
     this.mouseout();
   }
 

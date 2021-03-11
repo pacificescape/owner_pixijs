@@ -1,11 +1,11 @@
 import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
 import Building from "./entities/world/fields/buildings/building.js";
-import Ground from "./entities/world/fields/grounds/ground";
+import Field2d from "./entities/world/fields/field2d";
 // import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
 const app = global.app;
 const viewport = global.viewport;
-
+let fields = [];
 export default class World extends PIXI.Container {
   constructor() {
     super();
@@ -22,9 +22,10 @@ export default class World extends PIXI.Container {
 
     app.stage.on("loaded", () => {
       this.initMap();
+      // fields = new Array(8).fill("").map((_, i) => new Field2d(i));
 
-      const sea = new PIXI.TilingSprite(app.visual.sea.texture, 33, 33);
-      sea.wrapMode = PIXI.WRAP_MODES.REPEAT;
+      // const sea = new PIXI.TilingSprite(app.visual.sea.texture, 33, 33);
+      // sea.wrapMode = PIXI.WRAP_MODES.REPEAT;
       // sea.width = window.innerWidth;
       // sea.height = window.innerHeight;
       this.populate();
@@ -32,7 +33,7 @@ export default class World extends PIXI.Container {
       viewport.addChild(textLayer);
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
-      viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
+      // viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
 
       // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));
@@ -44,8 +45,10 @@ export default class World extends PIXI.Container {
       // app.stage.addChild(darkSprite);
 
       // TODO Refactor
+      const zeroLabel = new PIXI.Text("zero");
+      viewport.addChild(zeroLabel);
+
       app.ticker.add((delta) => {
-        // if (delta % 2 === 0) return;
         if (viewport.moving) {
           // if (viewport.plugins.list[4].timeSinceRelease < 500) {
           this.updateMap();
@@ -75,25 +78,20 @@ export default class World extends PIXI.Container {
 
         let offsetX = 0;
         if (row % 2) {
-          offsetX = 33;
+          offsetX = 32;
         }
 
         let element = null;
         const y = ((row - SIZE / 2) ** 2 + (col - SIZE / 2) ** 2) * -0.15 + 30;
         if (true) {
-          element = new Ground(value);
-          element.x = (col + 1) * 65 + offsetX;
+          element = new Field2d(Math.ceil(value * 2 + 1) || 1);
+          element.x = (col + 1) * element.width + offsetX;
           element.y = (row + 1) * 54;
           this.worldMap.addChild(element);
         } else {
-          // element = new Ground(app.visual.grounds[18], y);
-          // element.x = (col + 1) * 65 + offsetX;
-          // element.y = (row + 1) * 54;
-          // this.addChild(element);
         }
       }
     }
-    const zeroLabel = new PIXI.Text("zero");
 
     // const WIDTH = 64 * 2.5;
     // const HEIGHT = 65;
@@ -101,7 +99,6 @@ export default class World extends PIXI.Container {
     // this.worldMap.addChild(new Hexagone({ x: 0, y: 0 }));
     // this.worldMap.addChild(new Hexagone({ x: 1.8 * WIDTH, y: -1 * HEIGHT }));
     // this.worldMap.addChild(new Hexagone({ x: 1 * WIDTH, y: 1 * HEIGHT }));
-    this.worldMap.addChild(zeroLabel);
   }
 
   initMap() {

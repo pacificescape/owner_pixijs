@@ -7,6 +7,8 @@ const loadOptions = { crossOrigin: true };
 
 loader.baseUrl = "assets/";
 loader.add("map", "map.json", loadOptions);
+loader.add("hexagons2d", "ground/2dHexagons.json", loadOptions);
+
 loader.add("all", "buildings_roads.json", loadOptions);
 loader.add("tileGrass", "tileGrass.png", loadOptions);
 loader.add("tileSnow", "tileSnow.png", loadOptions);

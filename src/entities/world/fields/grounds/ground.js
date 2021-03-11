@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
+import field2d from "../field2d";
 const viewport = window.viewport;
-export default class Ground extends PIXI.Container {
+export default class Ground extends field2d {
   constructor(value) {
     super();
 
@@ -13,8 +14,9 @@ export default class Ground extends PIXI.Container {
 
     this.secondTexture = app.visual.grounds[22];
     this.generalTexture = this.firstTexture;
-    this.sprite = new PIXI.Sprite(this.firstTexture.texture);
-    this.sprite.pivot.y = value * 150;
+    // this.sprite = new PIXI.Sprite(this.firstTexture.texture);
+    this.sprite = new field2d();
+    // this.sprite.pivot.y = value * 150;
 
     this.sprite.interactive = true;
     this.sprite.mouseover = this.mouseover.bind(this);
@@ -30,16 +32,16 @@ export default class Ground extends PIXI.Container {
     this.addChild(this.sprite);
   }
 
-  toggleTexture() {
-    this.generalTexture = app.visual.grounds[12];
-    this.mouseout();
-  }
+  // toggleTexture() {
+  //   this.generalTexture = app.visual.grounds[12];
+  //   this.mouseout();
+  // }
 
-  mouseover() {
-    this.sprite.texture = this.secondTexture.texture;
-  }
+  // mouseover() {
+  //   this.sprite.texture = this.secondTexture.texture;
+  // }
 
-  mouseout() {
-    this.sprite.texture = this.generalTexture.texture;
-  }
+  // mouseout() {
+  //   this.sprite.texture = this.generalTexture.texture;
+  // }
 }

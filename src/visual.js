@@ -12,8 +12,19 @@ class VisualModels {
     const buildings = resources.buildings.textures;
     const all = resources.all.textures;
     const grounds = resources.grounds.textures;
+    const hexagons2d = resources.hexagons2d.textures;
 
     Object.assign(this, {
+      hexagons2d: [
+        { texture: hexagons2d["black.png"] },
+        { texture: hexagons2d["blue.png"] },
+        { texture: hexagons2d["green.png"] },
+        { texture: hexagons2d["grey.png"] },
+        { texture: hexagons2d["orange.png"] },
+        { texture: hexagons2d["red.png"] },
+        { texture: hexagons2d["violet.png"] },
+        { texture: hexagons2d["white.png"] },
+      ],
       grounds: [
         { texture: grounds["tileAutumn.png"] },
         { texture: grounds["tileAutumn_full.png"] },
