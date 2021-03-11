@@ -42,7 +42,7 @@ export default class Field extends PIXI.Sprite {
     super(app.visual.hexagons2d[texture].texture);
 
     this.textures = {
-      hover: app.visual.hexagons2d[texture].texture,
+      hover: app.visual.hexagons2d[7].texture,
       main: app.visual.hexagons2d[texture].texture,
     };
 
@@ -67,6 +67,20 @@ export default class Field extends PIXI.Sprite {
     // this.texture = textureHex;
     // this.tint = 0xffaaaa;
     this.interactive = true;
+    this.hitArea = new PIXI.Polygon([
+      0,
+      20,
+      33,
+      0,
+      64,
+      20,
+      64,
+      56,
+      33,
+      64,
+      0,
+      56,
+    ]);
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
     this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.toggleTexture.bind(
