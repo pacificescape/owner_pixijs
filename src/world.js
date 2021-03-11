@@ -2,7 +2,8 @@ import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
 import Building from "./entities/world/fields/buildings/building.js";
 import Field2d from "./entities/world/fields/field2d";
-// import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
+import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
+import Status from "./helpers/status.js";
 const app = global.app;
 const viewport = global.viewport;
 let fields = [];
@@ -33,6 +34,7 @@ export default class World extends PIXI.Container {
       viewport.addChild(textLayer);
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
+      app.stage.addChild(new Status());
       // viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
 
       // viewport.on("pointerdown", this.updateMap.bind(this));

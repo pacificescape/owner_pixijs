@@ -118,3 +118,5 @@ function drawRegularPolygon(x, y, radius, sides, rotation) {
   }
   return this.drawPolygon(polygon);
 }
+
+// pending state for field (saving)
