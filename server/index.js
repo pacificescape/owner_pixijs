@@ -118,6 +118,12 @@ class RPCClientBase {
       console.error(result)
     }
 
+    if (typeof result === 'string') {
+      result = {
+        data: result
+      }
+    }
+
     try {
       result.rpcID = rpcID
       resultJSON = JSON.stringify(result)
@@ -143,7 +149,75 @@ class ClientGuest extends RPCClientBase {
 
     return result
   }
+
+  actionGetMapPortion(obj) {
+    console.log(obj)
+
+    const size = Math.floor(obj.width / 65 * obj.height / 54)
+    const start = map.width * Math.ceil(obj.height / 54) + Math.ceil(obj.x / 65)
+
+    console.log('size', size, 'start', start)
+
+    const portion = map.elevation.slice(start, start + size)
+    return portion.toString()
+  }
+
   actionUserAuthSignin(obj) { return this._actionUserAuthAddUser(users.actionUserAuthSignin(obj)) }
   actionUserAuthSignup(obj) { return this._actionUserAuthAddUser(users.actionUserAuthSignup(obj)) }
   actionUserAuthSession(obj) { return this._actionUserAuthAddUser(users.actionUserAuthSession(obj)) }
 }
+
+class Result {
+  constructor(obj, errorCode = '', errorMessage = '') {
+    this.rpcID = null
+    this.result = obj
+
+    this.errorCode = errorCode
+    this.errorMessage = errorMessage
+  }
+
+  static success(obj = {}) {
+    return new this(obj)
+  }
+  static error(errorCode = '', errorMessage = '') {
+    return new this(null, errorCode, errorMessage)
+  }
+}
+
+class User {
+  constructor(login, password) {
+    this.id = users.size()++
+    this.timeCreate = Date.now()
+    this.login = login
+    this.password = password || ''
+    this.isOnline = false
+    this.client = null
+  }
+
+  createSession() {
+    const session = crypto.randomBytes(32).toString('hex')
+    sessions.set(session, this)
+    return session
+  }
+
+  toSendFormat() {
+    return {
+      timeCreate: this.timeCreate,
+      id: this.id,
+      login: this.login,
+    }
+  }
+}
+
+class Users extends Map {
+  actionAuthUser(login) {
+    if (!login) return
+    if (this.has(login)) return;
+    const user = new User(login)
+    this.set(login, user)
+  }
+}
+
+const sessions = new Map()
+const users = new Users()
+const clients = []

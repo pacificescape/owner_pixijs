@@ -4,6 +4,8 @@ import Building from "./entities/world/fields/buildings/building.js";
 import Field2d from "./entities/world/fields/field2d";
 import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
 import Status from "./helpers/status.js";
+import { getMapFX } from "./control/store";
+
 const app = global.app;
 const viewport = global.viewport;
 let fields = [];
@@ -49,6 +51,8 @@ export default class World extends PIXI.Container {
       // TODO Refactor
       const zeroLabel = new PIXI.Text("zero");
       viewport.addChild(zeroLabel);
+
+      getMapFX(global.viewport.hitArea);
 
       app.ticker.add((delta) => {
         if (viewport.moving) {
