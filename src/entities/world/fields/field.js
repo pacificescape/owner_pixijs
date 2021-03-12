@@ -5,7 +5,7 @@ export default class Field extends PIXI.Sprite {
     super(texture);
 
     this.textures = {
-      hover: app.visual.grounds[22].texture,
+      hover: app.visual.grounds[10].texture,
       main: texture,
     };
 
@@ -15,6 +15,21 @@ export default class Field extends PIXI.Sprite {
     this.addChild(label);
 
     this.interactive = true;
+    this.hitArea = new PIXI.Polygon([
+      0,
+      25,
+      50,
+      0,
+      100,
+      25,
+      100,
+      112,
+      50,
+      137,
+      0,
+      112,
+    ]);
+
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
     this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.toggleTexture.bind(

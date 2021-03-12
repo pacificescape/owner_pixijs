@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
 import Building from "./entities/world/fields/buildings/building.js";
 import Field2d from "./entities/world/fields/field2d";
-import Hexagone from "./entities/world/fields/hexagone/hexagone.js";
+import Sector from "./entities/world/fields/sector/sector.js";
 import Status from "./helpers/status.js";
 import { getMapFX } from "./control/store";
 
@@ -31,13 +31,13 @@ export default class World extends PIXI.Container {
       // sea.wrapMode = PIXI.WRAP_MODES.REPEAT;
       // sea.width = window.innerWidth;
       // sea.height = window.innerHeight;
-      this.populate();
+      this.drawSectors();
       viewport.addChild(this);
       viewport.addChild(textLayer);
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
       app.stage.addChild(new Status());
-      // viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
+      viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
 
       // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));
@@ -70,7 +70,7 @@ export default class World extends PIXI.Container {
     this.worldMap = new WorldMap();
     this.worldMap.createMapFromLoader();
     viewport.addChild(this.worldMap);
-    this.populate();
+    this.drawSectors();
   }
 
   populate() {
@@ -89,12 +89,30 @@ export default class World extends PIXI.Container {
 
         let element = null;
         const y = ((row - SIZE / 2) ** 2 + (col - SIZE / 2) ** 2) * -0.15 + 30;
-        element = new Field2d(Math.ceil(value * 2 + 1) || 1);
+        element = new Field2d(Math.floor(value * 2 + 1) || 1);
         element.x = (col + 1) * element.width + offsetX;
         element.y = (row + 1) * 54;
         this.worldMap.addChild(element);
       }
     }
+  }
+
+  drawSectors() {
+    const wroldMap = this.worldMap.getSection();
+
+    const hexas = [
+      [0, 700],
+      [0, -700],
+      [0, 0],
+      [575, 350],
+      [575, -350],
+      [-575, 350],
+      [-575, -350],
+    ];
+
+    hexas.forEach(([x, y]) => {
+      this.worldMap.addChild(new Sector(x, y));
+    });
   }
 
   initMap() {

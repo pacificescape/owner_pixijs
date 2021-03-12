@@ -2,8 +2,8 @@ import * as PIXI from "pixi.js";
 import Field from "../field";
 const app = global.app;
 
-const WIDTH = 64;
-const HEIGHT = 55;
+const WIDTH = 100;
+const HEIGHT = 80;
 
 class Cell {
   toCube() {
@@ -47,19 +47,55 @@ class Hex extends Cell {
 }
 
 export default class Hexagone extends PIXI.Container {
-  constructor({ x: hexX, y: hexY }) {
+  constructor(hexX, hexY) {
     super();
 
     const visualModel = app.visual.grounds[21];
 
     const grid = [
+      new Hex(-1, -3),
+      new Hex(0, -3),
+      new Hex(1, -3),
+      new Hex(2, -3),
+      new Hex(-2, -2),
+      new Hex(-1, -2),
+      new Hex(-0, -2),
+      new Hex(1, -2),
+      new Hex(2, -2),
+      new Hex(-2, -2),
+      new Hex(2, -2),
+      new Hex(-1, -2),
+      new Hex(0, -2),
+      new Hex(1, -2),
+      new Hex(2, -1),
+      new Hex(3, -1),
+      new Hex(2, -1),
+      new Hex(2, 0),
+      new Hex(3, 0),
       new Hex(0, -1),
-      new Hex(+1, -1),
+      new Hex(1, -1),
+      new Hex(-2, -1),
+      new Hex(-1, -1),
       new Hex(-1, 0),
+      new Hex(-3, 0),
+      new Hex(-2, 0),
+      new Hex(-2, 1),
+      new Hex(-1, 1),
+      new Hex(-2, 2),
       new Hex(0, 0),
-      new Hex(+1, 0),
-      new Hex(+1, +1),
-      new Hex(0, +1),
+      new Hex(1, 0),
+      new Hex(1, 1),
+      new Hex(2, 1),
+      new Hex(0, 1),
+      new Hex(-1, 2),
+      new Hex(0, 2),
+      new Hex(1, 2),
+      new Hex(3, 1),
+      new Hex(2, 2),
+      new Hex(-1, 3),
+      new Hex(0, 3),
+      new Hex(1, 3),
+      new Hex(2, 3),
     ];
 
     this.sprites = grid.map((cube) => {
@@ -78,7 +114,7 @@ export default class Hexagone extends PIXI.Container {
   }
 
   mouseover(evt) {
-    console.log(evt);
+    // console.log(evt);
     // this.texture = this.textures.hover;
   }
 }

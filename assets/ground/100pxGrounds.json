@@ -1,0 +1,188 @@
+{"frames": {
+
+"tileAutumn.png":
+{
+	"frame": {"x":0,"y":117,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileAutumn_full.png":
+{
+	"frame": {"x":100,"y":117,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileDirt.png":
+{
+	"frame": {"x":0,"y":254,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileDirt_full.png":
+{
+	"frame": {"x":100,"y":254,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileGrass.png":
+{
+	"frame": {"x":0,"y":391,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileGrass_full.png":
+{
+	"frame": {"x":100,"y":391,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileLava.png":
+{
+	"frame": {"x":0,"y":528,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileLava_full.png":
+{
+	"frame": {"x":100,"y":528,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileMagic.png":
+{
+	"frame": {"x":0,"y":665,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileMagic_full.png":
+{
+	"frame": {"x":100,"y":665,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileRock.png":
+{
+	"frame": {"x":0,"y":802,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileRock_full.png":
+{
+	"frame": {"x":100,"y":802,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileSand.png":
+{
+	"frame": {"x":0,"y":939,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileSand_full.png":
+{
+	"frame": {"x":100,"y":939,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileSnow.png":
+{
+	"frame": {"x":0,"y":1076,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileSnow_full.png":
+{
+	"frame": {"x":100,"y":1076,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileStone.png":
+{
+	"frame": {"x":0,"y":1213,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileStone_bridge.png":
+{
+	"frame": {"x":0,"y":0,"w":100,"h":117},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":117},
+	"sourceSize": {"w":100,"h":117}
+},
+"tileStone_full.png":
+{
+	"frame": {"x":100,"y":1213,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileWater.png":
+{
+	"frame": {"x":0,"y":1350,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileWater_full.png":
+{
+	"frame": {"x":100,"y":1350,"w":100,"h":137},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":137},
+	"sourceSize": {"w":100,"h":137}
+},
+"tileWood_bridge.png":
+{
+	"frame": {"x":100,"y":0,"w":100,"h":117},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":117},
+	"sourceSize": {"w":100,"h":117}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "100pxGrounds.png",
+	"format": "RGBA8888",
+	"size": {"w":200,"h":1487},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:01d11fdc7430db120de5a2ce54764a9a:a24d1ffbbe257cc81588ce637b673c28:8f39bb48a056f4a8e1a8d53674ffac2f$"
+}
+}
