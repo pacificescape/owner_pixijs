@@ -62,14 +62,8 @@ export default class Hexagone extends PIXI.Container {
       new Hex(-0, -2),
       new Hex(1, -2),
       new Hex(2, -2),
-      new Hex(-2, -2),
-      new Hex(2, -2),
-      new Hex(-1, -2),
-      new Hex(0, -2),
-      new Hex(1, -2),
       new Hex(2, -1),
       new Hex(3, -1),
-      new Hex(2, -1),
       new Hex(2, 0),
       new Hex(3, 0),
       new Hex(0, -1),
@@ -103,6 +97,7 @@ export default class Hexagone extends PIXI.Container {
       const sprite = new Field(visualModel.texture, x, y);
       sprite.x = hexX + (this.x + x - (y & 1) / 2) * WIDTH;
       sprite.y = hexY + (this.y + y) * HEIGHT;
+      sprite.alpha = 0.9;
       return sprite;
     });
 
