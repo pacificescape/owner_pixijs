@@ -13,8 +13,10 @@ class VisualModels {
     const all = resources.all.textures;
     const grounds = resources.grounds.textures;
     const hexagons2d = resources.hexagons2d.textures;
+    const hugeIsland = resources.hugeIsland.texture;
 
     Object.assign(this, {
+      hugeIsland,
       hexagons2d: [
         { texture: hexagons2d["black.png"] },
         { texture: hexagons2d["blue.png"] },

@@ -1,14 +1,12 @@
 import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
-import Building from "./entities/world/fields/buildings/building.js";
 import Field2d from "./entities/world/fields/field2d";
-import Sector from "./entities/world/fields/sector/sector.js";
+import City from "./entities/world/fields/city/city.js";
 import Status from "./helpers/status.js";
 import { getMapFX } from "./control/store";
 
 const app = global.app;
 const viewport = global.viewport;
-let fields = [];
 export default class World extends PIXI.Container {
   constructor() {
     super();
@@ -31,7 +29,7 @@ export default class World extends PIXI.Container {
       // sea.wrapMode = PIXI.WRAP_MODES.REPEAT;
       // sea.width = window.innerWidth;
       // sea.height = window.innerHeight;
-      this.drawSectors();
+      this.drawCity();
       viewport.addChild(this);
       viewport.addChild(textLayer);
       viewport.addChild(this.worldMap);
@@ -70,7 +68,7 @@ export default class World extends PIXI.Container {
     this.worldMap = new WorldMap();
     this.worldMap.createMapFromLoader();
     viewport.addChild(this.worldMap);
-    this.drawSectors();
+    this.drawCity();
   }
 
   populate() {
@@ -97,22 +95,8 @@ export default class World extends PIXI.Container {
     }
   }
 
-  drawSectors() {
-    const wroldMap = this.worldMap.getSection();
-
-    const hexas = [
-      [0, 700],
-      [0, -700],
-      [0, 0],
-      [575, 350],
-      [575, -350],
-      [-575, 350],
-      [-575, -350],
-    ];
-
-    hexas.forEach(([x, y]) => {
-      this.worldMap.addChild(new Sector(x, y));
-    });
+  drawCity() {
+    this.worldMap.addChild(new City());
   }
 
   initMap() {
