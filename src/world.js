@@ -57,7 +57,7 @@ export default class World extends PIXI.Container {
       app.ticker.add((delta) => {
         if (viewport.moving) {
           // if (viewport.plugins.list[4].timeSinceRelease < 500) {
-          this.updateMap();
+          // this.updateMap();
           // }
         }
       });
