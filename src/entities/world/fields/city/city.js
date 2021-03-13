@@ -1,32 +1,20 @@
 import * as PIXI from "pixi.js";
 import Sector from "../sector/sector";
+import { makeHexagonalShape } from "../../../../utils/hexGenerator";
 const app = global.app;
 
+const WIDTH = 10;
+const HEIGHT = 10;
 export default class City extends PIXI.Container {
-  constructor() {
+  constructor(radius = 3) {
     super();
 
-    this.sectors = [
-      [0, 700],
-      [0, -700],
-      [0, 0],
-      [575, 350],
-      [575, -350],
-      [-575, 350],
-      [-575, -350],
-    ].map(([x, y]) => new Sector(x, y));
+    this.sectors = makeHexagonalShape(radius).map(({ x, y }) => {
+      x = (this.x + x - (y & 1) / 2) * WIDTH;
+      y = (this.y + y) * HEIGHT;
+      return new Sector(x, y);
+    });
 
-    this.addChild(this.getIsland());
     this.addChild(...this.sectors);
-  }
-
-  getIsland() {
-    const texture = app.visual.hugeIsland;
-    const island = new PIXI.Sprite(texture);
-    island.scale = { x: 2.5, y: 2.5 };
-    island.x = -1900;
-    island.y = -1600;
-    island.skew = { x: 0.1, y: 0 };
-    return island;
   }
 }

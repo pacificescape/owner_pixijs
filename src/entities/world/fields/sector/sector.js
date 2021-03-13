@@ -1,5 +1,10 @@
 import * as PIXI from "pixi.js";
 import Field from "../field";
+import {
+  makeHexagonalShape,
+  makeDownTriangularShape,
+} from "../../../../utils/hexGenerator";
+
 const app = global.app;
 
 const WIDTH = 100;
@@ -37,75 +42,50 @@ class Cube extends Cell {
   }
 }
 
-class Hex extends Cell {
-  constructor(x, y) {
-    super();
+// class Hex extends Cell {
+//   constructor(x, y) {
+//     super();
 
-    this.x = x;
-    this.y = y;
-  }
-}
+//     this.x = x;
+//     this.y = y;
+//   }
+// }
 
+const SPACE_BETWEEN_SECTORS = 500;
+const SECTOR_RADIUS = 2;
+const s = (d) => d * 2 * SECTOR_RADIUS * WIDTH + d * SPACE_BETWEEN_SECTORS;
 export default class Hexagone extends PIXI.Container {
-  constructor(hexX, hexY) {
+  constructor(secX, secY) {
     super();
+    this.x = secX;
+    this.y = secY;
 
-    const visualModel = app.visual.grounds[21];
+    this.visualModel = app.visual.grounds[21];
 
-    const grid = [
-      new Hex(-1, -3),
-      new Hex(0, -3),
-      new Hex(1, -3),
-      new Hex(2, -3),
-      new Hex(-2, -2),
-      new Hex(-1, -2),
-      new Hex(-0, -2),
-      new Hex(1, -2),
-      new Hex(2, -2),
-      new Hex(2, -1),
-      new Hex(3, -1),
-      new Hex(2, 0),
-      new Hex(3, 0),
-      new Hex(0, -1),
-      new Hex(1, -1),
-      new Hex(-2, -1),
-      new Hex(-1, -1),
-      new Hex(-1, 0),
-      new Hex(-3, 0),
-      new Hex(-2, 0),
-      new Hex(-2, 1),
-      new Hex(-1, 1),
-      new Hex(-2, 2),
-      new Hex(0, 0),
-      new Hex(1, 0),
-      new Hex(1, 1),
-      new Hex(2, 1),
-      new Hex(0, 1),
-      new Hex(-1, 2),
-      new Hex(0, 2),
-      new Hex(1, 2),
-      new Hex(3, 1),
-      new Hex(2, 2),
-      new Hex(-1, 3),
-      new Hex(0, 3),
-      new Hex(1, 3),
-      new Hex(2, 3),
-    ];
+    this.grid = makeHexagonalShape(SECTOR_RADIUS);
 
-    this.sprites = grid.map((cube) => {
-      const { x, y } = cube;
-      const sprite = new Field(visualModel.texture, x, y);
-      sprite.x = hexX + (this.x + x - (y & 1) / 2) * WIDTH;
-      sprite.y = hexY + (this.y + y) * HEIGHT;
+    this.makeSector(secX, secY);
+
+    this.makeInteractive();
+
+    this.addChild(...this.sprites);
+  }
+
+  makeSector() {
+    this.sprites = this.grid.map((Hex) => {
+      const { x, y } = Hex;
+      const sprite = new Field(this.visualModel.texture, x, y);
+      sprite.x = (this.x + x - (y & 1) / 2) * WIDTH;
+      sprite.y = (this.y + y) * HEIGHT;
       sprite.alpha = 0.9;
       return sprite;
     });
+  }
 
-    // this.sprites.forEach((s, i) => (s.pivot.x = 63 * i));
+  makeInteractive() {
     this.interactive = true;
     this.on("mouseup", console.log);
     this.mouseover = this.mouseover.bind(this);
-    this.addChild(...this.sprites);
   }
 
   mouseover(evt) {
