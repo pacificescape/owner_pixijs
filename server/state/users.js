@@ -1,21 +1,36 @@
 const { cities } = require(".");
+const {
+  actionGetMapPortion,
+  actionBuyImmobilier,
+  actionPutUpForSale,
+} = require("../actions");
 
+const defaultUserMethods = {
+  actionGetMapPortion,
+  actionBuyImmobilier,
+  actionPutUpForSale,
+};
 class User {
-  constructor(login, password) {
-    this.id = users.size()++;
+  constructor(userMongo, methods = defaultUserMethods) {
+    for (let method of Object.keys(methods)) {
+      this[method] = this[method].bind(this);
+    }
+
+    Object.assign(this, userMongo); // mongoose User unstance
+
     this.timeCreate = Date.now();
-    this.login = login;
-    this.password = password || "";
-    this.isOnline = false;
-    this.client = null;
+    this.isOnline = true;
+    this.client = null; // websocket
   }
 
+  // hz
   createSession() {
     const session = crypto.randomBytes(32).toString("hex");
     sessions.set(session, this);
     return session;
   }
 
+  // prepare
   toSendFormat() {
     return {
       timeCreate: this.timeCreate,
@@ -26,6 +41,7 @@ class User {
 }
 
 class Users extends Map {
+  // to replace
   actionAuthUser(login) {
     if (!login) return;
     if (this.has(login)) return;

@@ -1,5 +1,5 @@
 const WebSocket = require("ws");
-const map = require("./map");
+const ClientGuest = require("./rpc");
 
 const wss = new WebSocket.Server({ port: 8081 });
 

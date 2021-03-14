@@ -1,4 +1,5 @@
 const RPCClientBase = require(".");
+const { clients } = require("../state");
 
 module.exports = class Client extends RPCClientBase {
   constructor(webSocket, user, session) {
