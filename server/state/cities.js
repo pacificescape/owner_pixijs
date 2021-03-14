@@ -1,5 +1,5 @@
 class City {
-  async constructor(id, userCreator) {
+  constructor(id, userCreator) {
     this.id = cityNextID++;
     this.timeCreate = Date.now();
     this.cityName = cityName;
@@ -27,7 +27,7 @@ class City {
   }
 }
 
-class Cities extends Map {
+module.exports = class Cities extends Map {
   parseCityName(obj) {
     const cityName = String(obj?.cityName);
     if (!validCityName(cityName)) throw Result.error(ERROR_INVALID_INPUT_DATA);
@@ -54,4 +54,4 @@ class Cities extends Map {
 
     return city;
   }
-}
+};

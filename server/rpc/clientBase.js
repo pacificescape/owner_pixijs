@@ -1,4 +1,5 @@
 const { Result } = require("../result");
+
 const ERROR_INVALID_RPC_RPCID = "ERROR_INVALID_RPC_RPCID";
 const ERROR_INVALID_RPC_METHOD = "ERROR_INVALID_RPC_METHOD";
 
@@ -13,8 +14,6 @@ module.exports = class RPCClientBase {
     const actionMehtodNameList = methodNameList.filter(
       (p) => p.indexOf("action") === 0
     );
-
-    const methodNameList = Object.getOwnPropertyNames(this.__proto__);
 
     [...actionMehtodNameList, ...middlewareMethodNameList].map(
       (a) => (this[a] = this[a].bind(this))
