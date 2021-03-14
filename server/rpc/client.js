@@ -1,5 +1,14 @@
 const RPCClientBase = require("./clientBase");
-const { clients } = require("../state");
+const { clients, cities } = require("../state");
+
+const sendBroadcast = (data, city, withoutUser) => {
+  for (const client of cities)
+    if ((!city || client.city === city) && client !== withoutUser)
+      //
+      client.send(data);
+};
+const sendBroadcastJSON = (data, city, withoutUser) =>
+  sendBroadcast(JSON.stringify(data), city, withoutUser);
 
 module.exports = class Client extends RPCClientBase {
   constructor(webSocket, user, session) {
@@ -7,7 +16,7 @@ module.exports = class Client extends RPCClientBase {
 
     this.user = user;
     this.session = session;
-    this.room = null;
+    this.city = null;
 
     this.user.client = this;
 
@@ -15,13 +24,10 @@ module.exports = class Client extends RPCClientBase {
 
     clients.push(this);
 
+    // broadcast in all cities that user is online etc
     this.sendBroadcastJSON(
-      "userList",
-      clients.map((c) => c.toSendFormat())
-    );
-    this.sendBroadcastJSON(
-      "roomList",
-      [...rooms.values()].map((c) => c.toSendFormat())
+      "cityList",
+      [...cities.values()].map((c) => c.toSendFormat()) // rewrite
     );
 
     this.webSocket.on("close", () => this.destroy());
@@ -33,7 +39,7 @@ module.exports = class Client extends RPCClientBase {
       timeCreate: this.user.timeCreate,
       login: this.user.login,
 
-      roomID: this.room?.id,
+      cityID: this.city?.id,
       isOnline: this.isOnline,
     };
   }
@@ -50,34 +56,34 @@ module.exports = class Client extends RPCClientBase {
     return Result.success(true);
   }
 
-  actionRoomCreate(obj) {
-    const result = rooms.actionRoomCreate(obj);
+  actionCityCreate(obj) {
+    const result = cities.actioncityCreate(obj);
 
-    const room = rooms.get(result.result.roomName);
-    this.sendBroadcastJSON("room", room.toSendFormat());
+    const city = cities.get(result.result.cityName);
+    this.sendBroadcastJSON("city", city.toSendFormat());
 
     return result;
   }
-  actionRoomConnect(obj) {
-    const room = rooms.getRoom(obj);
+  actionCityConnect(obj) {
+    const city = cities.getcity(obj);
 
-    this.actionRoomDisconnect();
+    this.actioncityDisconnect();
 
-    this.room = room;
-    this.room.clients.add(this);
+    this.city = city;
+    this.city.clients.add(this);
 
     this.penWriterReadOffset = 0;
     this.sendPenWriterData();
 
     this.sendBroadcastThisUser();
 
-    return Result.success(room.toSendFormat());
+    return Result.success(city.toSendFormat());
   }
-  actionRoomDisconnect() {
-    if (!this.room) return Result.success(false);
+  actionCityDisconnect() {
+    if (!this.city) return Result.success(false);
 
-    this.room.clients.delete(this);
-    this.room = null;
+    this.city.clients.delete(this);
+    this.city = null;
 
     this.sendBroadcastThisUser();
 
@@ -85,14 +91,14 @@ module.exports = class Client extends RPCClientBase {
   }
 
   sendPenWriterData() {
-    const data = this.room.penWriter.readData(this.penWriterReadOffset);
+    const data = this.city.penWriter.readData(this.penWriterReadOffset);
     this.penWriterReadOffset += data.length;
     this.send(data);
   }
 
   destroy() {
     this.isOnline = false;
-    this.actionRoomDisconnect();
+    this.actioncityDisconnect();
     this.sendBroadcastThisUser();
 
     clients.splice(clients.indexOf(this), 1);
@@ -101,11 +107,11 @@ module.exports = class Client extends RPCClientBase {
   }
 
   parseBinary(data) {
-    if (!this.room) return;
+    if (!this.city) return;
 
-    this.room.analysisRecvData(this.user.id, data);
+    this.city.analysisRecvData(this.user.id, data);
 
-    for (const client of this.room.clients.values()) {
+    for (const client of this.city.clients.values()) {
       if (client === this) continue;
       client.sendPenWriterData();
     }

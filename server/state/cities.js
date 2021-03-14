@@ -1,28 +1,19 @@
 class City {
-  constructor(id, userCreator) {
-    this.id = cityNextID++;
-    this.timeCreate = Date.now();
-    this.cityName = cityName;
-    this.userCreator = userCreator;
+  constructor(cityMongo) {
+    Object.assign(this, cityMongo.lean());
 
     this.users = new Set([]);
     this.clients = new Set();
-  }
 
-  analysisRecvData(userID, data) {
-    if (!this.penWriter.canWrite()) return;
-
-    this.penWriter.analysisRecvData(userID, data);
-    console.log(this.penWriter.bufferWriter.writeOffset);
+    // needs for elemenate City from Cities
+    this.usersOnline = new Set([]);
+    this.timeCreate = Date.now();
   }
 
   toSendFormat() {
     return {
       id: this.id,
-      timeCreate: this.timeCreate,
-      cityName: this.cityName,
-      numUsers: this.users.size,
-      numUsersOnline: this.usersOnline.size,
+      UsersOnline: this.usersOnline,
     };
   }
 }
@@ -35,22 +26,23 @@ module.exports = class Cities extends Map {
     return { cityName };
   }
 
-  actionCityCreate(obj, client, user) {
-    const { cityName } = this.parseCityName(obj);
+  async actionCityCreate(data, user) {
+    const cityMongo = {}; // create City in Mongo
 
-    if (this.has(cityName)) throw Result.error(ERROR_ESSENCE_ALREADY_EXISTS);
-
-    const city = new City(cityName, user);
-    this.set(cityName, city);
+    const city = new City(cityMongo, user);
+    this.set(city.id, city);
 
     return Result.success(city.toSendFormat());
   }
 
-  getCity(obj) {
-    const { cityName } = this.parseCityName(obj);
+  async getCity(obj) {
+    const { id } = obj;
 
-    const city = this.get(cityName);
-    if (!city) throw Result.error(ERROR_ESSENCE_NOT_FOUND);
+    let city = this.get(id);
+    if (!city) {
+      city = {}; // get city from Mongo
+      throw Result.error(ERROR_ESSENCE_NOT_FOUND);
+    }
 
     return city;
   }

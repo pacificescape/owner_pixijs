@@ -7,6 +7,7 @@ module.exports = class RPCClientGuest extends RPCClientBase {
     super(webSocket);
   }
 
+  //
   _actionUserAuthAddUser(result) {
     const user = Users.get(result.result.login);
     const session = result.result.session;

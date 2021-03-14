@@ -16,7 +16,7 @@ class User {
       this[method] = this[method].bind(this);
     }
 
-    Object.assign(this, userMongo); // mongoose User unstance
+    Object.assign(this, userMongo.lean()); // mongoose User unstance
 
     this.timeCreate = Date.now();
     this.isOnline = true;
