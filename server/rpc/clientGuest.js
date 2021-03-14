@@ -1,5 +1,5 @@
 const RPCClientBase = require("./clientBase");
-const { RPCClient } = require(".");
+const { RPCClient } = require("./client");
 const { Clients, Users } = require("../state");
 
 module.exports = class RPCClientGuest extends RPCClientBase {
