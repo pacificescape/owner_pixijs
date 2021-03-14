@@ -21,6 +21,15 @@ export const getMapFX = createEffect(async (hitArea) => {
 });
 
 getMapFX.done.watch(({ params, result }) => {
+  if (!result.result) {
+    console.error(
+      result.errorCode,
+      result.errorMessage,
+      "params:",
+      JSON.stringify(params)
+    );
+    return;
+  }
   const map = new Uint8Array(result.data.split(/\D+/).map(Number));
   setSize(Math.ceil(viewport.hitArea.width / 65));
   addMap(map);
