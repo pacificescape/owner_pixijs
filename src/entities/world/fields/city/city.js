@@ -4,10 +4,10 @@ import { makeHexagonalShape } from "../../../../utils/hexGenerator";
 const app = global.app;
 
 export default class City extends PIXI.Container {
-  constructor(radius = 1) {
+  constructor(radius = 5) {
     super();
     // TODO: Refactor
-    this.sectors = makeHexagonalShape(5).map((hex) => {
+    this.sectors = makeHexagonalShape(radius).map((hex) => {
       let { x, y } = hex.evenCol();
       x = x;
       y = y + (y - (x & 1)) / 2;

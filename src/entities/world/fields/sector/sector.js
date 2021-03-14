@@ -55,7 +55,7 @@ export default class Sector extends PIXI.Container {
     super();
     this.x = s(secX);
     this.y = s(secY);
-    this.visualModel = app.visual.grounds[Math.floor(6 + secX)];
+    this.visualModel = app.visual.grounds[21];
 
     this.grid = makeHexagonalShape(SECTOR_RADIUS);
     this.makeSector(secX, secY);
