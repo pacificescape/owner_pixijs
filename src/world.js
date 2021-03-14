@@ -35,7 +35,7 @@ export default class World extends PIXI.Container {
       viewport.addChild(this.worldMap);
       app.stage.addChild(viewport);
       app.stage.addChild(new Status());
-      viewport.animate({ position: { x: 0, y: 0 }, time: 500 });
+      viewport.animate({ scale: 0.3, position: { x: 0, y: 0 }, time: 200 });
 
       // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));

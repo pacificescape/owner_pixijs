@@ -3,18 +3,19 @@ import Sector from "../sector/sector";
 import { makeHexagonalShape } from "../../../../utils/hexGenerator";
 const app = global.app;
 
-const WIDTH = 10;
-const HEIGHT = 10;
 export default class City extends PIXI.Container {
-  constructor(radius = 3) {
+  constructor(radius = 1) {
     super();
-
-    this.sectors = makeHexagonalShape(radius).map(({ x, y }) => {
-      x = (this.x + x - (y & 1) / 2) * WIDTH;
-      y = (this.y + y) * HEIGHT;
-      return new Sector(x, y);
+    // TODO: Refactor
+    this.sectors = makeHexagonalShape(5).map((hex) => {
+      let { x, y } = hex.evenCol();
+      x = x;
+      y = y + (y - (x & 1)) / 2;
+      const sector = new Sector(x, y);
+      sector.x = x * 500;
+      sector.y = y * 350;
+      return sector;
     });
-
     this.addChild(...this.sectors);
   }
 }

@@ -61,7 +61,7 @@ class VisualModels {
         { texture: grounds["tileWater_shadow.png"] },
         { texture: grounds["tileWater_tile.png"] },
         { texture: grounds["tileWood_bridge.png"] },
-      ],
+      ].filter(({ texture }) => texture),
       buildings: [
         {
           texture: buildings["sandDoorWindowBlindsMirror.png"],

@@ -1,9 +1,6 @@
 import * as PIXI from "pixi.js";
 import Field from "../field";
-import {
-  makeHexagonalShape,
-  makeDownTriangularShape,
-} from "../../../../utils/hexGenerator";
+import { makeHexagonalShape } from "../../../../utils/hexGenerator";
 
 const app = global.app;
 
@@ -51,35 +48,40 @@ class Cube extends Cell {
 //   }
 // }
 
-const SPACE_BETWEEN_SECTORS = 500;
 const SECTOR_RADIUS = 2;
-const s = (d) => d * 2 * SECTOR_RADIUS * WIDTH + d * SPACE_BETWEEN_SECTORS;
-export default class Hexagone extends PIXI.Container {
+const s = (d) => d * SECTOR_RADIUS * 2;
+export default class Sector extends PIXI.Container {
   constructor(secX, secY) {
     super();
-    this.x = secX;
-    this.y = secY;
-
-    this.visualModel = app.visual.grounds[21];
+    this.x = s(secX);
+    this.y = s(secY);
+    this.visualModel = app.visual.grounds[Math.floor(6 + secX)];
 
     this.grid = makeHexagonalShape(SECTOR_RADIUS);
-
     this.makeSector(secX, secY);
-
     this.makeInteractive();
 
     this.addChild(...this.sprites);
+    this.makeLabel(secX, secY);
   }
 
   makeSector() {
-    this.sprites = this.grid.map((Hex) => {
-      const { x, y } = Hex;
+    this.sprites = this.grid.map((hex) => {
+      const { x, y } = hex;
       const sprite = new Field(this.visualModel.texture, x, y);
-      sprite.x = (this.x + x - (y & 1) / 2) * WIDTH;
-      sprite.y = (this.y + y) * HEIGHT;
-      sprite.alpha = 0.9;
+      sprite.x = (x - (y & 1) / 2) * WIDTH;
+      sprite.y = y * HEIGHT;
       return sprite;
     });
+  }
+
+  makeLabel(x, y) {
+    const text = new PIXI.Text(`{${x}, ${y}}`);
+    const sprite = new PIXI.Sprite();
+    sprite.addChild(text);
+    sprite.x += this.x + 20;
+    sprite.y += this.y + 25;
+    this.addChild(sprite);
   }
 
   makeInteractive() {
