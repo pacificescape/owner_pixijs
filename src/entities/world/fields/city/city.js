@@ -10,10 +10,10 @@ export default class City extends PIXI.Container {
     this.sectors = makeHexagonalShape(radius).map((hex) => {
       let { x, y } = hex.evenCol();
       x = x;
-      y = y + (y - (x & 1)) / 2;
+      y = y;
       const sector = new Sector(x, y);
-      sector.x = x * 500;
-      sector.y = y * 350;
+      sector.x = x * 600;
+      sector.y = y * 600 - (600 * (x & 1)) / 2;
       return sector;
     });
     this.addChild(...this.sectors);
