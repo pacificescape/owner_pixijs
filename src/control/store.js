@@ -21,7 +21,7 @@ export const getMapFX = createEffect(async (hitArea) => {
 });
 
 getMapFX.done.watch(({ params, result }) => {
-  if (!result.result) {
+  if (!result.result && !result.data) {
     console.error(
       result.errorCode,
       result.errorMessage,
