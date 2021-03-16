@@ -12,19 +12,20 @@ module.exports = class RPCClientGuest extends RPCClientBase {
   }
   //rewrite auth
   _actionUserAuthAddUser(result) {
-    const user = users.get(result.result.login);
-    const session = result.result.session;
+    console.log(result);
+    // const user = users.get(result.result.login);
+    // const session = result.result.session;
 
-    this.detach();
-    new RPCClient(this.webSocket, user, session);
+    // this.detach();
+    // new RPCClient(this.webSocket, user, session);
 
-    return result;
+    // return result;
   }
 
   // rewrite actions
-  // actionUserAuthSignin(obj) {
-  //   return this._actionUserAuthAddUser(users.actionUserAuthSignin(obj));
-  // }
+  actionUserAuthSignin(obj) {
+    return this._actionUserAuthAddUser(users.getLyoSU());
+  }
   // actionUserAuthSignup(obj) {
   //   return this._actionUserAuthAddUser(users.actionUserAuthSignup(obj));
   // }

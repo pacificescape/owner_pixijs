@@ -1,23 +1,11 @@
 const { cities } = require(".");
-const {
-  actionGetMapPortion,
-  actionBuyImmobilier,
-  actionPutUpForSale,
-} = require("../actions");
 
-const defaultUserMethods = {
-  actionGetMapPortion,
-  actionBuyImmobilier,
-  actionPutUpForSale,
-};
 class User {
-  constructor(userMongo, methods = defaultUserMethods) {
-    for (let method of Object.keys(methods)) {
-      this[method] = this[method].bind(this);
-    }
+  constructor(name) {
+    // userMongo, methods = defaultUserMethods) {
+    // Object.assign(this, userMongo.lean()); // mongoose User unstance
 
-    Object.assign(this, userMongo.lean()); // mongoose User unstance
-
+    this.name = name;
     this.timeCreate = Date.now();
     this.isOnline = true;
     this.client = null; // websocket
@@ -29,19 +17,19 @@ class User {
     sessions.set(session, this);
     return session;
   }
-
-  // prepare
-  toSendFormat() {
-    return {
-      timeCreate: this.timeCreate,
-      id: this.id,
-      login: this.login,
-    };
-  }
 }
 
 class Users extends Map {
   // to replace
+  getLyoSU() {
+    return {
+      result: {
+        name: "LyoSU",
+        user: new User("LyoSu"),
+      },
+    };
+  }
+
   actionAuthUser(login) {
     if (!login) return;
     if (this.has(login)) return;
