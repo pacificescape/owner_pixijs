@@ -28,7 +28,7 @@ export default class Field extends PIXI.Sprite {
       137,
       0,
       112,
-    ]);
+    ]); // map if texture size change
 
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);

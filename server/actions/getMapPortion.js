@@ -1,3 +1,5 @@
+const map = require("./map");
+
 module.exports = function actionGetMapPortion(obj) {
   console.log(obj);
 

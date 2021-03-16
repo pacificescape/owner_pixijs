@@ -1,12 +1,15 @@
 const RPCClientBase = require("./clientBase");
 const { RPCClient } = require("./client");
 const { clients, users } = require("../state");
-
+const { actionGetMapPortion } = require("../actions");
 module.exports = class RPCClientGuest extends RPCClientBase {
   constructor(webSocket) {
     super(webSocket);
   }
 
+  actionGetMapPortion(...args) {
+    return actionGetMapPortion.call(this, ...args);
+  }
   //rewrite auth
   _actionUserAuthAddUser(result) {
     const user = users.get(result.result.login);
