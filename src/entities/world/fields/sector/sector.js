@@ -24,12 +24,12 @@ export default class Sector extends PIXI.Container {
     this.makeLabel(secX, secY);
   }
 
-  getFieldModel(x, y) {
-    // if (y < 0) {
-    //   return app.visual.grounds[8];
-    // }
+  getFieldModel(hex) {
+    if (hex.y < 0) {
+      return app.visual.grounds[8];
+    }
 
-    if (new Hex(x, y, -x - y).len() <= this.radius - 1) {
+    if (hex.len() <= this.radius - 1) {
       return app.visual.grounds[8];
     }
 
@@ -39,7 +39,7 @@ export default class Sector extends PIXI.Container {
   makeSector() {
     this.sprites = this.grid.map((hex) => {
       const { x, y } = hex;
-      const sprite = new Field(this.getFieldModel(x, y).texture, x, y);
+      const sprite = new Field(this.getFieldModel(hex).texture, x, y);
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;
       return sprite;
