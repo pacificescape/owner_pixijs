@@ -17,7 +17,7 @@ module.exports = class RPCClientGuest extends RPCClientBase {
     // const session = result.result.session;
 
     // this.detach();
-    // new RPCClient(this.webSocket, user, session);
+    new RPCClient(this.webSocket, user, session);
 
     // return result;
   }

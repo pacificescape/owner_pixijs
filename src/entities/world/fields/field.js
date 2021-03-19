@@ -5,14 +5,14 @@ export default class Field extends PIXI.Sprite {
     super(texture);
 
     this.textures = {
-      hover: app.visual.grounds[0].texture,
+      hover: app.visual.grounds[10].texture,
       main: texture,
     };
 
-    // const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
-    // label.y += 20;
-    // label.x += 10;
-    // this.addChild(label);
+    const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
+    label.y += 20;
+    label.x += 10;
+    this.addChild(label);
 
     this.interactive = true;
     this.hitArea = new PIXI.Polygon([

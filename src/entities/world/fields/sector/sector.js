@@ -1,52 +1,11 @@
 import * as PIXI from "pixi.js";
 import Field from "../field";
-import { makeHexagonalShape } from "../../../../utils/hexGenerator";
+import { Hex, makeHexagonalShape } from "../../../../utils/hexGenerator";
 
 const app = global.app;
 
 const WIDTH = 100;
 const HEIGHT = 80;
-
-class Cell {
-  toCube() {
-    this.x = this.col - (this.row + (this.row & 1)) / 2;
-    this.z = this.row;
-    this.y = -x - z;
-  }
-
-  toDec() {
-    this.col = this.x + (this.z + (this.z & 1)) / 2;
-    this.row = this.z;
-  }
-}
-
-class Cube extends Cell {
-  constructor(x, y) {
-    super();
-
-    this.x = x;
-    this.y = y;
-    this.z = -x - y;
-    this.toDec();
-  }
-  get xy() {
-    let x = this.x;
-    const y = this.y;
-    if (this.y & 1) {
-      x += 0.5;
-    }
-    return { x, y };
-  }
-}
-
-// class Hex extends Cell {
-//   constructor(x, y) {
-//     super();
-
-//     this.x = x;
-//     this.y = y;
-//   }
-// }
 
 const SECTOR_RADIUS = 2;
 const s = (d) => d * SECTOR_RADIUS * 2;
@@ -55,8 +14,8 @@ export default class Sector extends PIXI.Container {
     super();
     this.x = s(secX);
     this.y = s(secY);
-    this.visualModel = app.visual.grounds[21];
-
+    this.visualModel = {};
+    this.radius = SECTOR_RADIUS;
     this.grid = makeHexagonalShape(SECTOR_RADIUS);
     this.makeSector(secX, secY);
     this.makeInteractive();
@@ -65,10 +24,22 @@ export default class Sector extends PIXI.Container {
     this.makeLabel(secX, secY);
   }
 
+  getFieldModel(x, y) {
+    // if (y < 0) {
+    //   return app.visual.grounds[8];
+    // }
+
+    if (new Hex(x, y, -x - y).len() <= this.radius - 1) {
+      return app.visual.grounds[8];
+    }
+
+    return app.visual.grounds[1];
+  }
+
   makeSector() {
     this.sprites = this.grid.map((hex) => {
       const { x, y } = hex;
-      const sprite = new Field(this.visualModel.texture, x, y);
+      const sprite = new Field(this.getFieldModel(x, y).texture, x, y);
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;
       return sprite;
@@ -104,9 +75,3 @@ export default class Sector extends PIXI.Container {
 // x = col - (row + (row&1)) / 2
 // z = row
 // y = -x-z
-
-function offset_neighbor(hex, direction) {
-  const parity = hex.row & 1;
-  const dir = directions[parity][direction];
-  return Hex(hex.col + dir.col, hex.row + dir.row);
-}

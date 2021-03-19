@@ -203,43 +203,6 @@ export function makeHexagonalShape(N) {
   return results;
 }
 
-export function makeDiagonalShape(N, center) {
-  let results = [];
-  center = center || new Hex(0, 0, 0);
-  center.diagonals = [
-    new Hex(2, -1, -1),
-    new Hex(1, -2, 1),
-    new Hex(-1, -1, 2),
-    new Hex(-2, 1, 1),
-    new Hex(-1, 2, -1),
-    new Hex(1, 1, -2),
-  ];
-
-  const diagonals = [];
-  for (let q = N; q >= -N; q--) {
-    for (let r = N; r >= -N; r--) {
-      const newQ = center.q + q;
-      const newR = center.r + r;
-      let hex = new Hex(newQ, newR, -newQ - newR);
-      if (hex.len() <= N) {
-        diagonals.push(hex);
-      }
-    }
-  }
-
-  const flat = new Layout();
-  flat
-    .polygonCorners(new Hex(0, 0, 0))
-    .map((p) => (p.x = p.x.toFixed(0)), (p.y = p.y.toFixed(0)));
-
-  for (let n = 5 * N; n >= 0; n--) {
-    results.push(center.diagonalNeighbor(n));
-  }
-
-  results = results.sort((a, b) => a.y * 10 + a.x - (b.y * 10 + b.x)); // TODO: refactor
-  return results;
-}
-
 export function makeDownTriangularShape(N) {
   let results = [];
   for (let r = 0; r < N; r++) {
@@ -371,61 +334,4 @@ export function hexRing(radius) {
     }
   }
   return results;
-}
-
-class Layout {
-  constructor(size = { x: 1, y: 1 }, origin = { x: 0, y: 0 }) {
-    this.size = size;
-    this.origin = origin;
-    this.orientation = {
-      b0: 0.6666666666666666,
-      b1: 0,
-      b2: -0.3333333333333333,
-      b3: 0.5773502691896257,
-      f0: 1.5,
-      f1: 0,
-      f2: 0.8660254037844386,
-      f3: 1.7320508075688772,
-      start_angle: 0,
-    };
-  }
-  hexToPixel(h) {
-    var M = this.orientation;
-    var size = this.size;
-    var origin = this.origin;
-    var x = (M.f0 * h.q + M.f1 * h.r) * size.x;
-    var y = (M.f2 * h.q + M.f3 * h.r) * size.y;
-    return new Point(x + origin.x, y + origin.y);
-  }
-  pixelToHex(p) {
-    var M = this.orientation;
-    var size = this.size;
-    var origin = this.origin;
-    var pt = new Point((p.x - origin.x) / size.x, (p.y - origin.y) / size.y);
-    var q = M.b0 * pt.x + M.b1 * pt.y;
-    var r = M.b2 * pt.x + M.b3 * pt.y;
-    return new Hex(q, r, -q - r);
-  }
-  hexCornerOffset(corner) {
-    var M = this.orientation;
-    var size = this.size;
-    var angle = (2.0 * Math.PI * (M.start_angle - corner)) / 6.0;
-    return new Point(size.x * Math.cos(angle), size.y * Math.sin(angle));
-  }
-  polygonCorners(h) {
-    var corners = [];
-    var center = this.hexToPixel(h);
-    for (var i = 0; i < 6; i++) {
-      var offset = this.hexCornerOffset(i);
-      corners.push(new Point(center.x + offset.x, center.y + offset.y));
-    }
-    return corners;
-  }
-}
-
-class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
 }

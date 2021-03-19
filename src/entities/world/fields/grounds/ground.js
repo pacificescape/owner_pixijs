@@ -7,12 +7,12 @@ export default class Ground extends field2d {
 
     const { width } = viewport.hitArea;
 
-    this.firstTexture = app.visual.grounds[value === 0 ? 6 : 16];
+    this.firstTexture = app.visual.grounds[value === 0 ? 6 : 10];
     // width > 2000
     //   ? app.visual.grounds[value === 0 ? 29 : 16]
     //   : app.visual["grounds@0.5x"][value === 0 ? 29 : 16];
 
-    this.secondTexture = app.visual.grounds[22];
+    this.secondTexture = app.visual.grounds[10];
     this.generalTexture = this.firstTexture;
     // this.sprite = new PIXI.Sprite(this.firstTexture.texture);
     this.sprite = new field2d();
