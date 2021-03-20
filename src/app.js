@@ -12,9 +12,9 @@ class Application {
       height: window.innerHeight,
       backgroundColor: 0x1099bb,
       resolution: window.devicePixelRatio || 1,
-      // resizeTo: window,
-      // autoResize: true, https://www.html5gamedevs.com/topic/42553-resize-window/
-      // autoDensity: true, // TODO: resize do not working after change orientation ios/?android
+      resizeTo: window,
+      autoResize: true, // https://www.html5gamedevs.com/topic/42553-resize-window/
+      autoDensity: true, // TODO: resize do not working after change orientation ios/?android
     });
 
     document.body.appendChild(this.renderer.view);
@@ -40,8 +40,9 @@ class Application {
   onresize() {
     app.renderer.resize(window.innerWidth, window.innerHeight);
     viewport.resize(window.innerWidth, window.innerHeight);
+    app.world.resize();
   }
 }
 
 window.app = new Application();
-window.onresize = window.app.onresize;
+window.onresize = window.app.onresize; // todo eventEmitter???

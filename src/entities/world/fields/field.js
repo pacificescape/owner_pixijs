@@ -10,10 +10,8 @@ export default class Field extends PIXI.Sprite {
     super(textures.main);
 
     this.textures = textures;
-    const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
-    label.y += 20;
-    label.x += 10;
-    this.addChild(label);
+
+    // this.makeCoordinateLabel(x, y);
 
     this.interactive = true;
     this.hitArea = new PIXI.Polygon([
@@ -50,5 +48,12 @@ export default class Field extends PIXI.Sprite {
 
   mouseout() {
     this.texture = this.textures.main;
+  }
+
+  makeCoordinateLabel(x, y) {
+    const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
+    label.y += 20;
+    label.x += 10;
+    this.addChild(label);
   }
 }

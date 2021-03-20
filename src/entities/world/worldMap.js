@@ -1,6 +1,8 @@
+import City from "../../entities/world/fields/city/city.js";
 const PIXI = global.PIXI;
 const app = global.app;
 const viewport = global.viewport;
+
 const SECTION_SIZE = 40;
 // import { mapStore } from "../../control/store";
 export default class WorldMap extends PIXI.Container {
@@ -72,5 +74,11 @@ export default class WorldMap extends PIXI.Container {
 
     // console.log(section);
     return section;
+  }
+
+  drawCity() {
+    let x = 100,
+      y = 100;
+    this.addChild(new City(5, x, y));
   }
 }
