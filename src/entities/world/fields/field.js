@@ -1,14 +1,15 @@
 import * as PIXI from "pixi.js";
 
 export default class Field extends PIXI.Sprite {
-  constructor(texture, x, y) {
-    super(texture);
-
-    this.textures = {
-      hover: app.visual.grounds[10].texture,
-      main: texture,
+  constructor(visualModels, x, y) {
+    const textures = {
+      hover: visualModels.hover.texture,
+      main: visualModels.main.texture,
     };
 
+    super(textures.main);
+
+    this.textures = textures;
     const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
     label.y += 20;
     label.x += 10;
