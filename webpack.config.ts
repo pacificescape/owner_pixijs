@@ -17,7 +17,7 @@ module.exports = (env: { mode: "development" | "production" }) => {
     entry: "./src/index.ts",
 
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".json"],
+      extensions: [".ts", ".tsx", ".js", ".json", ".jsx"],
     },
 
     module: {
@@ -43,7 +43,10 @@ module.exports = (env: { mode: "development" | "production" }) => {
     },
 
     plugins: [
-      new HtmlWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: "src/index.html",
+        inject: true,
+      }),
       new CopyPlugin({
         patterns: [
           {

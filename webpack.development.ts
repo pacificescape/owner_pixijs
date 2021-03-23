@@ -22,7 +22,7 @@ module.exports = (env: { mode: "development" | "production" }) => {
           enforce: "pre",
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          loader: "eslint-loader",
+          loader: "babel-loader",
         },
         {
           test: /\.tsx?$/,

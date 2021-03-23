@@ -30,3 +30,7 @@ canvas {
 canvas {
   display: block;
 }
+
+#container {
+  /* position: relative; */
+}

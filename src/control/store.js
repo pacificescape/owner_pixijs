@@ -42,3 +42,13 @@ export const connetionStore = createStore({ status: 0 }).on(
     return { ...state, status: connection };
   }
 );
+
+// const defaultAppStore = {
+//   connected: false,
+//   position: { x: 0, y: 0 },
+// };
+
+// export const appStore = createStore(defaultAppStore).on(
+//   connectEvt,
+//   (state, connection) => {}
+// )
