@@ -34,6 +34,7 @@ export default class World extends PIXI.Container {
       app.stage.addChild(new Status());
       viewport.animate({ scale: 0.3, position: { x: 0, y: 0 }, time: 0 });
       this.updateMap();
+      getMapFX(viewport.hitArea);
       // viewport.on("pointerdown", this.updateMap.bind(this));
       // viewport.on("pointermove", this.updateMap.bind(this));
       // viewport.on("pointerup", this.updateMap.bind(this));
@@ -46,7 +47,7 @@ export default class World extends PIXI.Container {
       app.ticker.add((delta) => {
         if (viewport.moving) {
           // position changed more than x y
-          // getMapFX().then(check)
+          // getMapFX(viewport.hitArea); //.then(check);
           // sectors are too far away
           // this.updateMap()
         }

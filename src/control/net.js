@@ -71,14 +71,17 @@ globalThis.rpc = rpc;
 
 const wsUrl =
   location.hostname === "127.0.0.1" || "localhost"
-    ? "ws://127.0.0.1:8081"
+    ? `ws://${location.hostname}:8081`
     : `ws://owner.${location.hostname}/`;
 
-function wsReconnect() {
+async function wsReconnect() {
+  console.log(await fetch("/login"));
   const webSocket = new WebSocket(wsUrl);
   webSocket.onopen = () => {
     rpc.attach(webSocket);
-    connectEvt(1);
+    setTimeout(() => {
+      connectEvt(1);
+    }, 3000);
     const data = onConnect.map((msg) => {
       return msg;
     });

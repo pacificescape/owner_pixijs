@@ -1,4 +1,5 @@
 import { createStore, createEvent, createEffect } from "effector";
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const addMap = createEvent();
 const setSize = createEvent();

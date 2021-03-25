@@ -11,7 +11,7 @@ const viewport = new Viewport({
   interaction: app.renderer.plugins.interaction, // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
 });
 
-// viewport.interactive = true;
+viewport.interactive = true;
 // viewport.on("pointerdown", (evt) => {
 //   console.log(evt);
 

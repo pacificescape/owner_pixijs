@@ -6,7 +6,7 @@ import { connetionStore } from "../../../control/store";
 const Loader = () => {
   const store = useStore(connetionStore);
 
-  if (store.status !== 0) return;
+  if (store.status !== 0) return null;
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Loader}></div>

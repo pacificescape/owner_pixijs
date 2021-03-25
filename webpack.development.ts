@@ -14,8 +14,15 @@ module.exports = (env: { mode: "development" | "production" }) => {
       host: "0.0.0.0",
       openPage: "http://localhost:8080/",
       clientLogLevel: "silent",
+      proxy: {
+        "*": {
+          target: "ws://localhost:8081",
+          ws: true,
+          changeOrigin: true,
+          // secure: true,
+        },
+      },
     },
-
     module: {
       rules: [
         {
