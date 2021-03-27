@@ -75,8 +75,10 @@ const wsUrl =
     : `ws://owner.${location.hostname}/`;
 
 async function wsReconnect() {
-  console.log(await fetch("/login"));
-  const webSocket = new WebSocket(wsUrl);
+  const login = await fetch("/login").then((r) => r.json());
+  const auth = await fetch("/auth").then((r) => r.json());
+  const token = auth.result;
+  const webSocket = new WebSocket(wsUrl + `?token=${token}`);
   webSocket.onopen = () => {
     rpc.attach(webSocket);
     setTimeout(() => {

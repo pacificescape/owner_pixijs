@@ -47,7 +47,7 @@ export default class World extends PIXI.Container {
       app.ticker.add((delta) => {
         if (viewport.moving) {
           // position changed more than x y
-          // getMapFX(viewport.hitArea); //.then(check);
+          getMapFX(viewport.hitArea); //.then(check);
           // sectors are too far away
           // this.updateMap()
         }
