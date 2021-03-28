@@ -9,6 +9,9 @@ export default class Field extends PIXI.Sprite {
 
     super(textures.main);
 
+    this.cacheAsBitmap = true;
+    this.cacheAsBitmapResolution = 0.1;
+
     this.textures = textures;
 
     // this.makeCoordinateLabel(x, y);
@@ -31,9 +34,26 @@ export default class Field extends PIXI.Sprite {
 
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
-    this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.toggleTexture.bind(
+    this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.parseClick.bind(
       this
     );
+    this.touchstart = this.mousedown = (evt) => {
+      console.log("touchstart");
+      this.touch = evt.data.global;
+      // console.log(evt);
+    };
+  }
+
+  parseClick(evt) {
+    if (
+      this.touch.x === evt.data.global.x &&
+      this.touch.y === evt.data.global.y
+    ) {
+      console.log("click parsed");
+      this.generalTexture = app.visual.grounds[3];
+      return;
+    }
+    console.log("move parsed");
   }
 
   toggleTexture() {

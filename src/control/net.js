@@ -14,7 +14,7 @@ class WebSocketRPCClient {
     this.subscribeMap = {};
     this.wsEvents = Object.entries({
       message: (evt) => {
-        console.log(evt);
+        // console.log(evt);
         const parsedData = JSON.parse(evt.data);
         const { rpcID } = parsedData;
         if (!rpcID) return;
@@ -84,7 +84,7 @@ export async function wsReconnect() {
       rpc.attach(webSocket);
       resolve(rpc);
       const data = onConnect.map((msg) => {
-        return msg;
+        return msg; // ????
       });
       data.watch((data) => {
         console.log(data);
@@ -94,7 +94,7 @@ export async function wsReconnect() {
       setTimeout(wsReconnect, 2e3);
     };
     webSocket.onmessage = (msg) => {
-      console.log("ws msg", msg);
+      // console.log("ws msg", msg);
     };
     webSocket.onerror = (e) => {
       reject(e);
