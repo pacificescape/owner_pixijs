@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import WorldMap from "./entities/world/worldMap.js";
 import Status from "./helpers/status.js";
-import { getMapFX } from "./control/store";
+import { getMapFX } from "./store";
 
 const app = global.app;
 const viewport = global.viewport;

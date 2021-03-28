@@ -32,25 +32,4 @@ getMapFX.done.watch(({ params, result }) => {
     return;
   }
   return;
-  const map = new Uint8Array(result.data.split(/\D+/).map(Number));
-  setSize(Math.ceil(viewport.hitArea.width / 65));
-  addMap(map);
 });
-
-export const connectEvt = createEvent();
-export const connetionStore = createStore({ status: 0 }).on(
-  connectEvt,
-  (state, connection) => {
-    return { ...state, status: connection };
-  }
-);
-
-// const defaultAppStore = {
-//   connected: false,
-//   position: { x: 0, y: 0 },
-// };
-
-// export const appStore = createStore(defaultAppStore).on(
-//   connectEvt,
-//   (state, connection) => {}
-// )

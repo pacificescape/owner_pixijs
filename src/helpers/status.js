@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { connetionStore } from "../control/store";
+import { connectionStore } from "../store/connectionStore";
 
 export default class Status extends PIXI.Sprite {
   constructor() {
@@ -18,12 +18,12 @@ export default class Status extends PIXI.Sprite {
 
     super(circle);
 
-    this.status = connetionStore.getState().status;
+    this.status = connectionStore.getState().ws;
     this.setStatus();
     this.x = window.innerWidth - 40;
     this.y = 20;
-    connetionStore.watch(({ status }) => {
-      this.setStatus(status);
+    connectionStore.watch(({ ws }) => {
+      this.setStatus(ws);
     });
   }
 

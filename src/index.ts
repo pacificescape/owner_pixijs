@@ -1,4 +1,5 @@
-import "./control/store.js";
+import "./store/index.js";
+import "./store/connectionStore.js";
 import "./control/net.js";
 import "./utils/stats.js";
 import "./styles.css";

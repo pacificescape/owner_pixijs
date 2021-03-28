@@ -1,6 +1,6 @@
 import { PromiseEx } from "../helpers/PromiseEx.js";
 import { createEvent } from "effector";
-import { connectEvt } from "./store";
+import { connectionStore } from "../store/connectionStore";
 
 const onConnect = createEvent();
 
@@ -74,32 +74,31 @@ const wsUrl =
     ? `ws://${location.hostname}:8081`
     : `ws://owner.${location.hostname}/`;
 
-async function wsReconnect() {
-  const login = await fetch("/login").then((r) => r.json());
-  const auth = await fetch("/auth").then((r) => r.json());
-  const token = auth.result;
-  const webSocket = new WebSocket(wsUrl + `?token=${token}`);
-  webSocket.onopen = () => {
-    rpc.attach(webSocket);
-    setTimeout(() => {
-      connectEvt(1);
-    }, 3000);
-    const data = onConnect.map((msg) => {
-      return msg;
-    });
-    data.watch((data) => {
-      console.log(data);
-    });
-  };
-  webSocket.onclose = () => {
-    connectEvt(0);
-    setTimeout(wsReconnect, 2e3);
-  };
-  webSocket.onmessage = (msg) => {
-    console.log("ws msg", msg);
-  };
-  webSocket.onerror = (e) => {
-    console.log(e);
-  };
+export async function wsReconnect() {
+  return new Promise((resolve, reject) => {
+    const store = connectionStore.getState();
+    if (!store.login) return reject();
+
+    const webSocket = new WebSocket(wsUrl + `?token=${store.token}`);
+    webSocket.onopen = () => {
+      rpc.attach(webSocket);
+      resolve(rpc);
+      const data = onConnect.map((msg) => {
+        return msg;
+      });
+      data.watch((data) => {
+        console.log(data);
+      });
+    };
+    webSocket.onclose = () => {
+      setTimeout(wsReconnect, 2e3);
+    };
+    webSocket.onmessage = (msg) => {
+      console.log("ws msg", msg);
+    };
+    webSocket.onerror = (e) => {
+      reject(e);
+      console.log(e);
+    };
+  });
 }
-wsReconnect();
