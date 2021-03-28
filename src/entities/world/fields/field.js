@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 
 export default class Field extends PIXI.Sprite {
-  constructor(visualModels, x, y) {
+  constructor(visualModels, pos, sector) {
     const textures = {
       hover: visualModels.hover.texture,
       main: visualModels.main.texture,
@@ -14,7 +14,8 @@ export default class Field extends PIXI.Sprite {
 
     this.textures = textures;
 
-    // this.makeCoordinateLabel(x, y);
+    this.pos = pos;
+    this.sector = sector;
 
     this.interactive = true;
     this.hitArea = new PIXI.Polygon([
@@ -40,8 +41,8 @@ export default class Field extends PIXI.Sprite {
     this.touchstart = this.mousedown = (evt) => {
       console.log("touchstart");
       this.touch = {
-        x: evt.data.originalEvent.clientX,
-        y: evt.data.originalEvent.clientY,
+        x: evt.data.global.x,
+        y: evt.data.global.y,
       };
       // console.log(evt);
     };
@@ -50,11 +51,20 @@ export default class Field extends PIXI.Sprite {
   parseClick(evt) {
     if (!this.touch) return;
     if (
-      this.touch.x === evt.data.originalEvent.clientX &&
-      this.touch.y === evt.data.originalEvent.clientY
+      this.touch.x === evt.data.global.x &&
+      this.touch.y === evt.data.global.y
     ) {
       console.log("click parsed");
-      this.generalTexture = app.visual.grounds[3];
+
+      app.stage.emit(
+        "window",
+        evt.data.global,
+        {
+          pos: this.pos,
+          sector: this.sector,
+        },
+        evt.data.global
+      );
       return;
     }
     console.log("move parsed");
@@ -67,7 +77,6 @@ export default class Field extends PIXI.Sprite {
   }
 
   mouseover(evt) {
-    // console.log(evt);
     this.texture = this.textures.hover;
   }
 

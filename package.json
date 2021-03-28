@@ -1,8 +1,15 @@
 {
-  "name": "pixi-typescript-boilerplate",
+  "name": "owner-game",
   "version": "3.0.0",
-  "description": "pixi.js typescript boilerplate webpack",
+  "description": "Owner game",
   "browserslist": "> 0.25%, not dead",
+  "targets": {
+    "edge": "17",
+    "firefox": "60",
+    "chrome": "67",
+    "safari": "11.1",
+    "ie": "11"
+  },
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server --hot --open",

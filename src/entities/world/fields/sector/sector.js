@@ -12,6 +12,8 @@ const s = (d) => d * SECTOR_RADIUS * 2;
 export default class Sector extends PIXI.Container {
   constructor(secX, secY) {
     super();
+    this.secX = secX;
+    this.secY = secY;
     this.x = s(secX);
     this.y = s(secY);
     this.visualModel = {};
@@ -27,7 +29,14 @@ export default class Sector extends PIXI.Container {
   makeSector() {
     this.sprites = this.grid.map((hex) => {
       const { x, y } = hex;
-      const sprite = new Field(this.getFieldModel(hex), x, y);
+      const sprite = new Field(
+        this.getFieldModel(hex),
+        { x, y },
+        {
+          x: this.secX,
+          y: this.secY,
+        }
+      );
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;
       return sprite;
