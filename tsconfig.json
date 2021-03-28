@@ -6,7 +6,15 @@
         "strict": true,
         "sourceMap": true,
         "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        // Loaders needs this to use the more strict mini-signal types
+        "paths": {
+          "mini-signals": [
+            "node_modules/resource-loader/typings/mini-signals.d.ts"
+          ]
+        },
+        "baseUrl": "./",
     },
     "include": ["./src/index.ts"]
 }

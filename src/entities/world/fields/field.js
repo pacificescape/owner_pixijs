@@ -9,8 +9,8 @@ export default class Field extends PIXI.Sprite {
 
     super(textures.main);
 
-    this.cacheAsBitmap = true;
-    this.cacheAsBitmapResolution = 0.1;
+    // this.cacheAsBitmap = true;
+    // this.cacheAsBitmapResolution = 0.3;
 
     this.textures = textures;
 
@@ -39,21 +39,26 @@ export default class Field extends PIXI.Sprite {
     );
     this.touchstart = this.mousedown = (evt) => {
       console.log("touchstart");
-      this.touch = evt.data.global;
+      this.touch = {
+        x: evt.data.originalEvent.clientX,
+        y: evt.data.originalEvent.clientY,
+      };
       // console.log(evt);
     };
   }
 
   parseClick(evt) {
+    if (!this.touch) return;
     if (
-      this.touch.x === evt.data.global.x &&
-      this.touch.y === evt.data.global.y
+      this.touch.x === evt.data.originalEvent.clientX &&
+      this.touch.y === evt.data.originalEvent.clientY
     ) {
       console.log("click parsed");
       this.generalTexture = app.visual.grounds[3];
       return;
     }
     console.log("move parsed");
+    this.mouseout();
   }
 
   toggleTexture() {
