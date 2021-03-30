@@ -13,13 +13,22 @@ class WebSocketRPCClient {
     const noop = () => null;
     this.subscribeMap = {};
     this.wsEvents = Object.entries({
-      message: (evt) => {
+      message: async (evt) => {
         // console.log(evt);
         const parsedData = JSON.parse(evt.data);
-        const { rpcID } = parsedData;
+        const { rpcID, action, data } = parsedData;
         if (!rpcID) return;
         if (this.map[rpcID]) {
-          this.map[rpcID].resolve(parsedData);
+          return this.map[rpcID].resolve(parsedData);
+        }
+        if (parsedData.action) {
+          if (!rpcID) throw Result.error(ERROR_INVALID_RPC_RPCID);
+
+          if (typeof this[action] !== "function") {
+            throw Result.error(ERROR_INVALID_RPC_METHOD);
+          }
+
+          return await this[action](data);
         }
       },
     });
@@ -52,8 +61,11 @@ class WebSocketRPCClient {
   }
 
   sendBinary(data) {
-    if (!this.webSocket) return;
     this.webSocket.send(data);
+  }
+
+  actionAlert(data) {
+    alert(data);
   }
 
   // subscribe(action, callback) {

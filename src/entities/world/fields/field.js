@@ -44,7 +44,6 @@ export default class Field extends PIXI.Sprite {
         x: evt.data.global.x,
         y: evt.data.global.y,
       };
-      // console.log(evt);
     };
   }
 

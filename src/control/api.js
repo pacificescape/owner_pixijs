@@ -1,5 +1,5 @@
-export const login = async () => {
-  return await fetch("/login")
+export const login = async (query) => {
+  return await fetch("/login" + query)
     // .then((r) => r.json())
     .catch((error) => {
       console.log(error);
