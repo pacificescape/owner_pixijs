@@ -15,14 +15,17 @@ module.exports = (env: { mode: "development" | "production" }) => {
       openPage: "http://localhost:8080/",
       clientLogLevel: "silent",
       proxy: {
-        "ws://*": {
-          target: "ws://localhost:8081",
+        "/api/ws": {
+          target: "ws://localhost:8081/",
           ws: true,
           changeOrigin: true,
           // secure: true,
         },
+        "/favicon.ico": {
+          target: "http://localhost:404",
+        },
         "*": {
-          target: "http://localhost:8081",
+          target: "http://localhost:8081/",
           changeOrigin: true,
         },
       },

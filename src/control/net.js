@@ -81,17 +81,16 @@ class WebSocketRPCClient {
 export const rpc = new WebSocketRPCClient();
 globalThis.rpc = rpc;
 
-const wsUrl =
-  location.hostname === "127.0.0.1" || "localhost"
-    ? `ws://${location.hostname}:8081`
-    : `ws://owner.${location.hostname}/`;
+const wsUrl = `ws://localhost:8080/api/ws`;
+// .replace(/^http:\/\//, "ws://")
+// .replace(/^https:\/\//, "wss://") + "/api/ws";
 
 export async function wsReconnect() {
   return new Promise((resolve, reject) => {
     const store = connectionStore.getState();
     if (!store.login) return reject();
 
-    const webSocket = new WebSocket(wsUrl + `?token=${store.token}`);
+    const webSocket = new WebSocket(wsUrl + `?token = ${store.token}`);
     webSocket.onopen = () => {
       rpc.attach(webSocket);
       resolve(rpc);
