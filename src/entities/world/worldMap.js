@@ -76,9 +76,7 @@ export default class WorldMap extends PIXI.Container {
     return section;
   }
 
-  drawCity() {
-    let x = 100,
-      y = 100;
+  drawCity(x = 100, y = 100) {
     this.addChild(new City(5, x, y));
   }
 }

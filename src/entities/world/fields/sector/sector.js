@@ -10,12 +10,13 @@ const HEIGHT = 80;
 const SECTOR_RADIUS = 2;
 const s = (d) => d * SECTOR_RADIUS * 2;
 export default class Sector extends PIXI.Container {
-  constructor(secX, secY) {
+  constructor(secX, secY, position) {
     super();
     this.secX = secX;
     this.secY = secY;
-    this.x = s(secX);
-    this.y = s(secY);
+    this.x = secX * 600 + position.x;
+    this.y = secY * 600 - (600 * (secX & 1)) / 2 + position.y;
+
     this.visualModel = {};
     this.radius = SECTOR_RADIUS;
     this.grid = makeHexagonalShape(this.radius);
@@ -67,8 +68,8 @@ export default class Sector extends PIXI.Container {
     const text = new PIXI.Text(`{${x}, ${y}}`);
     const sprite = new PIXI.Sprite();
     sprite.addChild(text);
-    sprite.x += this.x + 20;
-    sprite.y += this.y + 25;
+    sprite.x += this.secX + 20;
+    sprite.y += this.secY + 25;
     this.addChild(sprite);
   }
 

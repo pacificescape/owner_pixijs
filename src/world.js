@@ -59,6 +59,10 @@ export default class World extends PIXI.Container {
     this.worldMap.destroy();
     this.worldMap = new WorldMap();
     this.worldMap.drawCity();
+    this.worldMap.drawCity(-5500, 5500);
+    this.worldMap.drawCity(5500, -5500);
+    this.worldMap.drawCity(5500, 5500);
+    this.worldMap.drawCity(-5500, -5500);
     viewport.addChild(this.worldMap);
   }
 

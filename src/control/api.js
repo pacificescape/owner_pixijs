@@ -1,5 +1,5 @@
 export const login = async (query) => {
-  return await fetch("/login" + query)
+  return await fetch("/api/login" + query)
     // .then((r) => r.json())
     .catch((error) => {
       console.log(error);
@@ -9,7 +9,7 @@ export const login = async (query) => {
 export const auth = async () => {
   let res;
   try {
-    res = await fetch("/auth").then((res) => res.json());
+    res = await fetch("/api/auth").then((res) => res.json());
     // res = await res.json();
     console.log(res);
   } catch (error) {
