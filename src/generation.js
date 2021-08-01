@@ -96,7 +96,8 @@ function drawMap() {
     let height = window.innerHeight - 100;
     app.renderer.resize(width, height);
 
-    let textureRivers = PIXI.utils.TextureCache["resources/img/roads_rivers-tileset.png"];
+    let textureRivers =
+      PIXI.utils.TextureCache["resources/img/roads_rivers-tileset.png"];
     textureRivers.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
   };
 }
@@ -105,7 +106,10 @@ function getDefaultSettings() {
   let width = window.innerWidth - 100 > 1140 ? 1140 : window.innerWidth - 100;
   let height = window.innerHeight - 100;
   let colums = Math.ceil(width / 24) > 47 ? 47 : Math.ceil(width / 24);
-  let rows = Math.ceil(height / (16 * 1.73205)) > 20 ? 20 : Math.ceil(height / (16 * 1.73205));
+  let rows =
+    Math.ceil(height / (16 * 1.73205)) > 20
+      ? 20
+      : Math.ceil(height / (16 * 1.73205));
 
   return {
     screenW: width,
@@ -185,11 +189,19 @@ function updateSettingsModal(settings) {
 }
 
 function initializeViewport(app, settings) {
-  let worldWidth = settings.hexColums * (settings.hexSize + settings.hexSize / 2) + settings.hexSize / 2;
-  let worldHeight = settings.hexRows * (settings.hexSize * 1.73205) + (settings.hexSize * 1.73205) / 2;
+  let worldWidth =
+    settings.hexColums * (settings.hexSize + settings.hexSize / 2) +
+    settings.hexSize / 2;
+  let worldHeight =
+    settings.hexRows * (settings.hexSize * 1.73205) +
+    (settings.hexSize * 1.73205) / 2;
   if (settings.hexOrientation === "pointy") {
-    worldWidth = settings.hexColums * (settings.hexSize * 1.73205) + (settings.hexSize * 1.73205) / 2;
-    worldHeight = settings.hexRows * (settings.hexSize + settings.hexSize / 2) + settings.hexSize / 2;
+    worldWidth =
+      settings.hexColums * (settings.hexSize * 1.73205) +
+      (settings.hexSize * 1.73205) / 2;
+    worldHeight =
+      settings.hexRows * (settings.hexSize + settings.hexSize / 2) +
+      settings.hexSize / 2;
   }
 
   const viewport = new Viewport.Viewport({
@@ -209,8 +221,12 @@ function initializeViewport(app, settings) {
 }
 
 function loadGrid(app, viewport, settings) {
-  if (!$("#setMapHash").is(":checked")) $("#mapHash").val(btoa(JSON.stringify(settings)));
-  let Hex = Honeycomb.extendHex({ size: { width: 32, height: 28 }, orientation: settings.hexOrientation });
+  if (!$("#setMapHash").is(":checked"))
+    $("#mapHash").val(btoa(JSON.stringify(settings)));
+  let Hex = Honeycomb.extendHex({
+    size: { width: 32, height: 28 },
+    orientation: settings.hexOrientation,
+  });
   let Grid = Honeycomb.defineGrid(Hex);
   let elevation = heightMap(settings);
   let moisture = moistureMap(settings);
@@ -281,7 +297,10 @@ function loadGrid(app, viewport, settings) {
   };
 
   // render hex grid
-  let gr = Grid.rectangle({ width: settings.hexColums, height: settings.hexRows });
+  let gr = Grid.rectangle({
+    width: settings.hexColums,
+    height: settings.hexRows,
+  });
   gr.forEach((hex) => {
     let coords = hex.cartesian();
     hex.elevation = elevation[coords.x][coords.y];
@@ -363,7 +382,10 @@ function loadGrid(app, viewport, settings) {
         if (hexToCheck === undefined || hexToCheck.tile === "DeepWater") {
           terrainSorrounded = false;
           break;
-        } else if (hexToCheck !== undefined && hexToCheck.tile === "ShallowWater") {
+        } else if (
+          hexToCheck !== undefined &&
+          hexToCheck.tile === "ShallowWater"
+        ) {
           counter++;
         }
       }
@@ -377,7 +399,8 @@ function loadGrid(app, viewport, settings) {
   });
 
   let texture = PIXI.utils.TextureCache["resources/img/tileset.png"];
-  if (settings.hideGrid) texture = PIXI.utils.TextureCache["resources/img/tileset-borderless.png"];
+  if (settings.hideGrid)
+    texture = PIXI.utils.TextureCache["resources/img/tileset-borderless.png"];
   texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
   for (let y = 0; y < settings.hexRows; y++) {
@@ -386,8 +409,15 @@ function loadGrid(app, viewport, settings) {
       let tileCoords = biomeTileset[hex.tile];
       if (!tileCoords) continue;
 
-      texture.frame = new PIXI.Rectangle(tileCoords.x * 32, tileCoords.y * 48, 32, 48);
-      let fantasyHexTile = new PIXI.Sprite(new PIXI.Texture(texture.baseTexture, texture.frame));
+      texture.frame = new PIXI.Rectangle(
+        tileCoords.x * 32,
+        tileCoords.y * 48,
+        32,
+        48
+      );
+      let fantasyHexTile = new PIXI.Sprite(
+        new PIXI.Texture(texture.baseTexture, texture.frame)
+      );
       fantasyHexTile.x = x * 24;
       fantasyHexTile.y = -18 + y * 28;
       viewport.addChild(fantasyHexTile);
@@ -395,7 +425,10 @@ function loadGrid(app, viewport, settings) {
       // Lair
       if (
         hex.biome !== "water" &&
-        (hex.biome === "Forest" || hex.archetype === "hill" || hex.biome === "Snow" || hex.archetype === "Mountain")
+        (hex.biome === "Forest" ||
+          hex.archetype === "hill" ||
+          hex.biome === "Snow" ||
+          hex.archetype === "Mountain")
       ) {
         if (lookup() <= 3) {
           hex.lair = "lair";
@@ -403,8 +436,15 @@ function loadGrid(app, viewport, settings) {
           if (hex.tile === "MountainImpassable2") hex.lair = "lairSnow";
           tileCoords = biomeTileset[hex.lair];
           if (!tileCoords) continue;
-          texture.frame = new PIXI.Rectangle(tileCoords.x * 32, tileCoords.y * 48, 32, 48);
-          let lairHexTile = new PIXI.Sprite(new PIXI.Texture(texture.baseTexture, texture.frame));
+          texture.frame = new PIXI.Rectangle(
+            tileCoords.x * 32,
+            tileCoords.y * 48,
+            32,
+            48
+          );
+          let lairHexTile = new PIXI.Sprite(
+            new PIXI.Texture(texture.baseTexture, texture.frame)
+          );
           lairHexTile.x = x * 24;
           lairHexTile.y = -18 + y * 28;
           viewport.addChild(lairHexTile);
@@ -415,22 +455,41 @@ function loadGrid(app, viewport, settings) {
       let hex = gr.get([x, y]);
       let tileCoords = biomeTileset[hex.tile];
       if (!tileCoords) continue;
-      texture.frame = new PIXI.Rectangle(tileCoords.x * 32, tileCoords.y * 48, 32, 48);
-      let fantasyHexTile = new PIXI.Sprite(new PIXI.Texture(texture.baseTexture, texture.frame));
+      texture.frame = new PIXI.Rectangle(
+        tileCoords.x * 32,
+        tileCoords.y * 48,
+        32,
+        48
+      );
+      let fantasyHexTile = new PIXI.Sprite(
+        new PIXI.Texture(texture.baseTexture, texture.frame)
+      );
       fantasyHexTile.x = x * 24;
       fantasyHexTile.y = -4 + y * 28;
       viewport.addChild(fantasyHexTile);
 
       // Lair
-      if (hex.biome !== "water" && (hex.biome === "Forest" || hex.biome === "Snow" || hex.archetype === "Mountain")) {
+      if (
+        hex.biome !== "water" &&
+        (hex.biome === "Forest" ||
+          hex.biome === "Snow" ||
+          hex.archetype === "Mountain")
+      ) {
         if (lookup() <= 3) {
           hex.lair = "lair";
           if (hex.biome === "Desert") hex.lair = "lairDesert";
           if (hex.tile === "MountainImpassable2") hex.lair = "lairSnow";
           tileCoords = biomeTileset[hex.lair];
           if (!tileCoords) continue;
-          texture.frame = new PIXI.Rectangle(tileCoords.x * 32, tileCoords.y * 48, 32, 48);
-          let lairHexTile = new PIXI.Sprite(new PIXI.Texture(texture.baseTexture, texture.frame));
+          texture.frame = new PIXI.Rectangle(
+            tileCoords.x * 32,
+            tileCoords.y * 48,
+            32,
+            48
+          );
+          let lairHexTile = new PIXI.Sprite(
+            new PIXI.Texture(texture.baseTexture, texture.frame)
+          );
           lairHexTile.x = x * 24;
           lairHexTile.y = -4 + y * 28;
           viewport.addChild(lairHexTile);
@@ -439,24 +498,43 @@ function loadGrid(app, viewport, settings) {
     }
   }
 
-  let textureRivers = PIXI.utils.TextureCache["resources/img/roads_rivers-tileset.png"];
+  let textureRivers =
+    PIXI.utils.TextureCache["resources/img/roads_rivers-tileset.png"];
   textureRivers.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
   // River sources
   let riverSources = [];
   gr.forEach((hex) => {
-    if (hex.biome === "Water" || hex.tile === "Volcano" || hex.archetype === "Flat") return;
-    if (hex.moisture < 0.6 && hex.archetype !== "Mountain impassable" && hex.biome !== "Alpine forest") return;
+    if (
+      hex.biome === "Water" ||
+      hex.tile === "Volcano" ||
+      hex.archetype === "Flat"
+    )
+      return;
+    if (
+      hex.moisture < 0.6 &&
+      hex.archetype !== "Mountain impassable" &&
+      hex.biome !== "Alpine forest"
+    )
+      return;
 
     hex.source = false;
     if (hex.archetype === "Hill" && lookup() <= 6) {
       hex.source = true;
     } else if (hex.archetype === "Mountain" && lookup() <= 10) {
       hex.source = true;
-    } else if (hex.archetype === "Mountain impassable" && hex.moisture < 0.4 && lookup() <= 15) {
+    } else if (
+      hex.archetype === "Mountain impassable" &&
+      hex.moisture < 0.4 &&
+      lookup() <= 15
+    ) {
       // Mountain impassable
       hex.source = true;
-    } else if (hex.archetype === "Mountain impassable" && hex.moisture >= 0.4 && lookup() <= 34) {
+    } else if (
+      hex.archetype === "Mountain impassable" &&
+      hex.moisture >= 0.4 &&
+      lookup() <= 34
+    ) {
       // Mountain impassable
       hex.source = true;
     }
@@ -465,7 +543,11 @@ function loadGrid(app, viewport, settings) {
     let hexesInRange = gr.neighborsOf(hex);
     for (let i = 0; i < hexesInRange.length; i++) {
       let hexToCheck = hexesInRange[i];
-      if (!hexToCheck || hexToCheck.biome === "Water" || hexToCheck.source === true) {
+      if (
+        !hexToCheck ||
+        hexToCheck.biome === "Water" ||
+        hexToCheck.source === true
+      ) {
         hex.source = false;
         break;
       }
@@ -514,7 +596,9 @@ function loadGrid(app, viewport, settings) {
 
       if (
         typeof hexToCheck !== "undefined" &&
-        (hexToCheck.tile === "ShallowWater" || hexToCheck.tile === "DeepWater" || hexToCheck.tile.includes("lake"))
+        (hexToCheck.tile === "ShallowWater" ||
+          hexToCheck.tile === "DeepWater" ||
+          hexToCheck.tile.includes("lake"))
       ) {
         hex.sideRiverExit = i;
         hex.riverEnd = true;
@@ -536,27 +620,38 @@ function loadGrid(app, viewport, settings) {
       if (hexToCheck.tile === "Volcano") continue;
       //No go north or south impassable
       if (i === 4 && biomeTileset[hex.tile].z === 5) continue;
-      if (i === 1 && biomeTileset[hexToCheck.tile].z === 5 && biomeTileset[hex.tile].z === 5) continue;
-      if (hexToCheck.x === settings.hexColums - 1 && hex.source === true) continue;
-      if (hexToCheck.y === settings.hexRows - 1 && hex.source === true) continue;
+      if (
+        i === 1 &&
+        biomeTileset[hexToCheck.tile].z === 5 &&
+        biomeTileset[hex.tile].z === 5
+      )
+        continue;
+      if (hexToCheck.x === settings.hexColums - 1 && hex.source === true)
+        continue;
+      if (hexToCheck.y === settings.hexRows - 1 && hex.source === true)
+        continue;
 
       if (!hexDestination) {
         hexDestination = hexToCheck;
       }
       // If there is a inferior archetype, choose as destination
-      else if (biomeTileset[hexToCheck.tile].z < biomeTileset[hexDestination.tile].z) {
+      else if (
+        biomeTileset[hexToCheck.tile].z < biomeTileset[hexDestination.tile].z
+      ) {
         hexDestination = hexToCheck;
       }
       // The source runs to the most moisture hex.
       else if (
         hex.source === true &&
-        biomeTileset[hexToCheck.tile].z === biomeTileset[hexDestination.tile].z &&
+        biomeTileset[hexToCheck.tile].z ===
+          biomeTileset[hexDestination.tile].z &&
         hexToCheck.moisture > hexDestination.moisture
       ) {
         hexDestination = hexToCheck;
       } else if (
         hex.source !== true &&
-        biomeTileset[hexToCheck.tile].z === biomeTileset[hexDestination.tile].z &&
+        biomeTileset[hexToCheck.tile].z ===
+          biomeTileset[hexDestination.tile].z &&
         hexToCheck.elevation < hexDestination.elevation
       ) {
         hexDestination = hexToCheck;
@@ -570,16 +665,25 @@ function loadGrid(app, viewport, settings) {
 
       let indexHex = hexesInRange.indexOf(hexDestination);
       hex.sideRiverExit = indexHex;
-      hexDestination.sideRiverEnter = indexHex > 2 ? indexHex - 3 : indexHex + 3;
+      hexDestination.sideRiverEnter =
+        indexHex > 2 ? indexHex - 3 : indexHex + 3;
       if (
         hexDestination.tile === "ShallowWater" ||
         hexDestination.tile === "DeepWater" ||
-        (hexDestination.tile.includes("lake") && hexDestination.archetype !== "flat")
+        (hexDestination.tile.includes("lake") &&
+          hexDestination.archetype !== "flat")
       ) {
         hexDestination.riverEnd = true;
-      } else if (hexDestination.tile.includes("lake") && hexDestination.archetype === "flat") {
+      } else if (
+        hexDestination.tile.includes("lake") &&
+        hexDestination.archetype === "flat"
+      ) {
         //nada
-      } else if (hexDestination.riverId && hex.riverId !== hexDestination.riverId && hexDestination.source !== true) {
+      } else if (
+        hexDestination.riverId &&
+        hex.riverId !== hexDestination.riverId &&
+        hexDestination.source !== true
+      ) {
         hex.riverJoin = true;
       } else {
         hexDestination.riverId = hex.riverId;
@@ -593,7 +697,10 @@ function loadGrid(app, viewport, settings) {
     } else if (hex.sourceSon === true && hex.riverEnd === true) {
       // don't draw rivers of 1 hex length
       return;
-    } else if (hex.river !== "SOURCE" && !(hex.sourceSon === true && hex.riverEnd === true)) {
+    } else if (
+      hex.river !== "SOURCE" &&
+      !(hex.sourceSon === true && hex.riverEnd === true)
+    ) {
       drawRiverTile(hex);
     }
 
@@ -602,14 +709,24 @@ function loadGrid(app, viewport, settings) {
 
   function drawRiverTile(hex) {
     let river = null;
-    if (typeof hex.sideRiverEnter !== "undefined" && typeof hex.sideRiverExit !== "undefined")
+    if (
+      typeof hex.sideRiverEnter !== "undefined" &&
+      typeof hex.sideRiverExit !== "undefined"
+    )
       river = hex.sideRiverEnter + "" + hex.sideRiverExit;
     if (!river) return;
     let tileCoords = riverTileset[river];
     if (!tileCoords) return;
 
-    textureRivers.frame = new PIXI.Rectangle(tileCoords.x * 32, tileCoords.y * 48, 32, 48);
-    let riverSource = new PIXI.Sprite(new PIXI.Texture(textureRivers.baseTexture, textureRivers.frame));
+    textureRivers.frame = new PIXI.Rectangle(
+      tileCoords.x * 32,
+      tileCoords.y * 48,
+      32,
+      48
+    );
+    let riverSource = new PIXI.Sprite(
+      new PIXI.Texture(textureRivers.baseTexture, textureRivers.frame)
+    );
 
     if (hex.x % 2 === 1) {
       riverSource.x = hex.x * 24;
@@ -694,11 +811,16 @@ function applySettings(app, viewport) {
     settings.lineColor = 0x999999;
     settings.hideCoords = $("#hideCoords").is(":checked");
     settings.hideGrid = $("#hideGrid").is(":checked");
-    settings.contourInterval_0 = parseFloat($("#contourInterval_0").val()) || 0.2;
-    settings.contourInterval_1 = parseFloat($("#contourInterval_1").val()) || 0.3;
-    settings.contourInterval_2 = parseFloat($("#contourInterval_2").val()) || 0.5;
-    settings.contourInterval_3 = parseFloat($("#contourInterval_3").val()) || 0.7;
-    settings.contourInterval_4 = parseFloat($("#contourInterval_4").val()) || 0.9;
+    settings.contourInterval_0 =
+      parseFloat($("#contourInterval_0").val()) || 0.2;
+    settings.contourInterval_1 =
+      parseFloat($("#contourInterval_1").val()) || 0.3;
+    settings.contourInterval_2 =
+      parseFloat($("#contourInterval_2").val()) || 0.5;
+    settings.contourInterval_3 =
+      parseFloat($("#contourInterval_3").val()) || 0.7;
+    settings.contourInterval_4 =
+      parseFloat($("#contourInterval_4").val()) || 0.9;
     //Elevation Noise
     settings.setElevationSeed = $("#setElevationSeed").is(":checked");
     if (settings.setElevationSeed) {
@@ -707,12 +829,18 @@ function applySettings(app, viewport) {
       settings.elevationSeed = generateId();
       $("#elevationSeed").val(settings.elevationSeed);
     }
-    settings.frequencyElevation = parseFloat($("#frequencyElevation").val()) || 0.8;
-    settings.redistributionElevation = parseFloat($("#redistributionElevation").val()) || 1.0;
-    settings.elevationOctaves_0 = parseFloat($("#elevationOctaves_0").val()) || 1;
-    settings.elevationOctaves_1 = parseFloat($("#elevationOctaves_1").val()) || 0.5;
-    settings.elevationOctaves_2 = parseFloat($("#elevationOctaves_2").val()) || 0.25;
-    settings.elevationOctaves_3 = parseFloat($("#elevationOctaves_3").val()) || 0.12;
+    settings.frequencyElevation =
+      parseFloat($("#frequencyElevation").val()) || 0.8;
+    settings.redistributionElevation =
+      parseFloat($("#redistributionElevation").val()) || 1.0;
+    settings.elevationOctaves_0 =
+      parseFloat($("#elevationOctaves_0").val()) || 1;
+    settings.elevationOctaves_1 =
+      parseFloat($("#elevationOctaves_1").val()) || 0.5;
+    settings.elevationOctaves_2 =
+      parseFloat($("#elevationOctaves_2").val()) || 0.25;
+    settings.elevationOctaves_3 =
+      parseFloat($("#elevationOctaves_3").val()) || 0.12;
     settings.createIsland = $("#createIsland").is(":checked");
     // Moisture Noise
     settings.setMoistureSeed = $("#setMoistureSeed").is(":checked");
@@ -723,12 +851,17 @@ function applySettings(app, viewport) {
       $("#moistureSeed").val(settings.moistureSeed);
     }
     settings.drawMoisture = $("#drawMoisture").is(":checked");
-    settings.frequencyMoisture = parseFloat($("#frequencyMoisture").val()) || 0.8;
-    settings.redistributionMoisture = parseFloat($("#redistributionMoisture").val()) || 1.0;
+    settings.frequencyMoisture =
+      parseFloat($("#frequencyMoisture").val()) || 0.8;
+    settings.redistributionMoisture =
+      parseFloat($("#redistributionMoisture").val()) || 1.0;
     settings.moistureOctaves_0 = parseFloat($("#moistureOctaves_0").val()) || 1;
-    settings.moistureOctaves_1 = parseFloat($("#moistureOctaves_1").val()) || 0.5;
-    settings.moistureOctaves_2 = parseFloat($("#moistureOctaves_2").val()) || 0.25;
-    settings.moistureOctaves_3 = parseFloat($("#moistureOctaves_3").val()) || 0.12;
+    settings.moistureOctaves_1 =
+      parseFloat($("#moistureOctaves_1").val()) || 0.5;
+    settings.moistureOctaves_2 =
+      parseFloat($("#moistureOctaves_2").val()) || 0.25;
+    settings.moistureOctaves_3 =
+      parseFloat($("#moistureOctaves_3").val()) || 0.12;
   }
 
   viewport = initializeViewport(app, settings);
