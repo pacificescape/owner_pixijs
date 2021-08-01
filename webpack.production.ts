@@ -72,16 +72,16 @@ module.exports = (env: { mode: "development" | "production" }) => {
 
     optimization: {
       minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            // mangle: true,
-            // toplevel: true,
-            keep_classnames: false,
-            keep_fnames: true,
-          },
-        }),
-      ],
+      // minimizer: [
+      //   new TerserPlugin({
+      //     terserOptions: {
+      //       // mangle: true,
+      //       // toplevel: true,
+      //       keep_classnames: false,
+      //       keep_fnames: true,
+      //     },
+      //   }),
+      // ],
     },
   };
 };
