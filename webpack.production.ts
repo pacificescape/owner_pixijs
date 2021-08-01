@@ -13,18 +13,18 @@ module.exports = (env: { mode: "development" | "production" }) => {
 
     module: {
       rules: [
-        // {
-        //   enforce: "pre",
-        //   test: /\.(js|jsx|ts|tsx)$/,
-        //   exclude: /node_modules/,
-        //   loader: "eslint-loader",
-        //   options: {
-        //     emitError: true,
-        //     emitWarning: true,
-        //     failOnError: true,
-        //     failOnWarning: true,
-        //   },
-        // },
+        {
+          enforce: "pre",
+          test: /\.(js|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          loader: "eslint-loader",
+          options: {
+            emitError: true,
+            emitWarning: true,
+            failOnError: true,
+            failOnWarning: true,
+          },
+        },
         {
           test: /\.(js|jsx|ts|tsx)$/,
           use: [
@@ -34,11 +34,11 @@ module.exports = (env: { mode: "development" | "production" }) => {
           ],
           exclude: /node_modules/,
         },
-        // {
-        //   test: /\.tsx?$/,
-        //   use: "ts-loader",
-        //   exclude: /node_modules/,
-        // },
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
       ],
     },
 
@@ -72,16 +72,16 @@ module.exports = (env: { mode: "development" | "production" }) => {
 
     optimization: {
       minimize: true,
-      // minimizer: [
-      //   new TerserPlugin({
-      //     terserOptions: {
-      //       // mangle: true,
-      //       // toplevel: true,
-      //       keep_classnames: false,
-      //       keep_fnames: true,
-      //     },
-      //   }),
-      // ],
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            // mangle: true,
+            // toplevel: true,
+            keep_classnames: false,
+            keep_fnames: true,
+          },
+        }),
+      ],
     },
   };
 };
