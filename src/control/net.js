@@ -1,4 +1,4 @@
-import { PromiseEx } from "../helpers/PromiseEx";
+import { PromiseEx } from "../helpers";
 import { createEvent } from "effector";
 import { connectionStore } from "../store/connectionStore";
 
