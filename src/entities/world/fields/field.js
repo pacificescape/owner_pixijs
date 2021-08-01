@@ -39,7 +39,7 @@ export default class Field extends PIXI.Sprite {
       this
     );
     this.touchstart = this.mousedown = (evt) => {
-      console.log("touchstart");
+      // console.log("touchstart");
       this.touch = {
         x: evt.data.global.x,
         y: evt.data.global.y,

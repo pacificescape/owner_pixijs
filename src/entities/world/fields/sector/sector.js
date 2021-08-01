@@ -24,7 +24,7 @@ export default class Sector extends PIXI.Container {
     this.makeInteractive();
 
     this.addChild(...this.sprites);
-    this.makeLabel(secX, secY);
+    // this.makeLabel(secX, secY);
   }
 
   makeSector() {
