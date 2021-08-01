@@ -9,4 +9,4 @@ import "./entities/world/worldMap.js";
 import "./resources.js";
 import "./visual.js";
 import "./world";
-import "./react/index.jsx";
+// import "./react/index.jsx";
