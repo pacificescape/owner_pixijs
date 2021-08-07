@@ -16,7 +16,7 @@ class VisualModels {
     const hugeIsland = resources.hugeIsland.texture;
 
     Object.assign(this, {
-      sea: resources.sea.texture,
+      // sea: resources.sea.texture,
       hugeIsland,
       hexagons2d: [
         { texture: hexagons2d['black.png'] },
@@ -104,7 +104,7 @@ class VisualModels {
           texture: resources.tileSnow.texture,
         },
       ],
-      // sea: resources.sea,
+      sea: resources.sea,
     });
   }
 }
