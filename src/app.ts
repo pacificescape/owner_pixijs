@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { Stage, Group } from "@pixi/layers";
+import World from "./world";
 
 window.PIXI = PIXI;
 window.textGroup = new Group();
@@ -9,11 +10,15 @@ const stats = window.stats;
 export class Application {
   renderer: PIXI.Renderer;
 
+  textLayer: any;
+
   ticker: PIXI.Ticker;
 
-  stage: Stage;
+  stage: Stage | undefined;
 
-  world: any;
+  world: World | undefined;
+
+  visual: any;
 
   constructor() {
     this.renderer = new PIXI.Renderer({
@@ -24,12 +29,13 @@ export class Application {
       // resizeTo: window,
       autoResize: true, // https://www.html5gamedevs.com/topic/42553-resize-window/
       autoDensity: true, // TODO: resize do not working after change orientation ios/?android
-    } as any);
+    } as PIXI.IRendererOptions);
 
     document.body.appendChild(this.renderer.view);
 
     this.ticker = new PIXI.Ticker();
-    this.stage = new Stage();
+    // this.stage
+    // this.world
 
     this.ticker.add(this.render.bind(this), PIXI.UPDATE_PRIORITY.LOW);
     this.ticker.start();
@@ -42,16 +48,19 @@ export class Application {
   render() {
     stats.begin();
     // console.log(window.viewport.hitArea.width, window.viewport.hitArea.height);
-    this.renderer.render(this.stage);
+    this.renderer.render(this.stage as Stage);
     stats.end();
   }
 
   onresize() {
     window.app.renderer.resize(window.innerWidth, window.innerHeight);
     window.viewport.resize(window.innerWidth, window.innerHeight);
-    window.app.world.resize();
+
+    window.app.world?.resize();
   }
 }
 
 window.app = new Application();
+window.app.stage = new Stage();
+window.app.world = new World();
 window.onresize = window.app.onresize; // todo eventEmitter???

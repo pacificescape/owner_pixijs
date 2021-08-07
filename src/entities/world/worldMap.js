@@ -1,6 +1,7 @@
 import City from "../../entities/world/fields/city/city.js";
-const PIXI = global.PIXI;
-const app = global.app;
+import * as PIXI from "pixi.js";
+
+const app = window.app;
 const viewport = global.viewport;
 
 const SECTION_SIZE = 40;
@@ -10,7 +11,7 @@ export default class WorldMap extends PIXI.Container {
     super();
     // this.map = mapStore.getState();
     this.map = { elevation: [[]], start: { x: 0, y: 0 } };
-    app.stage.on("loaded", () => {
+    window.app.stage.on("loaded", () => {
       this.createMapFromLoader();
     });
   }
@@ -38,6 +39,8 @@ export default class WorldMap extends PIXI.Container {
   }
 
   getSection() {
+    const viewport = window.viewport;
+
     const { x, y, width, height } = viewport.hitArea;
     const center = viewport.center;
     const { elevation, moisture } = this.map;

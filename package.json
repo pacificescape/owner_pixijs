@@ -12,7 +12,7 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "webpack-dev-server": "webpack-dev-server --hot --open",
+    "webpack-dev-server": "webpack-dev-server --hot",
     "build": "npx del-cli dist --force  && npm run webpack -- --env.mode production",
     "dev": "npm run webpack-dev-server -- --env.mode development --watch",
     "backend": "npm install --prefix ./server && node ./server/index.js",

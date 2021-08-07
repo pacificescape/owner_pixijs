@@ -46,12 +46,12 @@ export default class Building extends PIXI.Container {
       tree.sprite.texture = textures.choppedTreesTexture;
     });
 
-    const building = new PIXI.Sprite(app.visual.buildings[0].texture);
+    const building = new PIXI.Sprite(window.app.visual.buildings[0].texture);
     building.pivot.y = 35 + (y * 100) / 66;
     building.scale.x = 0.66;
     building.scale.y = 0.66;
     this.addChild(building);
-    const roof = new PIXI.Sprite(app.visual.buildings[1].texture);
+    const roof = new PIXI.Sprite(window.app.visual.buildings[1].texture);
     roof.pivot.y = 55 + (y * 100) / 66;
     roof.scale.x = 0.66;
     roof.scale.y = 0.66;

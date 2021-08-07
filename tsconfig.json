@@ -8,11 +8,13 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "noImplicitAny": false,
     // Loaders needs this to use the more strict mini-signal types
+    "baseUrl": "./",
     "paths": {
+      "$types/*": ["src/types/*"],
       "mini-signals": ["node_modules/resource-loader/typings/mini-signals.d.ts"]
-    },
-    "baseUrl": "./"
+    }
   },
-  "include": ["./src/index.ts", "src/types/window.d.ts"]
+  "include": ["./src/index.ts", "src/types/window.d.ts", "src/types/app.d.ts"]
 }

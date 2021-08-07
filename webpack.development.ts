@@ -36,7 +36,16 @@ module.exports = (env: { mode: "development" | "production" }) => {
           enforce: "pre",
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
+          loader: "eslint-loader",
+        },
+        {
+          test: /\.(js|jsx|ts|tsx)$/,
+          use: [
+            {
+              loader: "babel-loader",
+            },
+          ],
+          exclude: /node_modules/,
         },
         {
           test: /\.tsx?$/,

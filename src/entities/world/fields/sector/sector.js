@@ -46,8 +46,8 @@ export default class Sector extends PIXI.Container {
 
   getFieldModel(hex) {
     const visualModels = {
-      main: app.visual.grounds[8],
-      hover: app.visual.grounds[23],
+      main: window.app.visual.grounds[8],
+      hover: window.app.visual.grounds[23],
     };
 
     if (hex.y < 0) {
@@ -59,8 +59,8 @@ export default class Sector extends PIXI.Container {
     }
 
     return {
-      main: app.visual.grounds[6],
-      hover: app.visual.grounds[24],
+      main: window.app.visual.grounds[6],
+      hover: window.app.visual.grounds[24],
     };
   }
 

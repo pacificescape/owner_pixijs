@@ -71,7 +71,7 @@ export default class Field extends PIXI.Sprite {
   }
 
   toggleTexture() {
-    this.generalTexture = app.visual.grounds[12];
+    this.generalTexture = window.app.visual.grounds[12];
     this.mouseout();
   }
 

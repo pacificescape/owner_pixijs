@@ -2,7 +2,7 @@ const app = global.app;
 
 class VisualModels {
   constructor() {
-    app.stage.on("loaded", () => {
+    window.app.stage.on("loaded", () => {
       this.createModels();
     });
   }
@@ -109,4 +109,4 @@ class VisualModels {
   }
 }
 
-app.visual = new VisualModels();
+window.app.visual = new VisualModels();
