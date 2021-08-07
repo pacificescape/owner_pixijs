@@ -21,8 +21,8 @@ module.exports = (env: { mode: "development" | "production" }) => {
           options: {
             emitError: true,
             emitWarning: true,
-            failOnError: false, // TODO
-            failOnWarning: false,
+            failOnError: true,
+            failOnWarning: true,
           },
         },
         {
