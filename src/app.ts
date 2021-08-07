@@ -14,9 +14,9 @@ export class Application {
 
   ticker: PIXI.Ticker;
 
-  stage: Stage | undefined;
+  stage: Stage | any;
 
-  world: World | undefined;
+  world: World | any;
 
   visual: any;
 
@@ -29,7 +29,7 @@ export class Application {
       // resizeTo: window,
       autoResize: true, // https://www.html5gamedevs.com/topic/42553-resize-window/
       autoDensity: true, // TODO: resize do not working after change orientation ios/?android
-    } as PIXI.IRendererOptions);
+    } as any);
 
     document.body.appendChild(this.renderer.view);
 
@@ -48,7 +48,7 @@ export class Application {
   render() {
     stats.begin();
     // console.log(window.viewport.hitArea.width, window.viewport.hitArea.height);
-    this.renderer.render(this.stage as Stage);
+    this.renderer.render(this.stage as any);
     stats.end();
   }
 
