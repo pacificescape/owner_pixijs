@@ -38,7 +38,7 @@ export default class World extends Container {
 
       this.worldMap = new WorldMap();
 
-      const textLayer = new Layer(window.textGroup);
+      const textLayer = new Layer(window.textGroup as any);
       window.app.textLayer = textLayer;
 
       const darkSprite = new Sprite(Texture.WHITE);
@@ -54,7 +54,7 @@ export default class World extends Container {
       sea.tileScale = { x: 0.08, y: 0.08 };
 
       window.viewport.addChild(this);
-      window.viewport.addChild(textLayer);
+      window.viewport.addChild(textLayer as any);
       window.viewport.addChild(this.worldMap);
       window.app.stage?.addChild(sea);
       window.app.stage?.addChild(window.viewport);
