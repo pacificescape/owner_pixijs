@@ -4,6 +4,7 @@ import { Viewport } from "pixi-viewport";
 
 import { Application } from "../app";
 import Stats from "stats.js";
+import World from "src/world";
 
 declare global {
   interface Window {
@@ -16,5 +17,7 @@ declare global {
     stats: Stats;
 
     textGroup: Group;
+
+    world: World;
   }
 }
