@@ -1,6 +1,8 @@
-import * as PIXI from "pixi.js";
-import Field from "../field";
-import { Hex, makeHexagonalShape } from "../../../../utils/hexGenerator";
+import * as PIXI from 'pixi.js';
+
+import Field from '../field';
+import { Hex, makeHexagonalShape } from '../../../../utils/hex-generator';
+
 
 const app = global.app;
 
@@ -9,8 +11,9 @@ const HEIGHT = 80;
 
 const SECTOR_RADIUS = 2;
 const s = (d) => d * SECTOR_RADIUS * 2;
+
 export default class Sector extends PIXI.Container {
-  constructor(secX, secY, position) {
+  constructor (secX, secY, position) {
     super();
     this.secX = secX;
     this.secY = secY;
@@ -27,7 +30,7 @@ export default class Sector extends PIXI.Container {
     // this.makeLabel(secX, secY);
   }
 
-  makeSector() {
+  makeSector () {
     this.sprites = this.grid.map((hex) => {
       const { x, y } = hex;
       const sprite = new Field(
@@ -36,15 +39,16 @@ export default class Sector extends PIXI.Container {
         {
           x: this.secX,
           y: this.secY,
-        }
+        },
       );
+
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;
       return sprite;
     });
   }
 
-  getFieldModel(hex) {
+  getFieldModel (hex) {
     const visualModels = {
       main: window.app.visual.grounds[8],
       hover: window.app.visual.grounds[23],
@@ -64,22 +68,23 @@ export default class Sector extends PIXI.Container {
     };
   }
 
-  makeLabel(x, y) {
+  makeLabel (x, y) {
     const text = new PIXI.Text(`{${x}, ${y}}`);
     const sprite = new PIXI.Sprite();
+
     sprite.addChild(text);
     sprite.x += this.secX + 20;
     sprite.y += this.secY + 25;
     this.addChild(sprite);
   }
 
-  makeInteractive() {
+  makeInteractive () {
     this.interactive = true;
-    this.on("mouseup", console.log);
+    this.on('mouseup', console.log);
     this.mouseover = this.mouseover.bind(this);
   }
 
-  mouseover(evt) {
+  mouseover (evt) {
     // console.log(evt);
     // this.texture = this.textures.hover;
   }

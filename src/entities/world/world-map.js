@@ -1,17 +1,20 @@
-import City from "../../entities/world/fields/city/city.js";
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
+
+import City from './fields/city/city.js';
+
 
 const app = window.app;
 const viewport = global.viewport;
 
 const SECTION_SIZE = 40;
+
 // import { mapStore } from "../../control/store";
 export default class WorldMap extends PIXI.Container {
-  constructor() {
+  constructor () {
     super();
     // this.map = mapStore.getState();
     this.map = { elevation: [[]], start: { x: 0, y: 0 } };
-    window.app.stage.on("loaded", () => {
+    window.app.stage.on('loaded', () => {
       this.createMapFromLoader();
     });
   }
@@ -20,25 +23,26 @@ export default class WorldMap extends PIXI.Container {
   // if is logged in take map island and position
   // coordinates is in app
 
-  _createMapFromStore() {
+  _createMapFromStore () {
     // this.map = mapStore.getState();
   }
 
-  createMapFromLoader() {
+  createMapFromLoader () {
     const resources = app.loader.resources;
     const map = resources.map.data;
 
     this.map = Object.assign({}, map);
+    // eslint-disable-next-line no-self-assign
     this.map.elevation = this.map.elevation;
     // .concat(this.map.elevation)
     // .concat(this.map.elevation);
   }
 
-  updateMap() {
+  updateMap () {
     // console.log("updateMap");
   }
 
-  getSection() {
+  getSection () {
     const viewport = window.viewport;
 
     const { x, y, width, height } = viewport.hitArea;
@@ -46,9 +50,11 @@ export default class WorldMap extends PIXI.Container {
     const { elevation, moisture } = this.map;
 
     let rows = Math.floor(height / 54);
+
     rows = rows > elevation.length ? elevation.length : rows;
     let cols = Math.floor(width / 65);
-    if (!elevation[0]) return [];
+
+    if (!elevation[0]) {return [];}
     cols = cols > elevation[0].length ? elevation[0].length : cols;
 
     // нахожу верхнюю левую клетку во вьюпорте
@@ -62,16 +68,16 @@ export default class WorldMap extends PIXI.Container {
       y: vpY > 0 ? vpY : 0,
     };
 
-    const section = Array.from(Array(start.y + rows), () =>
-      new Array(start.x + cols).fill(-1)
+    const section = [...new Array(start.y + rows)].map(() =>
+      new Array(start.x + cols).fill(-1),
     );
 
     for (let row = start.y; row < start.y + rows; row++) {
-      if (!elevation[row]) continue;
+      if (!elevation[row]) {continue;}
       section[row].splice(
         start.x,
         cols,
-        ...elevation[row].slice(start.x, start.x + cols)
+        ...elevation[row].slice(start.x, start.x + cols),
       );
     }
 
@@ -79,7 +85,7 @@ export default class WorldMap extends PIXI.Container {
     return section;
   }
 
-  drawCity(x = 100, y = 100) {
+  drawCity (x = 100, y = 100) {
     this.addChild(new City(5, x, y));
   }
 }

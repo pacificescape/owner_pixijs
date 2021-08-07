@@ -1,7 +1,8 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
+
 
 export default class Road extends PIXI.Container {
-  constructor(visualModel, y) {
+  constructor (visualModel, y) {
     super();
 
     this.sprite = new PIXI.Sprite(visualModel.texture);

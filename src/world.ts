@@ -10,7 +10,7 @@ import { Layer } from '@pixi/layers';
 import { AnimateOptions } from 'pixi-viewport';
 
 import Status from './helpers/status.js';
-import WorldMap from './entities/world/worldMap.js';
+import WorldMap from './entities/world/world-map.js';
 import { getMapFX } from './store';
 
 

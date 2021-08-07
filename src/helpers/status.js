@@ -1,19 +1,22 @@
-import * as PIXI from "pixi.js";
-import { connectionStore } from "../store/connectionStore";
+import * as PIXI from 'pixi.js';
+
+import { connectionStore } from '../store/connection-store';
+
 
 export default class Status extends PIXI.Sprite {
-  constructor() {
+  constructor () {
     const app = global.app;
 
     const circleDraw = new PIXI.Graphics();
-    circleDraw.beginTextureFill(0x000000);
+
+    circleDraw.beginTextureFill(0x00_00_00);
     circleDraw.drawCircle(10, 10, 10);
     circleDraw.endFill();
 
     const circle = app.renderer.generateTexture(
       circleDraw,
       PIXI.SCALE_MODES.LINEAR,
-      1
+      1,
     );
 
     super(circle);
@@ -27,7 +30,7 @@ export default class Status extends PIXI.Sprite {
     });
   }
 
-  setStatus(status) {
-    this.tint = status ? 0x00aa00 : 0xaa0000;
+  setStatus (status) {
+    this.tint = status ? 0x00_AA_00 : 0xAA_00_00;
   }
 }

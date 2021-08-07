@@ -1,7 +1,8 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
+
 
 export default class Field extends PIXI.Sprite {
-  constructor(visualModels, pos, sector) {
+  constructor (visualModels, pos, sector) {
     const textures = {
       hover: visualModels.hover.texture,
       main: visualModels.main.texture,
@@ -36,7 +37,7 @@ export default class Field extends PIXI.Sprite {
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
     this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.parseClick.bind(
-      this
+      this,
     );
     this.touchstart = this.mousedown = (evt) => {
       // console.log("touchstart");
@@ -47,44 +48,45 @@ export default class Field extends PIXI.Sprite {
     };
   }
 
-  parseClick(evt) {
-    if (!this.touch) return;
+  parseClick (evt) {
+    if (!this.touch) {return;}
     if (
       this.touch.x === evt.data.global.x &&
       this.touch.y === evt.data.global.y
     ) {
-      console.log("click parsed");
+      console.log('click parsed');
 
-      app.stage.emit(
-        "window",
+      window.app.stage.emit(
+        'window',
         evt.data.global,
         {
           pos: this.pos,
           sector: this.sector,
         },
-        evt.data.global
+        evt.data.global,
       );
       return;
     }
-    console.log("move parsed");
+    console.log('move parsed');
     this.mouseout();
   }
 
-  toggleTexture() {
+  toggleTexture () {
     this.generalTexture = window.app.visual.grounds[12];
     this.mouseout();
   }
 
-  mouseover(evt) {
+  mouseover (evt) {
     this.texture = this.textures.hover;
   }
 
-  mouseout() {
+  mouseout () {
     this.texture = this.textures.main;
   }
 
-  makeCoordinateLabel(x, y) {
+  makeCoordinateLabel (x, y) {
     const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
+
     label.y += 20;
     label.x += 10;
     this.addChild(label);

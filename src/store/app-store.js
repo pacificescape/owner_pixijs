@@ -1,4 +1,6 @@
-import { createStore, createEvent, createEffect } from "effector";
+import { createStore, createEvent, createEffect } from 'effector';
+
+
 const app = window.app;
 
 export const toggleWindowEvt = createEvent();
@@ -11,11 +13,11 @@ export const appStore = createStore({
   return { ...state, ...data };
 });
 
-app.stage.on("window", (windowPos, { pos, sector }, debug) => {
-  console.log("onWindow");
-  console.log("evt", windowPos.x, windowPos.y);
-  console.log("pos", pos);
-  console.log("sector", sector);
+app.stage.on('window', (windowPos, { pos, sector }, debug) => {
+  console.log('onWindow');
+  console.log('evt', windowPos.x, windowPos.y);
+  console.log('pos', pos);
+  console.log('sector', sector);
 
   toggleWindowEvt({
     debug,

@@ -1,31 +1,32 @@
-import * as webpack from "webpack";
-import * as path from "path";
+import path from 'path';
 
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import * as webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-module.exports = (env: { mode: "development" | "production" }) => {
+
+module.exports = (env: { mode: 'development' | 'production' }) => {
   /** @type {import('webpack').Configuration} */
   const devConfig = {
     mode: env.mode,
 
-    devtool: "cheap-module-eval-source-map",
+    devtool: 'cheap-module-eval-source-map',
 
     devServer: {
-      host: "0.0.0.0",
-      openPage: "http://localhost:8080/",
-      clientLogLevel: "silent",
+      host: '0.0.0.0',
+      openPage: 'http://localhost:8080/',
+      clientLogLevel: 'silent',
       proxy: {
-        "/api/ws": {
-          target: "ws://localhost:8081/",
+        '/api/ws': {
+          target: 'ws://localhost:8081/',
           ws: true,
           changeOrigin: true,
           // secure: true,
         },
-        "/favicon.ico": {
-          target: "http://localhost:404",
+        '/favicon.ico': {
+          target: 'http://localhost:404',
         },
-        "*": {
-          target: "http://localhost:8081/",
+        '*': {
+          target: 'http://localhost:8081/',
           changeOrigin: true,
         },
       },
@@ -33,42 +34,42 @@ module.exports = (env: { mode: "development" | "production" }) => {
     module: {
       rules: [
         {
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          loader: "eslint-loader",
+          loader: 'eslint-loader',
         },
         {
           test: /\.(js|jsx|ts|tsx)$/,
           use: [
             {
-              loader: "babel-loader",
+              loader: 'babel-loader',
             },
           ],
           exclude: /node_modules/,
         },
         {
           test: /\.tsx?$/,
-          loader: "ts-loader",
+          loader: 'ts-loader',
           exclude: /node_modules/,
         },
       ],
     },
 
     output: {
-      path: path.resolve(__dirname, "dist"),
-      filename: "game.js",
-      chunkFilename: "game-library.js",
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'game.js',
+      chunkFilename: 'game-library.js',
     },
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "[name].css",
+        filename: '[name].css',
       }),
 
       new webpack.DefinePlugin({
         PRODUCTION: JSON.stringify(false),
-        VERSION: JSON.stringify("3.0.0"), // TODO Update from package.json
+        VERSION: JSON.stringify('3.0.0'), // TODO Update from package.json
       }),
     ],
   };

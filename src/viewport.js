@@ -1,4 +1,6 @@
-import { Viewport } from "pixi-viewport";
+import { Viewport } from 'pixi-viewport';
+
+
 const app = global.app;
 // create viewport
 const viewport = new Viewport({
@@ -25,7 +27,7 @@ global.viewport = viewport
   .clampZoom({
     minWidth: 350,
     minHeight: 350,
-    maxWidth: 50000,
-    maxHeigth: 50000,
+    maxWidth: 50_000,
+    maxHeigth: 50_000,
   })
   .decelerate();

@@ -1,31 +1,37 @@
-import { PromiseEx } from "../helpers";
-import { createEvent } from "effector";
-import { connectionStore } from "../store/connectionStore";
+import { createEvent } from 'effector';
+
+import { PromiseEx } from '../helpers';
+import { connectionStore } from '../store/connection-store';
+
 
 const onConnect = createEvent();
+const noop = () => null;
+const Result = {
+  error: (err) => { throw new Error(err); },
+};
 
 class WebSocketRPCClient {
-  constructor(webSocket) {
+  constructor (webSocket) {
     this.webSocket = webSocket;
     this.nextRpcID = 1;
     this.map = {};
 
-    const noop = () => null;
     this.subscribeMap = {};
     this.wsEvents = Object.entries({
       message: async (evt) => {
         // console.log(evt);
         const parsedData = JSON.parse(evt.data);
         const { rpcID, action, data } = parsedData;
-        if (!rpcID) return;
+
+        if (!rpcID) {return;}
         if (this.map[rpcID]) {
           return this.map[rpcID].resolve(parsedData);
         }
-        if (parsedData.action) {
-          if (!rpcID) throw Result.error(ERROR_INVALID_RPC_RPCID);
+        if (action) {
+          if (!rpcID) {throw Result.error('ERROR_INVALID_RPC_RPCID');}
 
-          if (typeof this[action] !== "function") {
-            throw Result.error(ERROR_INVALID_RPC_METHOD);
+          if (typeof this[action] !== 'function') {
+            throw Result.error('ERROR_INVALID_RPC_METHOD');
           }
 
           return await this[action](data);
@@ -34,37 +40,39 @@ class WebSocketRPCClient {
     });
   }
 
-  attach(webSocket) {
+  attach (webSocket) {
     this.detach();
 
     this.webSocket = webSocket;
-    this.webSocket.binaryType = "arraybuffer";
+    this.webSocket.binaryType = 'arraybuffer';
     this.wsEvents.map((v) => this.webSocket.addEventListener(...v));
   }
-  detach() {
+
+  detach () {
     if (this.webSocket) {
       this.wsEvents.map((v) => this.webSocket.removeEventListener(...v));
       this.webSocket = null;
     }
 
     Object.values(this.map).map((p) =>
-      p.reject({ errorCode: "ERROR_NETWORK" })
+      p.reject({ errorCode: 'ERROR_NETWORK' }),
     );
     this.map = {};
   }
 
-  async call(action, data) {
-    if (!this.webSocket) return;
+  async call (action, data) {
+    if (!this.webSocket) {return;}
     const rpcID = this.nextRpcID++;
+
     this.webSocket.send(JSON.stringify({ rpcID, action, data }));
     return (this.map[rpcID] = new PromiseEx());
   }
 
-  sendBinary(data) {
+  sendBinary (data) {
     this.webSocket.send(data);
   }
 
-  actionAlert(data) {
+  actionAlert (data) {
     alert(data);
   }
 
@@ -73,43 +81,46 @@ class WebSocketRPCClient {
   //     callback
   //   );
 
-  parseBinary() {
+  parseBinary () {
     //
   }
 }
 
 export const rpc = new WebSocketRPCClient();
-globalThis.rpc = rpc;
+window.rpc = rpc;
 
-const wsUrl = `ws://localhost:8080/api/ws`;
+const wsUrl = 'ws://localhost:8080/api/ws';
 // .replace(/^http:\/\//, "ws://")
 // .replace(/^https:\/\//, "wss://") + "/api/ws";
 
-export async function wsReconnect() {
+export async function wsReconnect () {
   return new Promise((resolve, reject) => {
     const store = connectionStore.getState();
-    if (!store.login) return reject();
+
+    if (!store.login) {return reject();}
 
     const webSocket = new WebSocket(wsUrl + `?token = ${store.token}`);
-    webSocket.onopen = () => {
+
+    webSocket.addEventListener('open', () => {
       rpc.attach(webSocket);
       resolve(rpc);
       const data = onConnect.map((msg) => {
         return msg; // ????
       });
+
       data.watch((data) => {
         console.log(data);
       });
-    };
+    });
     webSocket.onclose = () => {
       setTimeout(wsReconnect, 2e3);
     };
-    webSocket.onmessage = (msg) => {
+    webSocket.addEventListener('onmessage', (msg) => {
       // console.log("ws msg", msg);
-    };
-    webSocket.onerror = (e) => {
+    });
+    webSocket.addEventListener('error', (e) => {
       reject(e);
       console.log(e);
-    };
+    });
   });
 }

@@ -1,1 +1,1 @@
-export { PromiseEx } from "./promiseEx";
+export { PromiseEx } from './promise-ex';

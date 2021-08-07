@@ -62,9 +62,11 @@ module.exports = {
     'unicorn/prevent-abbreviations': 0,
     'unicorn/prefer-ternary': [2, 'only-single-line'],
     'eslint-comments/no-unused-disable': 2,
-    'eslint-comments/no-restricted-disable': [2, '*'],
+    'eslint-comments/no-restricted-disable':  [2, 'always'],
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     'unicorn/prefer-prototype-methods': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    'eslint-comments/disable-enable-pair': 0,
   },
 };

@@ -1,13 +1,16 @@
-import * as PIXI from "pixi.js";
-import field2d from "../field2d";
+import * as PIXI from 'pixi.js';
+
+import field2d from '../field2d';
+
+
 export default class Ground extends field2d {
-  constructor(value) {
+  constructor (value) {
     super();
     const viewport = window.viewport;
 
     const { width } = viewport.hitArea;
 
-    this.firstTexture = app.visual.grounds[value === 0 ? 6 : 10];
+    this.firstTexture = window.app.visual.grounds[value === 0 ? 6 : 10];
     // width > 2000
     //   ? window.app.visual.grounds[value === 0 ? 29 : 16]
     //   : window.app.visual["grounds@0.5x"][value === 0 ? 29 : 16];
@@ -27,7 +30,7 @@ export default class Ground extends field2d {
     // this.sprite.on("tap", this.toggleTexture.bind(this));
     // this.sprite.on("touchstart", this.toggleTexture.bind(this));
     this.sprite.mouseup = this.sprite.touchend = this.sprite.touchendoutside = this.sprite.mouseupoutside = this.toggleTexture.bind(
-      this
+      this,
     );
     this.addChild(this.sprite);
   }
