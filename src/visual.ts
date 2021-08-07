@@ -1,19 +1,20 @@
-const app = global.app;
+export class VisualModels {
+  sea: any;
 
-class VisualModels {
   constructor () {
-    window.app.stage.on('loaded', () => {
+    window.app.stage?.on('loaded', () => {
       this.createModels();
     });
   }
 
   createModels () {
-    const resources = app.loader.resources;
-    const buildings = resources.buildings.textures;
-    const all = resources.all.textures;
-    const grounds = resources.grounds.textures;
-    const hexagons2d = resources.hexagons2d.textures;
-    const hugeIsland = resources.hugeIsland.texture;
+    const resources = window.app.loader?.resources || {};
+    
+    const all = resources?.all.textures || {};
+    const grounds = resources?.grounds.textures || {};
+    const buildings = resources?.buildings.textures || {};
+    const hugeIsland = resources?.hugeIsland.texture || {};
+    const hexagons2d = resources?.hexagons2d?.textures || {};
 
     Object.assign(this, {
       // sea: resources.sea.texture,

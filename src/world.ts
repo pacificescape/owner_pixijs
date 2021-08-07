@@ -53,7 +53,7 @@ export default class World extends Container {
       darkSprite.height = window.app.screen.height;
       darkSprite.blendMode = BLEND_MODES.MULTIPLY;
 
-      const sea: any = new TilingSprite(window.app.visual.sea.texture, 33, 33);
+      const sea: any = new TilingSprite(window.app.visual?.sea.texture, 33, 33);
 
       sea.wrapMode = WRAP_MODES.REPEAT;
       sea.width = window.innerWidth;

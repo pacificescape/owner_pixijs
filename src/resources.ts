@@ -2,9 +2,8 @@ import * as PIXI from 'pixi.js';
 
 
 const loader = new PIXI.Loader();
-const app = global.app;
 
-global.app.loader = loader;
+window.app.loader = loader;
 
 const loadOptions = { crossOrigin: true };
 
@@ -22,5 +21,5 @@ loader.add('sea', 'sea/sea_1.png', loadOptions);
 loader.add('buildings', 'buildings/buildings.json', loadOptions);
 
 loader.load(() => {
-  app.stage.emit('loaded');
+  window.app.stage?.emit('loaded');
 });
