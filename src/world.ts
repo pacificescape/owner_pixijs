@@ -61,7 +61,7 @@ export default class World extends Container {
       sea.tileScale = { x: 0.08, y: 0.08 };
 
       window.viewport.addChild(this);
-      window.viewport.addChild(textLayer as DisplayObject);
+      window.viewport.addChild(textLayer as any);
       window.viewport.addChild(this.worldMap);
       window.app.stage?.addChild(sea);
       window.app.stage?.addChild(window.viewport);
