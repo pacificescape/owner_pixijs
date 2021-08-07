@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import { Layer } from "@pixi/layers";
 import WorldMap from "./entities/world/worldMap.js";
 import Status from "./helpers/status.js";
 import { getMapFX } from "./store";
@@ -6,11 +7,13 @@ import { getMapFX } from "./store";
 const app = global.app;
 const viewport = global.viewport;
 export default class World extends PIXI.Container {
+  worldMap;
+
   constructor() {
     super();
     this.worldMap = new WorldMap();
 
-    const textLayer = new PIXI.display.Layer(window.textGroup);
+    const textLayer = new Layer(window.textGroup);
     app.textLayer = textLayer;
 
     const darkSprite = new PIXI.Sprite(PIXI.Texture.WHITE);

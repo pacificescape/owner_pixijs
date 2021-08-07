@@ -5,3 +5,4 @@ dist/*
 .env
 debug.log
 html
+boilerplate

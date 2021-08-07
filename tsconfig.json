@@ -1,22 +1,18 @@
 {
-    "compilerOptions": {
-        "jsx": "react",
-        "target": "ES2019",
-        "module": "CommonJS" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
-        "strict": true,
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "moduleResolution": "node",
-        // Loaders needs this to use the more strict mini-signal types
-        "paths": {
-            "mini-signals": [
-                "node_modules/resource-loader/typings/mini-signals.d.ts"
-            ]
-        },
-        "baseUrl": "./",
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "ES2019",
+    "module": "CommonJS" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    // Loaders needs this to use the more strict mini-signal types
+    "paths": {
+      "mini-signals": ["node_modules/resource-loader/typings/mini-signals.d.ts"]
     },
-    "include": [
-        "./src/index.ts"
-    ]
+    "baseUrl": "./"
+  },
+  "include": ["./src/index.ts", "src/types/window.d.ts"]
 }

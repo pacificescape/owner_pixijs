@@ -1,26 +1,35 @@
 import * as PIXI from "pixi.js";
+import { Stage, Group } from "@pixi/layers";
+
 window.PIXI = PIXI;
-require("pixi-layers");
-window.textGroup = new PIXI.display.Group();
+window.textGroup = new Group();
 
 const stats = window.stats;
-const rpc = window.rpc;
-class Application {
+// const rpc = window.rpc;
+export class Application {
+  renderer: PIXI.Renderer;
+
+  ticker: PIXI.Ticker;
+
+  stage: Stage;
+
+  world: any;
+
   constructor() {
     this.renderer = new PIXI.Renderer({
       width: window.innerWidth,
       height: window.innerHeight,
       backgroundColor: 0x1099bb,
       resolution: window.devicePixelRatio || 1,
-      resizeTo: window,
+      // resizeTo: window,
       autoResize: true, // https://www.html5gamedevs.com/topic/42553-resize-window/
       autoDensity: true, // TODO: resize do not working after change orientation ios/?android
-    });
+    } as any);
 
     document.body.appendChild(this.renderer.view);
 
     this.ticker = new PIXI.Ticker();
-    this.stage = new PIXI.display.Stage();
+    this.stage = new Stage();
 
     this.ticker.add(this.render.bind(this), PIXI.UPDATE_PRIORITY.LOW);
     this.ticker.start();
@@ -38,9 +47,9 @@ class Application {
   }
 
   onresize() {
-    app.renderer.resize(window.innerWidth, window.innerHeight);
-    viewport.resize(window.innerWidth, window.innerHeight);
-    app.world.resize();
+    window.app.renderer.resize(window.innerWidth, window.innerHeight);
+    window.viewport.resize(window.innerWidth, window.innerHeight);
+    window.app.world.resize();
   }
 }
 
