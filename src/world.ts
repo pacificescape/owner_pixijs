@@ -1,25 +1,28 @@
 import {
-  Container,
-  BLEND_MODES,
   Sprite,
-  TilingSprite,
-  WRAP_MODES,
   Texture,
-} from "pixi.js";
-import { Layer } from "@pixi/layers";
-import Status from "./helpers/status.js";
-import WorldMap from "./entities/world/worldMap.js";
-import { getMapFX } from "./store";
-import { AnimateOptions } from "pixi-viewport";
+  Container,
+  WRAP_MODES,
+  BLEND_MODES,
+  TilingSprite,
+} from 'pixi.js';
+import { Layer } from '@pixi/layers';
+import { AnimateOptions } from 'pixi-viewport';
+
+import Status from './helpers/status.js';
+import WorldMap from './entities/world/worldMap.js';
+import { getMapFX } from './store';
+
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const app = window.app;
+
 export default class World extends Container {
   worldMap: any;
 
   textLayer: any;
 
-  constructor() {
+  constructor () {
     super();
 
     // this.worldMap = new WorldMap();
@@ -33,21 +36,24 @@ export default class World extends Container {
     // darkSprite.height = app.screen.height;
     // darkSprite.blendMode = BLEND_MODES.MULTIPLY;
 
-    window.app?.stage?.on("loaded", async () => {
+    window.app?.stage?.on('loaded', async () => {
       await sleep(300);
 
       this.worldMap = new WorldMap();
 
       const textLayer = new Layer(window.textGroup as any);
+
       window.app.textLayer = textLayer;
 
       const darkSprite = new Sprite(Texture.WHITE);
-      darkSprite.tint = 0x9090c0;
+
+      darkSprite.tint = 0x90_90_C0;
       darkSprite.width = window.app.screen.width;
       darkSprite.height = window.app.screen.height;
       darkSprite.blendMode = BLEND_MODES.MULTIPLY;
 
       const sea: any = new TilingSprite(window.app.visual.sea.texture, 33, 33);
+
       sea.wrapMode = WRAP_MODES.REPEAT;
       sea.width = window.innerWidth;
       sea.height = window.innerHeight;
@@ -75,7 +81,7 @@ export default class World extends Container {
 
       // window.app.stage.addChild(darkSprite);
 
-      window.app.ticker.add((delta) => {
+      window.app.ticker.add((_delta) => {
         if (window.viewport.moving) {
           // position changed more than x y
           getMapFX(window.viewport.hitArea); //.then(check);
@@ -86,14 +92,14 @@ export default class World extends Container {
     });
   }
 
-  updateMap(evt?: any): void {
+  updateMap (evt?: any): void {
     this.worldMap.destroy();
     this.worldMap = new WorldMap();
     this.worldMap.drawCity();
     window.viewport.addChild(this.worldMap);
   }
 
-  resize() {
+  resize () {
     this.destroy();
     window.app.world = new World();
   }

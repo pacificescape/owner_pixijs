@@ -1,4 +1,6 @@
-import { createStore, createEvent, createEffect } from "effector";
+import { createStore, createEvent, createEffect } from 'effector';
+
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const addMap = createEvent();
@@ -17,7 +19,8 @@ export const mapStore = createStore({ elevation: new Uint8Array(), size: 0 })
   .reset(clearMap);
 
 export const getMapFX = createEffect(async (hitArea) => {
-  const res = await rpc.call("actionGetMapPortion", hitArea);
+  const res = await window.rpc.call('actionGetMapPortion', hitArea);
+
   return res;
 });
 
