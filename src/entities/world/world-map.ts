@@ -120,14 +120,14 @@ export default class WorldMap extends PIXI.Container {
     // debugger;
     for (const { biome, vertices } of this.island.polygons) {
       for (const v of vertices) {
-        let main = window.app.visual?.grounds[22];
+        let main = window.app.visual?.grounds[6];
         
         switch (biome) {
         case 'TEMPERATE_DESERT':
           main = window.app.visual?.grounds[4];
           break;
         case 'GRASSLAND':
-          main = window.app.visual?.grounds[6];
+          main = window.app.visual?.grounds[22];
           break;
         case 'LAKE':
           main = window.app.visual?.grounds[26];
