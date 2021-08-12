@@ -89,7 +89,7 @@ class WebSocketRPCClient {
 export const rpc = new WebSocketRPCClient();
 window.rpc = rpc;
 
-const wsUrl = 'ws://localhost:8080/api/ws';
+const wsUrl = 'ws://localhost:5007/api/ws';
 // .replace(/^http:\/\//, "ws://")
 // .replace(/^https:\/\//, "wss://") + "/api/ws";
 

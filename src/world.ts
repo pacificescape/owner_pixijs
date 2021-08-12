@@ -11,12 +11,11 @@ import { Layer } from '@pixi/layers';
 import { AnimateOptions } from 'pixi-viewport';
 
 import Status from './helpers/status.js';
-import WorldMap from './entities/world/world-map.js';
+import WorldMap from './entities/world/world-map';
 import { getMapFX } from './store';
 
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const app = window.app;
 
 export default class World extends Container {
   worldMap: any;
@@ -37,8 +36,9 @@ export default class World extends Container {
     // darkSprite.height = app.screen.height;
     // darkSprite.blendMode = BLEND_MODES.MULTIPLY;
 
+
     window.app?.stage?.on('loaded', async () => {
-      await sleep(300);
+      await sleep(300); // TODO emit another event
 
       this.worldMap = new WorldMap();
 
@@ -96,7 +96,7 @@ export default class World extends Container {
   updateMap (evt?: any): void {
     this.worldMap.destroy();
     this.worldMap = new WorldMap();
-    this.worldMap.drawCity();
+    this.worldMap.drawIsland();
     window.viewport.addChild(this.worldMap);
   }
 

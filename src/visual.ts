@@ -1,6 +1,8 @@
 export class VisualModels {
   sea: any;
 
+  grounds: any;
+
   constructor () {
     window.app.stage?.on('loaded', () => {
       this.createModels();

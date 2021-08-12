@@ -1,22 +1,33 @@
 import * as PIXI from 'pixi.js';
 
+import { Island } from '../island/index';
+import Field from '../world/fields/field';
+
 import City from './fields/city/city.js';
 
 
-const app = window.app;
-const viewport = global.viewport;
+// const viewport = global.viewport;
 
 const SECTION_SIZE = 40;
 
 // import { mapStore } from "../../control/store";
 export default class WorldMap extends PIXI.Container {
+  map: {
+    elevation: [][],
+    start: { x: number, y: number },
+    moisture?: any,
+  };
+
+  island: Island;
+
   constructor () {
     super();
     // this.map = mapStore.getState();
     this.map = { elevation: [[]], start: { x: 0, y: 0 } };
-    window.app.stage.on('loaded', () => {
+    window.app.stage?.on('loaded', () => {
       this.createMapFromLoader();
     });
+    this.island = new Island();
   }
 
   // Show default map if is not logged in
@@ -27,9 +38,23 @@ export default class WorldMap extends PIXI.Container {
     // this.map = mapStore.getState();
   }
 
+  resourcesMap = {
+    elevation: [],
+    moisture: [],
+    direction: 1,
+    height: 25,
+    width: 25,
+    length: 625,
+    start: {
+      x: 0,
+      y: 0,
+    },
+  };
+
   createMapFromLoader () {
-    const resources = app.loader.resources;
-    const map = resources.map.data;
+    const resources = window.app.loader?.resources;
+
+    const map = resources?.map.data;
 
     this.map = Object.assign({}, map);
     // eslint-disable-next-line no-self-assign
@@ -45,8 +70,8 @@ export default class WorldMap extends PIXI.Container {
   getSection () {
     const viewport = window.viewport;
 
-    const { x, y, width, height } = viewport.hitArea;
-    const center = viewport.center;
+    const { x, y, width, height } = viewport.hitArea as any;
+    // const center = viewport.center;
     const { elevation, moisture } = this.map;
 
     let rows = Math.floor(height / 54);
@@ -87,5 +112,52 @@ export default class WorldMap extends PIXI.Container {
 
   drawCity (x = 100, y = 100) {
     this.addChild(new City(5, x, y));
+  }
+
+  drawIsland () {
+    const childs: any[] = [];
+
+    // debugger;
+    for (const { biome, vertices } of this.island.polygons) {
+      for (const v of vertices) {
+        let main = window.app.visual?.grounds[22];
+        
+        switch (biome) {
+        case 'TEMPERATE_DESERT':
+          main = window.app.visual?.grounds[4];
+          break;
+        case 'GRASSLAND':
+          main = window.app.visual?.grounds[6];
+          break;
+        case 'LAKE':
+          main = window.app.visual?.grounds[26];
+          break;
+        case 'OCEAN':
+          main = window.app.visual?.grounds[26];
+          break;
+        case 'BEACH':
+          main = window.app.visual?.grounds[17];
+          break;
+        }
+
+        const fieldVisualModel = {
+          main,
+          hover: window.app.visual?.grounds[0],
+        };
+
+        const sprite = new Field(fieldVisualModel, { x: v[0], y: v[1] });
+        
+        const index = 5; 
+
+        sprite.x = v[0] * index;
+        sprite.y = v[1] * index;
+
+        childs.push(sprite);
+      }
+    }
+
+    childs.sort(({ y: y1 }, { y: y2 }) => y1 - y2);
+
+    for (const sprite of childs) {this.addChild(sprite);}
   }
 }
