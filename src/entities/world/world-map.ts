@@ -122,6 +122,8 @@ export default class WorldMap extends PIXI.Container {
       for (const v of vertices) {
         let main = window.app.visual?.grounds[6];
         
+        if (biome === 'OCEAN') {continue;}
+
         switch (biome) {
         case 'TEMPERATE_DESERT':
           main = window.app.visual?.grounds[4];
