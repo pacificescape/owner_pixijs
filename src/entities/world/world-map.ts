@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { Polygon } from 'pixi.js';
 
 import { Island } from '../island/index';
 import Field from '../world/fields/field';
@@ -122,23 +123,31 @@ export default class WorldMap extends PIXI.Container {
       for (const v of vertices) {
         let main = window.app.visual?.grounds[6];
         
+        let color = 0x2C_3E_50;
+
         if (biome === 'OCEAN') {continue;}
 
         switch (biome) {
         case 'TEMPERATE_DESERT':
           main = window.app.visual?.grounds[4];
+
+          color = 0x26_58_4D;
           break;
         case 'GRASSLAND':
           main = window.app.visual?.grounds[22];
+          color = 0x4C_9D_74;
           break;
         case 'LAKE':
           main = window.app.visual?.grounds[26];
+          color = 0x9D_76_5B;
           break;
         case 'OCEAN':
           main = window.app.visual?.grounds[26];
+          color = 0x9D_76_5B;
           break;
         case 'BEACH':
           main = window.app.visual?.grounds[17];
+          color = 0x3C_B6_C3;
           break;
         }
 
@@ -147,14 +156,35 @@ export default class WorldMap extends PIXI.Container {
           hover: window.app.visual?.grounds[0],
         };
 
-        const sprite = new Field(fieldVisualModel, { x: v[0], y: v[1] });
+        const graphics = new PIXI.Graphics();
+
+        graphics.beginFill(color);
         
+        graphics.drawPolygon(vertices.flat());
+
+        graphics.endFill();
+
+        graphics.interactive = true;
+
+        // create hit area, needed for interactivity
+        graphics.hitArea = new Polygon(vertices.flat());
+
+        graphics.addListener('mouseover', function () {
+          graphics.alpha = 1;
+        });
+
+        graphics.addListener('mouseout', function () {
+          graphics.alpha = 0.5;
+        });
+
+        // const sprite = new Polygon(vertices.flat());
+
         const index = 5; 
 
-        sprite.x = v[0] * index;
-        sprite.y = v[1] * index;
+        // sprite.x = v[0] * index;
+        // sprite.y = v[1] * index;
 
-        childs.push(sprite);
+        childs.push(graphics);
       }
     }
 

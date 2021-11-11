@@ -1,7 +1,5 @@
 import * as PIXI from 'pixi.js';
 
-import { connectionStore } from '../store/connection-store';
-
 
 export default class Status extends PIXI.Sprite {
   constructor () {
@@ -21,13 +19,10 @@ export default class Status extends PIXI.Sprite {
 
     super(circle);
 
-    this.status = connectionStore.getState().ws;
+    this.status = true;
     this.setStatus();
     this.x = window.innerWidth - 40;
     this.y = 20;
-    connectionStore.watch(({ ws }) => {
-      this.setStatus(ws);
-    });
   }
 
   setStatus (status) {

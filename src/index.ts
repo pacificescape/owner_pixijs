@@ -1,6 +1,3 @@
-import './store/index';
-import './store/connection-store';
-import './control/net';
 import './utils/stats';
 import './styles.css';
 import './app';
