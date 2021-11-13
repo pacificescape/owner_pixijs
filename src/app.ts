@@ -36,7 +36,7 @@ export class Application {
     this.renderer = new PIXI.Renderer({
       width: window.innerWidth,
       height: window.innerHeight,
-      backgroundColor: 0x10_33_44,
+      backgroundColor: 0x10_99_BB,
       resolution: window.devicePixelRatio || 1,
       resizeTo: window,
       autoResize: true, // https://www.html5gamedevs.com/topic/42553-resize-window/

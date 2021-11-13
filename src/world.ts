@@ -6,7 +6,6 @@ import {
   BLEND_MODES,
   TilingSprite,
   DisplayObject,
-  Point,
 } from 'pixi.js';
 import { Layer } from '@pixi/layers';
 import { AnimateOptions } from 'pixi-viewport';
@@ -64,17 +63,14 @@ export default class World extends Container {
       window.viewport.addChild(this);
       window.viewport.addChild(textLayer as any);
       window.viewport.addChild(this.worldMap);
-      // window.app.stage?.addChild(sea);
+      window.app.stage?.addChild(sea);
       window.app.stage?.addChild(window.viewport);
-      // window.app.stage?.addChild(new Status());
-
+      window.app.stage?.addChild(new Status());
       window.viewport.animate({
-        scale: 0.7,
-        position: { x: 500, y: 500 },
+        scale: 0.3,
+        position: { x: 0, y: 0 },
         time: 0,
       } as AnimateOptions);
-
-
       this.updateMap();
       // getMapFX(window.viewport.hitArea);
       // window.viewport.on("pointerdown", this.updateMap.bind(this));
