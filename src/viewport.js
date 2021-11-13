@@ -6,19 +6,19 @@ const app = global.app;
 const viewport = new Viewport({
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
-  worldWidth: 1000,
-  worldHeight: 1000,
+  worldWidth: 100,
+  worldHeight: 100,
   ticker: app.ticker,
 
   interaction: app.renderer.plugins.interaction, // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
 });
 
 viewport.interactive = true;
-// viewport.on("pointerdown", (evt) => {
-//   console.log(evt);
-
-//   viewport.toWorld(150, 150);
-// });
+viewport.animate({
+  scale: 1.5,
+  position: { x: 150, y: 150 },
+  time: 0,
+});
 
 global.viewport = viewport
   .drag()
@@ -27,7 +27,7 @@ global.viewport = viewport
   .clampZoom({
     minWidth: 350,
     minHeight: 350,
-    maxWidth: 50_000,
-    maxHeigth: 50_000,
+    maxWidth: 5000,
+    maxHeigth: 5000,
   })
   .decelerate();

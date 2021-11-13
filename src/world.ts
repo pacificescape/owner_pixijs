@@ -5,10 +5,8 @@ import {
   WRAP_MODES,
   BLEND_MODES,
   TilingSprite,
-  DisplayObject,
 } from 'pixi.js';
 import { Layer } from '@pixi/layers';
-import { AnimateOptions } from 'pixi-viewport';
 
 import Status from './helpers/status.js';
 import WorldMap from './entities/world/world-map';
@@ -65,14 +63,14 @@ export default class World extends Container {
       window.viewport.addChild(this.worldMap);
       window.app.stage?.addChild(sea);
       window.app.stage?.addChild(window.viewport);
-      window.app.stage?.addChild(new Status());
       window.viewport.animate({
-        scale: 0.3,
-        position: { x: 0, y: 0 },
-        time: 0,
-      } as AnimateOptions);
+        scale: 1.75,
+        time: 2000,
+      });
+      // window.app.stage?.addChild(new Status());
+
       this.updateMap();
-      getMapFX(window.viewport.hitArea);
+      // getMapFX(window.viewport.hitArea);
       // window.viewport.on("pointerdown", this.updateMap.bind(this));
       // window.viewport.on("pointermove", this.updateMap.bind(this));
       // window.viewport.on("pointerup", this.updateMap.bind(this));
