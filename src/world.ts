@@ -12,7 +12,7 @@ import { AnimateOptions } from 'pixi-viewport';
 
 import Status from './helpers/status.js';
 import WorldMap from './entities/world/world-map';
-// import { getMapFX } from './store';
+import { getMapFX } from './store';
 
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -72,7 +72,7 @@ export default class World extends Container {
         time: 0,
       } as AnimateOptions);
       this.updateMap();
-      // getMapFX(window.viewport.hitArea);
+      getMapFX(window.viewport.hitArea);
       // window.viewport.on("pointerdown", this.updateMap.bind(this));
       // window.viewport.on("pointermove", this.updateMap.bind(this));
       // window.viewport.on("pointerup", this.updateMap.bind(this));
@@ -85,7 +85,7 @@ export default class World extends Container {
       window.app.ticker.add((_delta) => {
         if (window.viewport.moving) {
           // position changed more than x y
-          // getMapFX(window.viewport.hitArea); //.then(check);
+          getMapFX(window.viewport.hitArea); //.then(check);
           // sectors are too far away
           // this.updateMap()
         }

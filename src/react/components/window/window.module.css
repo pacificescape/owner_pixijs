@@ -1,0 +1,30 @@
+.Wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(20, 20, 44, 0.2);
+  /* https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser */
+  max-height: -webkit-fill-available;
+}
+
+.Window {
+  margin: auto;
+  margin-top: calc(50px / 2);
+  width: calc(100% - 50px);
+  height: calc(100% - 50px);
+  border-radius: 25px;
+  background-color: #fffab4;
+  max-height: -webkit-fill-available;
+}
+
+.FirstLine {
+  display: flex;
+}
+
+.Label {
+  width: 90%;
+  margin: auto;
+  display: block;
+}
