@@ -1,4 +1,18 @@
 export class Hex {
+  q: any;
+
+  r: any;
+
+  s: any;
+
+  static directions: any;
+
+  diagonals: any;
+
+  x: any;
+
+  y: any;
+
   constructor (q, r, s) {
     this.q = q;
     this.r = r;
@@ -49,12 +63,12 @@ export class Hex {
   }
 
   round () {
-    var qi = Math.round(this.q);
-    var ri = Math.round(this.r);
-    var si = Math.round(this.s);
-    var q_diff = Math.abs(qi - this.q);
-    var r_diff = Math.abs(ri - this.r);
-    var s_diff = Math.abs(si - this.s);
+    let qi = Math.round(this.q);
+    let ri = Math.round(this.r);
+    let si = Math.round(this.s);
+    const q_diff = Math.abs(qi - this.q);
+    const r_diff = Math.abs(ri - this.r);
+    const s_diff = Math.abs(si - this.s);
 
     if (q_diff > r_diff && q_diff > s_diff) {
       qi = -ri - si;
@@ -66,7 +80,7 @@ export class Hex {
     return new Hex(qi, ri, si);
   }
 
-  lerp (b, t) {
+  lerp (b: any, t: any) {
     return new Hex(
       this.q * (1 - t) + b.q * t,
       this.r * (1 - t) + b.r * t,
@@ -75,13 +89,13 @@ export class Hex {
   }
 
   linedraw (b) {
-    var N = this.distance(b);
-    var a_nudge = new Hex(this.q + 1e-6, this.r + 1e-6, this.s - 2e-6);
-    var b_nudge = new Hex(b.q + 1e-6, b.r + 1e-6, b.s - 2e-6);
-    var results = [];
-    var step = 1 / Math.max(N, 1);
+    const N = this.distance(b);
+    const a_nudge = new Hex(this.q + 1e-6, this.r + 1e-6, this.s - 2e-6);
+    const b_nudge = new Hex(b.q + 1e-6, b.r + 1e-6, b.s - 2e-6);
+    const results: Hex[] = [];
+    const step = 1 / Math.max(N, 1);
 
-    for (var i = 0; i <= N; i++) {
+    for (let i = 0; i <= N; i++) {
       results.push(a_nudge.lerp(b_nudge, step * i).round());
     }
     return results;
@@ -136,8 +150,8 @@ export function bounds (array, field) {
   let min = Number.POSITIVE_INFINITY,
     max = Number.NEGATIVE_INFINITY;
 
-  for (let object of array) {
-    let value = object[field];
+  for (const object of array) {
+    const value = object[field];
 
     if (value < min) {
       min = value;
@@ -151,7 +165,7 @@ export function bounds (array, field) {
 
 /* return integer sequence min <= x <= max (half-open)  */
 export function closedInterval ({ min, max }) {
-  let results = [];
+  const results: number[] = [];
 
   for (let i = min; i <= max; i++) {
     results.push(i);
@@ -165,59 +179,59 @@ export function hex_equal (a, b) {
 }
 
 /* Specifically for offset grid diagrams */
-export function makeRectangularShape (minCol, maxCol, minRow, maxRow, convert) {
-  let results = [];
+// export function makeRectangularShape (minCol, maxCol, minRow, maxRow, convert) {
+//   const results: Hex[] = [];
 
-  for (let col = minCol; col <= maxCol; col++) {
-    for (let row = minRow; row <= maxRow; row++) {
-      let hex = convert(new OffsetCoord(col, row));
+//   for (let col = minCol; col <= maxCol; col++) {
+//     for (let row = minRow; row <= maxRow; row++) {
+//       const hex = convert(new OffsetCoord(col, row));
 
-      hex.col = col;
-      hex.row = row;
-      results.push(hex);
-    }
-  }
-  return results;
-}
-
-/* Specifically for doubled grid diagrams */
-export function makeRDoubledRectangularShape (minCol, maxCol, minRow, maxRow) {
-  let results = [];
-
-  for (let row = minRow; row <= maxRow; row++) {
-    for (let col = minCol + (row & 1); col <= maxCol; col += 2) {
-      let hex = new DoubledCoord(col, row).rdoubledToCube();
-
-      hex.col = col;
-      hex.row = row;
-      results.push(hex);
-    }
-  }
-  return results;
-}
+//       hex.col = col;
+//       hex.row = row;
+//       results.push(hex);
+//     }
+//   }
+//   return results;
+// }
 
 /* Specifically for doubled grid diagrams */
-export function makeQDoubledRectangularShape (minCol, maxCol, minRow, maxRow) {
-  let results = [];
+// export function makeRDoubledRectangularShape (minCol, maxCol, minRow, maxRow) {
+//   const results = [];
 
-  for (let col = minCol; col <= maxCol; col++) {
-    for (let row = minRow + (col & 1); row <= maxRow; row += 2) {
-      let hex = new DoubledCoord(col, row).qdoubledToCube();
+//   for (let row = minRow; row <= maxRow; row++) {
+//     for (let col = minCol + (row & 1); col <= maxCol; col += 2) {
+//       const hex = new DoubledCoord(col, row).rdoubledToCube();
 
-      hex.col = col;
-      hex.row = row;
-      results.push(hex);
-    }
-  }
-  return results;
-}
+//       hex.col = col;
+//       hex.row = row;
+//       results.push(hex);
+//     }
+//   }
+//   return results;
+// }
+
+/* Specifically for doubled grid diagrams */
+// export function makeQDoubledRectangularShape (minCol, maxCol, minRow, maxRow) {
+//   const results = [];
+
+//   for (let col = minCol; col <= maxCol; col++) {
+//     for (let row = minRow + (col & 1); row <= maxRow; row += 2) {
+//       const hex = new DoubledCoord(col, row).qdoubledToCube();
+
+//       hex.col = col;
+//       hex.row = row;
+//       results.push(hex);
+//     }
+//   }
+//   return results;
+// }
 
 export function makeHexagonalShape (N) {
-  let results = [];
+  let results: Hex[] = [];
 
   for (let q = N; q >= -N; q--) {
     for (let r = N; r >= -N; r--) {
-      let hex = new Hex(q, r, -q - r).evenRow();
+      const hex = new Hex(q, r, -q - r).evenRow();
 
       if (hex.len() <= N) {
         results.push(hex);
@@ -230,7 +244,7 @@ export function makeHexagonalShape (N) {
 }
 
 export function makeDownTriangularShape (N) {
-  let results = [];
+  const results: Hex[] = [];
 
   for (let r = 0; r < N; r++) {
     for (let q = 0; q < N - r; q++) {
@@ -241,7 +255,7 @@ export function makeDownTriangularShape (N) {
 }
 
 export function makeUpTriangularShape (N) {
-  let results = [];
+  const results: Hex[] = [];
 
   for (let r = 0; r < N; r++) {
     for (let q = N - r - 1; q < N; q++) {
@@ -255,7 +269,7 @@ export function makeRhombusShape (w, h) {
   if (!h) {
     h = w;
   }
-  let results = [];
+  const results: Hex[] = [];
 
   for (let r = 0; r < h; r++) {
     for (let q = 0; q < w; q++) {
@@ -273,7 +287,7 @@ export function pointSetBounds (points) {
     right = Number.NEGATIVE_INFINITY,
     bottom = Number.NEGATIVE_INFINITY;
 
-  for (let p of points) {
+  for (const p of points) {
     if (p.x < left) {
       left = p.x;
     }
@@ -292,39 +306,39 @@ export function pointSetBounds (points) {
 
 /* Given a set of hexes, return the maximum extent
    {left, right, top, bottom} */
-export function hexSetBounds (layout, hexes) {
-  let corners = [];
+// export function hexSetBounds (layout, hexes) {
+//   const corners = [];
 
-  for (let corner = 0; corner < 6; corner++) {
-    corners.push(layout.hexCornerOffset(corner));
-  }
-  let cornerBounds = pointSetBounds(corners);
+//   for (let corner = 0; corner < 6; corner++) {
+//     corners.push(layout.hexCornerOffset(corner));
+//   }
+//   const cornerBounds = pointSetBounds(corners);
 
-  let centerBounds = pointSetBounds(hexes.map((h) => layout.hexToPixel(h)));
+//   const centerBounds = pointSetBounds(hexes.map((h) => layout.hexToPixel(h)));
 
-  return {
-    left: cornerBounds.left + centerBounds.left,
-    top: cornerBounds.top + centerBounds.top,
-    right: cornerBounds.right + centerBounds.right,
-    bottom: cornerBounds.bottom + centerBounds.bottom,
-  };
-}
+//   return {
+//     left: cornerBounds.left + centerBounds.left,
+//     top: cornerBounds.top + centerBounds.top,
+//     right: cornerBounds.right + centerBounds.right,
+//     bottom: cornerBounds.bottom + centerBounds.bottom,
+//   };
+// }
 
 export function breadthFirstSearch (start, blocked) {
   /* see https://www.redblobgames.com/pathfinding/a-star/introduction.html */
-  let cost_so_far = {};
+  const cost_so_far = {};
 
   cost_so_far[start] = 0;
-  let came_from = {};
+  const came_from = {};
 
   came_from[start] = null;
-  let fringes = [[start]];
+  const fringes = [[start]];
 
   for (let k = 0; fringes[k].length > 0; k++) {
     fringes[k + 1] = [];
-    for (let hex of fringes[k]) {
+    for (const hex of fringes[k]) {
       for (let dir = 0; dir < 6; dir++) {
-        let neighbor = hex.neighbor(dir);
+        const neighbor = hex.neighbor(dir);
 
         if (cost_so_far[neighbor] === undefined && !blocked(neighbor)) {
           cost_so_far[neighbor] = k + 1;
@@ -351,8 +365,8 @@ export function hexLineFractional (A, B) {
    * The hack will force them to be rounded consistently. */
   const offset = new Hex(1e-6, 2e-6, -3e-6);
 
-  let N = A.subtract(B).len();
-  let results = [];
+  const N = A.subtract(B).len();
+  const results: Hex[] = [];
 
   for (let i = 0; i <= N; i++) {
     results.push(A.lerp(B, i / Math.max(1, N)).add(offset));
@@ -361,11 +375,11 @@ export function hexLineFractional (A, B) {
 }
 
 export function hexRing (radius) {
-  var results = [];
-  var H = Hex.direction(4).scale(radius);
+  const results: Hex[] = [];
+  let H = Hex.direction(4).scale(radius);
 
-  for (var side = 0; side < 6; side++) {
-    for (var step = 0; step < radius; step++) {
+  for (let side = 0; side < 6; side++) {
+    for (let step = 0; step < radius; step++) {
       results.push(H);
       H = H.neighbor(side);
     }

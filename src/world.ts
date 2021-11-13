@@ -96,7 +96,7 @@ export default class World extends Container {
   updateMap (evt?: any): void {
     this.worldMap.destroy();
     this.worldMap = new WorldMap();
-    this.worldMap.drawIsland();
+    this.worldMap.drawCity();
     window.viewport.addChild(this.worldMap);
   }
 

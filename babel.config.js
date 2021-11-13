@@ -3,10 +3,10 @@ module.exports = function (api) {
   const presets = [
     // ["@babel/preset-typescript"],
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
         corejs: { version: 3 },
-        useBuiltIns: "usage",
+        useBuiltIns: 'usage',
 
         // Commented out in favour of package.json config -
         // "browserslist": "> 0.25%, not dead",
@@ -19,15 +19,16 @@ module.exports = function (api) {
         // },
       },
     ],
-    "@babel/preset-react",
+    '@babel/preset-react',
   ];
   const plugins = [
-    ["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: true }],
-    ["@babel/plugin-proposal-class-properties"],
-    ["@babel/transform-runtime"],
-    ["@babel/plugin-transform-modules-commonjs"],
-    ["@babel/plugin-syntax-dynamic-import"],
+    ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+    ['@babel/plugin-proposal-class-properties'],
+    ['@babel/transform-runtime'],
+    ['@babel/plugin-transform-modules-commonjs'],
+    ['@babel/plugin-syntax-dynamic-import'],
   ];
+
   return {
     presets,
     plugins,

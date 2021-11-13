@@ -19,6 +19,9 @@ module.exports = (env: { mode: 'development' | 'production' }) => {
 
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      }, 
     },
 
     module: {

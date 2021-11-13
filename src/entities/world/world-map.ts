@@ -111,7 +111,7 @@ export default class WorldMap extends PIXI.Container {
   }
 
   drawCity (x = 100, y = 100) {
-    this.addChild(new City(5, x, y));
+    this.addChild(new City(0, x, y));
   }
 
   drawIsland () {

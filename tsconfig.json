@@ -12,9 +12,17 @@
     // Loaders needs this to use the more strict mini-signal types
     "baseUrl": "./",
     "paths": {
+      "@/*": [
+        "src/*"
+      ],
       "$types/*": ["src/types/*"],
       "mini-signals": ["node_modules/resource-loader/typings/mini-signals.d.ts"]
     }
   },
-  "include": ["./src/index.ts", "src/types/window.d.ts", "src/types/app.d.ts"]
+  "include": [
+    "./src/index.ts",
+    "src/types/window.d.ts",
+    "src/types/app.d.ts",
+    "./src/**/*",
+  ]
 }

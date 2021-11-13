@@ -1,29 +1,42 @@
 import * as PIXI from 'pixi.js';
+import { Hex, makeHexagonalShape } from '@/utils/hex-generator';
 
 import Field from '../field';
-import { Hex, makeHexagonalShape } from '../../../../utils/hex-generator';
 
 
-const app = global.app;
+const app = window.app;
 
 const WIDTH = 100;
 const HEIGHT = 80;
+const PADDING = 600;
 
 const SECTOR_RADIUS = 2;
 const s = (d) => d * SECTOR_RADIUS * 2;
 
 export default class Sector extends PIXI.Container {
+  secX: any;
+
+  secY: any;
+
+  visualModel: any;
+
+  radius: number;
+
+  grid: Hex[];
+
+  sprites: any;
+
   constructor (secX, secY, position) {
     super();
     this.secX = secX;
     this.secY = secY;
-    this.x = secX * 600 + position.x;
-    this.y = secY * 600 - (600 * (secX & 1)) / 2 + position.y;
+    this.x = secX * PADDING + position.x;
+    this.y = secY * PADDING - (PADDING * (secX & 1)) / 2 + position.y;
 
     this.visualModel = {};
     this.radius = SECTOR_RADIUS;
     this.grid = makeHexagonalShape(this.radius);
-    this.makeSector(secX, secY);
+    this.makeSector();
     this.makeInteractive();
 
     this.addChild(...this.sprites);
@@ -50,8 +63,8 @@ export default class Sector extends PIXI.Container {
 
   getFieldModel (hex) {
     const visualModels = {
-      main: window.app.visual.grounds[8],
-      hover: window.app.visual.grounds[23],
+      main: window.app.visual?.grounds[8],
+      hover: window.app.visual?.grounds[23],
     };
 
     if (hex.y < 0) {
@@ -63,8 +76,8 @@ export default class Sector extends PIXI.Container {
     }
 
     return {
-      main: window.app.visual.grounds[6],
-      hover: window.app.visual.grounds[24],
+      main: window.app.visual?.grounds[6],
+      hover: window.app.visual?.grounds[24],
     };
   }
 
