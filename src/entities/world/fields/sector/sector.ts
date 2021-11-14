@@ -38,7 +38,7 @@ export default class Sector extends PIXI.Container {
     this.makeInteractive();
 
     this.addChild(...this.sprites);
-    this.makeLabel(secX, secY);
+    // this.makeLabel(secX, secY);
   }
 
   makeSector () {
@@ -53,12 +53,13 @@ export default class Sector extends PIXI.Container {
         },
       );
 
-      if (x === 0 && y === 0) {
-        sprite.addPic('https://tx.me/i/userpic/320/quotafbot.jpg');
-      }
-
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;
+
+      if (x === 0 && y === 0) {
+        sprite.addPic('quotafbot');
+      }
+
       return sprite;
     });
   }

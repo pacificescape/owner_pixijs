@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js';
 
 import { Island } from '../island/index';
-import Field from '../world/fields/field';
 
+import Field from './fields/field';
 import City from './fields/city';
 
 

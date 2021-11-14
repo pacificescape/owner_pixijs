@@ -19,6 +19,7 @@ loader.add('grounds', 'ground/tiles/100w.json', loadOptions);
 // loader.add("grounds@0.5x", "ground/grounds@0.5x.json", loadOptions);
 loader.add('sea', 'sea/sea_1.png', loadOptions);
 loader.add('buildings', 'buildings/buildings.json', loadOptions);
+loader.add('quotafbot', 'quotafbot.jpeg', loadOptions);
 
 loader.load(() => {
   window.app.stage?.emit('loaded');

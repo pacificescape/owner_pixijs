@@ -2,6 +2,21 @@ import * as PIXI from 'pixi.js';
 
 
 export default class Field extends PIXI.Sprite {
+  polygon = new PIXI.Polygon([
+    0,
+    25,
+    50,
+    0,
+    100,
+    25,
+    100,
+    112,
+    50,
+    137,
+    0,
+    112,
+  ]);
+
   constructor (visualModels, pos, sector) {
     const textures = {
       hover: visualModels.hover.texture,
@@ -19,23 +34,13 @@ export default class Field extends PIXI.Sprite {
     this.sector = sector;
 
     this.interactive = true;
-    this.hitArea = new PIXI.Polygon([
-      0,
-      25,
-      50,
-      0,
-      100,
-      25,
-      100,
-      112,
-      50,
-      137,
-      0,
-      112,
-    ]); // map if texture size change
+    this.hitArea = this.polygon; // map if texture size change
 
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
+    this.addListener('pointerdown', this.mouseover.bind(this));
+    this.addListener('pointerup', this.mouseout.bind(this));
+
     this.mouseup = this.touchend = this.touchendoutside = this.mouseupoutside = this.parseClick.bind(
       this,
     );
@@ -85,9 +90,6 @@ export default class Field extends PIXI.Sprite {
   }
 
   async addPic (url) {
-    // const url = 'http://adgang.jp/wp-content/uploads/2017/07/318.png';
-    const loader = new PIXI.Loader();
-
     // const link = await fetch(url, {
     //   mode: 'cors',
     //   headers: [
@@ -97,25 +99,52 @@ export default class Field extends PIXI.Sprite {
     //   ],
     // }).catch((error) => {return error;});
 
-    const img = new Image();
+    // const img = new Image();
 
     // img.crossOrigin = '';
-    img.src = url;
-    img.addEventListener('load', () => {
+    // img.src = url;
+    // img.addEventListener('load', () => {
       
-      // loader.add(
-      //   url,
-      //   url,
-      //   { crossOrigin: '' },
-      // ).load(() => {
+    // loader.add(
+    //   url,
+    //   url,
+    //   { crossOrigin: '' },
+    // ).load(() => {
           
-      // img.crossOrigin = '';
-      const pic = PIXI.Sprite.from(img);
+    //   // img.crossOrigin = '';
+    const pic = PIXI.Sprite.from(window.app.loader.resources[url].texture);
           
-      this.addChild(pic);
-      // });
 
-    });
+    pic.width = this.width;
+    pic.height = this.width;
+    pic.alpha = 0.7;
+    pic.interactive = true;
+
+    const on = () => { pic.alpha = 1; };
+    const off = () => { pic.alpha = 0.7; };
+
+    pic.mouseover = on;
+    pic.mouseout = off;
+    pic.mousedown = off;
+    pic.addListener('pointerdown', on);
+    pic.addListener('pointerup', off);
+
+    const mask = new PIXI.Graphics();
+    
+    mask.beginFill(0xFF_33_00);
+    mask.drawPolygon(this.hitArea);
+
+    mask.endFill();
+
+    mask.isMask = true;
+
+    pic.mask = mask;
+
+    this.addChild(mask);
+    this.addChild(pic);
+    //   // });
+
+    // });
   }
 
   makeCoordinateLabel (x, y) {
