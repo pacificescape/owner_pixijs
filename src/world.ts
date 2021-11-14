@@ -8,7 +8,7 @@ import {
 } from 'pixi.js';
 import { Layer } from '@pixi/layers';
 
-import Status from './helpers/status.js';
+// import Status from './helpers/status.js';
 import WorldMap from './entities/world/world-map';
 import { getMapFX } from './store';
 

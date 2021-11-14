@@ -26,9 +26,15 @@ module.exports = (env: { mode: 'development' | 'production' }) => {
           target: 'http://localhost:404',
         },
         '*': {
-          target: 'http://localhost:8081/',
+          target: '*',
           changeOrigin: true,
+          crossOriginIsolated: true,
         },
+      },
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*',
       },
     },
     module: {

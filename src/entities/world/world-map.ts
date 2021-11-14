@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js';
 import { Island } from '../island/index';
 import Field from '../world/fields/field';
 
-import City from './fields/city/city.js';
+import City from './fields/city';
 
 
 // const viewport = global.viewport;
@@ -18,7 +18,7 @@ export default class WorldMap extends PIXI.Container {
     moisture?: any,
   };
 
-  island: Island;
+  island: Island | null = null;
 
   constructor () {
     super();
@@ -27,7 +27,7 @@ export default class WorldMap extends PIXI.Container {
     window.app.stage?.on('loaded', () => {
       this.createMapFromLoader();
     });
-    this.island = new Island();
+    // this.island = new Island();
   }
 
   // Show default map if is not logged in
@@ -106,7 +106,6 @@ export default class WorldMap extends PIXI.Container {
       );
     }
 
-    // console.log(section);
     return section;
   }
 
@@ -115,9 +114,12 @@ export default class WorldMap extends PIXI.Container {
   }
 
   drawIsland () {
-    const childs: any[] = [];
+    const childs: Field[] = [];
 
-    // debugger;
+    if (!this.island) {
+      return;
+    }
+    
     for (const { biome, vertices } of this.island.polygons) {
       for (const v of vertices) {
         let main = window.app.visual?.grounds[6];

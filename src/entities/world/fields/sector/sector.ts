@@ -4,19 +4,17 @@ import { Hex, makeHexagonalShape } from '@/utils/hex-generator';
 import Field from '../field';
 
 
-const app = window.app;
-
 const WIDTH = 100;
-const HEIGHT = 80;
+const HEIGHT = 75; // @TODO get w h from tile config
 const PADDING = 600;
 
 const SECTOR_RADIUS = 2;
 const s = (d) => d * SECTOR_RADIUS * 2;
 
 export default class Sector extends PIXI.Container {
-  secX: any;
+  secX: number;
 
-  secY: any;
+  secY: number;
 
   visualModel: any;
 
@@ -24,7 +22,7 @@ export default class Sector extends PIXI.Container {
 
   grid: Hex[];
 
-  sprites: any;
+  sprites?: Field[];
 
   constructor (secX, secY, position) {
     super();
@@ -36,15 +34,15 @@ export default class Sector extends PIXI.Container {
     this.visualModel = {};
     this.radius = SECTOR_RADIUS;
     this.grid = makeHexagonalShape(this.radius);
-    this.makeSector();
+    this.sprites = this.makeSector();
     this.makeInteractive();
 
     this.addChild(...this.sprites);
-    // this.makeLabel(secX, secY);
+    this.makeLabel(secX, secY);
   }
 
   makeSector () {
-    this.sprites = this.grid.map((hex) => {
+    return this.grid.map((hex) => {
       const { x, y } = hex;
       const sprite = new Field(
         this.getFieldModel(hex),
@@ -54,6 +52,10 @@ export default class Sector extends PIXI.Container {
           y: this.secY,
         },
       );
+
+      if (x === 0 && y === 0) {
+        sprite.addPic('https://tx.me/i/userpic/320/quotafbot.jpg');
+      }
 
       sprite.x = (x - (y & 1) / 2) * WIDTH;
       sprite.y = y * HEIGHT;

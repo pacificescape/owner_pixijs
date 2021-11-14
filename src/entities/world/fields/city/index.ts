@@ -1,17 +1,17 @@
 import * as PIXI from 'pixi.js';
+import { makeHexagonalShape } from '@/utils/hex-generator';
 
 import Sector from '../sector/sector';
-import { makeHexagonalShape } from '../../../../utils/hex-generator';
 
-
-const app = global.app;
 
 export default class City extends PIXI.Container {
-  constructor (radius = 5, addX, addY) {
+  sectors: Sector[];
+
+  constructor (radius = 5, addX: number, addY: number) {
     super();
     // TODO: Refactor
     this.sectors = makeHexagonalShape(radius).map((hex) => {
-      let { x, y } = hex.evenCol();
+      const { x, y } = hex.evenCol();
       const sector = new Sector(x, y, { x: addX, y: addY });
 
       return sector;

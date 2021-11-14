@@ -84,6 +84,40 @@ export default class Field extends PIXI.Sprite {
     this.texture = this.textures.main;
   }
 
+  async addPic (url) {
+    // const url = 'http://adgang.jp/wp-content/uploads/2017/07/318.png';
+    const loader = new PIXI.Loader();
+
+    // const link = await fetch(url, {
+    //   mode: 'cors',
+    //   headers: [
+    //     ['Access-Control-Allow-Origin', '*'],
+    //     ['Access-Control-Allow-Headers', '*'],
+    //     ['Access-Control-Allow-Methods', '*'],
+    //   ],
+    // }).catch((error) => {return error;});
+
+    const img = new Image();
+
+    // img.crossOrigin = '';
+    img.src = url;
+    img.addEventListener('load', () => {
+      
+      // loader.add(
+      //   url,
+      //   url,
+      //   { crossOrigin: '' },
+      // ).load(() => {
+          
+      // img.crossOrigin = '';
+      const pic = PIXI.Sprite.from(img);
+          
+      this.addChild(pic);
+      // });
+
+    });
+  }
+
   makeCoordinateLabel (x, y) {
     const label = new PIXI.Text(`x:${x}, y:${y}`, { fontSize: 14 });
 
