@@ -113,6 +113,7 @@ export default class Field extends PIXI.Sprite {
     pic.mouseover = on;
     pic.mouseout = off;
     pic.mousedown = off;
+    pic.mouseup = () => window.open('https://t.me/quotafbot');
     pic.addListener('pointerdown', on);
     pic.addListener('pointerup', off);
 
@@ -129,9 +130,6 @@ export default class Field extends PIXI.Sprite {
 
     this.addChild(mask);
     this.addChild(pic);
-    //   // });
-
-    // });
   }
 
   makeCoordinateLabel (x, y) {
