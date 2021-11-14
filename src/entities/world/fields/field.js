@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 
 
 export default class Field extends PIXI.Sprite {
+  quotafbotclick = () => null;
+
   polygon = new PIXI.Polygon([
     0,
     25,
@@ -61,15 +63,18 @@ export default class Field extends PIXI.Sprite {
     ) {
       console.log('click parsed');
 
-      window.app.stage.emit(
-        'window',
-        evt.data.global,
-        {
-          pos: this.pos,
-          sector: this.sector,
-        },
-        evt.data.global,
-      );
+      // window.app.stage.emit(
+      //   'window',
+      //   evt.data.global,
+      //   {
+      //     pos: this.pos,
+      //     sector: this.sector,
+      //   },
+      //   evt.data.global,
+      // );
+      
+      // this.quotafbotclick();
+      
       return;
     }
     console.log('move parsed');
@@ -90,35 +95,17 @@ export default class Field extends PIXI.Sprite {
   }
 
   async addPic (url) {
-    // const link = await fetch(url, {
-    //   mode: 'cors',
-    //   headers: [
-    //     ['Access-Control-Allow-Origin', '*'],
-    //     ['Access-Control-Allow-Headers', '*'],
-    //     ['Access-Control-Allow-Methods', '*'],
-    //   ],
-    // }).catch((error) => {return error;});
-
-    // const img = new Image();
-
-    // img.crossOrigin = '';
-    // img.src = url;
-    // img.addEventListener('load', () => {
-      
-    // loader.add(
-    //   url,
-    //   url,
-    //   { crossOrigin: '' },
-    // ).load(() => {
-          
-    //   // img.crossOrigin = '';
+    
     const pic = PIXI.Sprite.from(window.app.loader.resources[url].texture);
-          
-
+    
+    
     pic.width = this.width;
     pic.height = this.width;
     pic.alpha = 0.7;
     pic.interactive = true;
+    pic.buttonMode = true;
+    pic.on('touchend', () => window.open('https://t.me/quotafbot'));
+    
 
     const on = () => { pic.alpha = 1; };
     const off = () => { pic.alpha = 0.7; };
